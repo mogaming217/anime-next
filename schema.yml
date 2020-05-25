@@ -1,0 +1,19 @@
+works:
+  documentID: annictID
+  annictID: String
+  title: String
+  titleKana: String?
+  imageURL: String? # annictにのってる画像のURLは怪しいのでAmazonから取ってきたほうがいいかも
+  season: String # ex: 2019-winter
+  # TODO: 購入用URLのフィールド or サブコレクション
+
+  originals:
+    documentID: auto
+    info: String # TODO: 何巻からなのか フィールドは検討
+    createdAt: Timestamp
+
+  # seriesWorks: # これ取れないかも
+  #   documentID: String
+
+users:
+  documentID: auth.uid
