@@ -1,3 +1,5 @@
+// Functionsの環境変数を設定するスクリプト
+
 import * as path from 'path'
 import { execSync } from 'child_process'
 import { isValidAppEnv, AppEnvironment } from './helper'
@@ -7,7 +9,7 @@ const execCommand = (command: string) => {
 }
 
   // キーには小文字しか使用できない（Firebaseの仕様）
-  // JSONは2階層までしかダメ
+  // JSONは2階層で指定しなければならない（Firebaseの仕様）
 const generateEnvString = (env: AppEnvironment): string[] => {
   const json = require(path.resolve(__dirname, '../env', `${env}.json`))
   const envValues: string[] = []
