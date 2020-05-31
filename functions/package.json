@@ -18,6 +18,7 @@
     "firebase-functions": "^3.6.2"
   },
   "devDependencies": {
+    "@types/node": "^14.0.6",
     "firebase-functions-test": "^0.2.1",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
