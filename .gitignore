@@ -1,1 +1,7 @@
 .vscode
+
+**/node_modules/
+
+# firebase
+*.log
+.firebase
