@@ -1,12 +1,16 @@
 import * as path from 'path'
 import * as admin from 'firebase-admin'
 
-type AppEnvironment = 'dev' | 'prod'
+export type AppEnvironment = 'dev' | 'prod'
+
+export const isValidAppEnv = (value: string): value is AppEnvironment => {
+  return ['dev', 'prod'].includes(value)
+}
 
 export const initializeProject = (env?: AppEnvironment) => {
   const envValue = process.env.APP_ENV || env
   if (!envValue) throw new Error('No env specified. You must set APP_ENV or pass as args.')
-  if (!(envValue === 'dev' || envValue === 'prod')) throw new Error('env must be "dev" or "prod".')
+  if (!isValidAppEnv(envValue)) throw new Error('env must be "dev" or "prod".')
 
   console.log(`initialize project with ${envValue}.`)
   const serviceAccountPath = path.resolve(__dirname, 'serviceAccount', `${envValue}.json`)

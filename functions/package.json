@@ -7,7 +7,8 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "setEnv:dev": "ts-node script/setEnvVars.ts dev"
   },
   "engines": {
     "node": "10"
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.6",
+    "child_process": "^1.0.2",
     "firebase-functions-test": "^0.2.1",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
