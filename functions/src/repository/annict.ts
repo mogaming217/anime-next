@@ -15,7 +15,6 @@ export class AnnictRepository {
   }
 
   private async query(queryData: string, variables?: object) {
-    // const queryData = require(`../query/${queryFileName}.gql`)
     const response = await axios.post(this.endpoint, {
       query: queryData, variables
     }, {
