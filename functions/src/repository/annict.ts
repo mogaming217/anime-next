@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { env } from '../env'
+import fetchWorksQuery from '../query/fetchWorks'
 
 export class AnnictRepository {
   get endpoint(): string {
@@ -13,15 +14,21 @@ export class AnnictRepository {
     }
   }
 
-  private async post(url: string, data?: any) {
-    const response = await axios.post(url, data, {
+  private async query(queryData: string, variables?: object) {
+    // const queryData = require(`../query/${queryFileName}.gql`)
+    const response = await axios.post(this.endpoint, {
+      query: queryData, variables
+    }, {
       headers: this.headers
     })
     return response.data
   }
 
   async fetchWorks() {
-    const data = await this.post(this.endpoint)
+    const data = await this.query(fetchWorksQuery, {
+      seasons: ['2019-winter'],
+      first: 10
+    })
     return data
   }
 }
