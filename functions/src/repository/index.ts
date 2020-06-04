@@ -1,3 +1,1 @@
-export class AnnictRepository {
-
-}
+export * from './annict'
