@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { env } from '../env'
-import fetchWorksQuery from '../query/fetchWorks'
+import { fetchWorksQuery, FetchWorksData } from '../query/fetchWorks'
 import { Result, Failure, Success } from '../common/result'
+import { GraphQLQuery } from '../query/query'
 
 interface GraphQLResponse<T> {
   data: T,
@@ -11,6 +12,9 @@ interface GraphQLResponse<T> {
 interface GraphQLError {
   message: string
 }
+
+export type QueryErrorCode = 'has_error_field' | 'parse_failed' | 'unexpected'
+export type QueryError = { code: QueryErrorCode, payload?: any }
 
 export class AnnictRepository {
   get endpoint(): string {
@@ -24,28 +28,42 @@ export class AnnictRepository {
     }
   }
 
-  private async query<T>(queryData: string, variables?: object): Promise<Result<T, GraphQLError[]>> {
-    const data = {
-      query: queryData,
+  private async query<T>(query: GraphQLQuery<T>, variables?: object): Promise<Result<T, QueryError>> {
+    const body = {
+      query: query.body,
       variables
     }
 
-    const response: GraphQLResponse<T> = await axios.post(this.endpoint, data, {
-      headers: this.headers
-    })
+    try {
+      const response: GraphQLResponse<T> = await axios.post(this.endpoint, body, {
+        headers: this.headers
+      })
 
-    if (response.errors && response.errors.length > 0) {
-      return new Failure(response.errors)
+      // これを完全にエラーにすべきかは場合によるが、今回はすべて必須のフィールドのためエラーとする
+      if (response.errors && response.errors.length > 0) {
+        return new Failure({ code: 'has_error_field', payload: response.errors })
+      }
+
+      const data = query.parse(response.data)
+      if (!data) return new Failure({ code: 'parse_failed', payload: response.data })
+
+      return new Success(response.data)
+    } catch (error) {
+      return new Failure({ code: 'unexpected', payload: error })
     }
-
-    return new Success(response.data)
   }
 
   async fetchWorks() {
-    const data = await this.query(fetchWorksQuery, {
+    const result = await this.query(fetchWorksQuery, {
       seasons: ['2019-winter'],
       first: 10
     })
-    return data
+
+    if (result.isFailure) {
+      // TODO: error handling
+      return
+    }
+
+    return result
   }
 }
