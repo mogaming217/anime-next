@@ -53,6 +53,7 @@ export class AnnictRepository {
     }
   }
 
+  // TODO: specify type
   async fetchWorks() {
     const result = await this.query(fetchWorksQuery, {
       seasons: ['2019-winter'],
@@ -63,6 +64,8 @@ export class AnnictRepository {
       // TODO: error handling
       return
     }
+
+    // TODO: result.valueをドメインモデルのWorkの配列に変換する
 
     return result
   }
