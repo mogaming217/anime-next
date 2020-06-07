@@ -41,7 +41,7 @@ export class AnnictRepository {
       const data = query.parse(response.data)
       if (!data) return new Failure({ code: 'parse_failed', payload: response.data })
 
-      return new Success(response.data)
+      return new Success(data)
     } catch (error) {
       return new Failure({ code: 'unexpected', payload: error })
     }
