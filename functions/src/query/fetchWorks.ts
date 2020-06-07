@@ -1,4 +1,5 @@
 import { GraphQLQuery } from "./query"
+import { Work as WorkModel } from "../model"
 
 export interface FetchWorksData {
   searchWorks: {
@@ -11,6 +12,16 @@ interface Work {
   title: string
   titleEn: string
   titleKana: string
+}
+
+// FIXME: 命名イマイチ
+export const convertNode = (node: Work): WorkModel | null => {
+  return new WorkModel(
+    node.annictId,
+    node.title,
+    node.titleEn,
+    node.titleKana
+  )
 }
 
 export const fetchWorksQuery: GraphQLQuery<FetchWorksData> = {
@@ -30,6 +41,7 @@ export const fetchWorksQuery: GraphQLQuery<FetchWorksData> = {
   }
   `,
   parse (data: any) {
+    console.log(JSON.stringify(data, null, 2))
     if (!data.searchWorks) return null
     return data
   }

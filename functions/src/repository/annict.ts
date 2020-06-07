@@ -1,17 +1,10 @@
 import axios from 'axios'
 import { env } from '../env'
-import { fetchWorksQuery, FetchWorksData } from '../query/fetchWorks'
+import { fetchWorksQuery, convertNode } from '../query/fetchWorks'
+import { GraphQLQuery, GraphQLResponse } from '../query/query'
 import { Result, Failure, Success } from '../common/result'
-import { GraphQLQuery } from '../query/query'
-
-interface GraphQLResponse<T> {
-  data: T,
-  errors?: GraphQLError[]
-}
-
-interface GraphQLError {
-  message: string
-}
+import { Work } from '../model'
+import { compactMap } from '../util/array'
 
 export type QueryErrorCode = 'has_error_field' | 'parse_failed' | 'unexpected'
 export type QueryError = { code: QueryErrorCode, payload?: any }
@@ -35,9 +28,10 @@ export class AnnictRepository {
     }
 
     try {
-      const response: GraphQLResponse<T> = await axios.post(this.endpoint, body, {
+      const postResult = await axios.post(this.endpoint, body, {
         headers: this.headers
       })
+      const response: GraphQLResponse<T> = postResult.data
 
       // これを完全にエラーにすべきかは場合によるが、今回はすべて必須のフィールドのためエラーとする
       if (response.errors && response.errors.length > 0) {
@@ -54,7 +48,7 @@ export class AnnictRepository {
   }
 
   // TODO: specify type
-  async fetchWorks() {
+  async fetchWorks(): Promise<Result<Work[], QueryError>> {
     const result = await this.query(fetchWorksQuery, {
       seasons: ['2019-winter'],
       first: 10
@@ -62,11 +56,10 @@ export class AnnictRepository {
 
     if (result.isFailure) {
       // TODO: error handling
-      return
+      return new Failure(result.error)
     }
 
-    // TODO: result.valueをドメインモデルのWorkの配列に変換する
-
-    return result
+    const works = compactMap(result.value.searchWorks.nodes, node => convertNode(node))
+    return new Success(works)
   }
 }
