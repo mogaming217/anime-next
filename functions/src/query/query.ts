@@ -1,5 +1,6 @@
 export interface GraphQLQuery<T> {
-  body: string,
+  body: string
+  variables?: object
   parse: (data: any) => T | null
 }
 

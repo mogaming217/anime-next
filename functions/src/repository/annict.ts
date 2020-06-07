@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { env } from '../env'
-import { fetchWorksQuery, convertNode } from '../query/fetchWorks'
+import { FetchWorksQuery, convertNode } from '../query/fetchWorks'
 import { GraphQLQuery, GraphQLResponse } from '../query/query'
 import { Result, Failure, Success } from '../common/result'
 import { Work } from '../model'
@@ -21,10 +21,10 @@ export class AnnictRepository {
     }
   }
 
-  private async query<T>(query: GraphQLQuery<T>, variables?: object): Promise<Result<T, QueryError>> {
+  private async query<T>(query: GraphQLQuery<T>): Promise<Result<T, QueryError>> {
     const body = {
       query: query.body,
-      variables
+      variables: query.variables || null
     }
 
     try {
@@ -49,10 +49,11 @@ export class AnnictRepository {
 
   // TODO: specify type
   async fetchWorks(): Promise<Result<Work[], QueryError>> {
-    const result = await this.query(fetchWorksQuery, {
+    const fetchWorksQuery = new FetchWorksQuery({
       seasons: ['2019-winter'],
       first: 10
     })
+    const result = await this.query(fetchWorksQuery)
 
     if (result.isFailure) {
       // TODO: error handling
