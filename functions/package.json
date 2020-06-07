@@ -16,9 +16,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "firebase-admin": "^8.12.1",
-    "firebase-functions": "^3.6.2",
-    "graphql": "^15.0.0",
-    "graphql-tag": "^2.10.3"
+    "firebase-functions": "^3.6.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
