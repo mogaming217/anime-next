@@ -56,25 +56,3 @@ export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
     return data
   }
 }
-
-export const fetchWorksQuery: GraphQLQuery<FetchWorksData> = {
-  body: `
-  query fetchWorks($seasons: [String!], $first: Int!) {
-    searchWorks(
-      seasons: $seasons,
-      first: $first
-    ) {
-      nodes {
-        annictId
-        title
-        titleEn
-        titleKana
-      }
-    }
-  }
-  `,
-  parse (data: any) {
-    if (!data.searchWorks) return null
-    return data
-  }
-}
