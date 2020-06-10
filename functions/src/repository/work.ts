@@ -1,8 +1,7 @@
 import { firestore } from "firebase-admin";
 import { Repository } from "./base";
 import { Work } from "../model";
-import { handleInBatch } from "../util/array";
-import { DateHelper } from "../helper";
+import { handleInBatch } from "../helper/array";
 
 export class WorkRepository extends Repository {
   workDataForSet(work: Work): firestore.DocumentData {

@@ -4,7 +4,7 @@ import { FetchWorksQuery, convertNode } from '../query/fetchWorks'
 import { GraphQLQuery, GraphQLResponse } from '../query/query'
 import { Result, Failure, Success } from '../common/result'
 import { Work } from '../model'
-import { compactMap } from '../util/array'
+import { compactMap } from '../helper/array'
 
 export type QueryErrorCode = 'has_error_field' | 'parse_failed' | 'unexpected'
 export type QueryError = { code: QueryErrorCode, payload?: any }
