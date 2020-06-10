@@ -2,6 +2,7 @@ import { firestore } from "firebase-admin";
 import { Repository } from "./base";
 import { Work } from "../model";
 import { handleInBatch } from "../util/array";
+import { DateHelper } from "../helper";
 
 export class WorkRepository extends Repository {
   workDataForSet(work: Work): firestore.DocumentData {
@@ -9,7 +10,8 @@ export class WorkRepository extends Repository {
       annictID: work.annictID,
       title: work.title,
       titleEn: work.titleEn,
-      titleKana: work.titleKana
+      titleKana: work.titleKana,
+      updatedAt: firestore.Timestamp.fromDate(DateHelper.now()) // あまり重要ではないのであえてserverTimestampを使わない
     }
   }
 
@@ -17,7 +19,7 @@ export class WorkRepository extends Repository {
     return handleInBatch(works, 500, async list => {
       const batch = this.db.batch()
       list.forEach(work => {
-        batch.set(this.worksRef.doc(), this.workDataForSet(work), { merge: true })
+        batch.set(this.worksRef.doc(work.id), this.workDataForSet(work), { merge: true })
       })
       return batch.commit()
     })
