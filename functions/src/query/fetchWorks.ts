@@ -8,7 +8,7 @@ export interface FetchWorksData {
 }
 
 interface Work {
-  annictId: string
+  annictId: number
   title: string
   titleEn: string | null
   titleKana: string | null
@@ -17,7 +17,7 @@ interface Work {
 // FIXME: 命名イマイチ
 export const convertNode = (node: Work): WorkModel | null => {
   return new WorkModel(
-    node.annictId,
+    node.annictId.toString(),
     node.title,
     node.titleEn,
     node.titleKana

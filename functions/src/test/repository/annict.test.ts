@@ -1,9 +1,13 @@
-import { AnnictRepository } from "../../repository"
+import { AnnictRepository, WorkRepository } from "../../repository"
 
 describe('AnnictRepository', () => {
   it('fetchWorks', async () => {
     const repo = new AnnictRepository()
-    const data = await repo.fetchWorks()
-    console.log(JSON.stringify(data, null, 2))
+    const result = await repo.fetchWorks()
+    if (!result.isFailure) {
+      const workRepo = new WorkRepository()
+      await workRepo.save(result.value)
+      console.log('saved!')
+    }
   })
 })

@@ -11,7 +11,7 @@ export class WorkRepository extends Repository {
       title: work.title,
       titleEn: work.titleEn,
       titleKana: work.titleKana,
-      updatedAt: firestore.Timestamp.fromDate(DateHelper.now()) // あまり重要ではないのであえてserverTimestampを使わない
+      updatedAt: firestore.Timestamp.now() // あまり重要ではないのであえてserverTimestampを使わない
     }
   }
 
