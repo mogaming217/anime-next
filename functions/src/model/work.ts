@@ -4,8 +4,8 @@ export class Work {
   constructor(
     annictId: string,
     readonly title: string,
-    readonly titleEn: string,
-    readonly titleKana: string
+    readonly titleEn: string | null,
+    readonly titleKana: string | null
   ) {
     this.annictID = annictId
   }

@@ -10,8 +10,8 @@ export interface FetchWorksData {
 interface Work {
   annictId: string
   title: string
-  titleEn: string
-  titleKana: string
+  titleEn: string | null
+  titleKana: string | null
 }
 
 // FIXME: 命名イマイチ
