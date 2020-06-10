@@ -1,5 +1,6 @@
 import { GraphQLQuery } from "./query"
 import { Work as WorkModel } from "../model"
+import { Season } from "../enum/season"
 
 export interface FetchWorksData {
   searchWorks: {
@@ -24,28 +25,45 @@ export const convertNode = (node: Work): WorkModel | null => {
   )
 }
 
+type Variables = {
+  seasons: string[],
+  first: number,
+  after?: string
+}
+
 export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
-  readonly variables: object
+  readonly variables: Variables
   constructor(
     variables: {
-      seasons: string[],
-      first: number
+      first: number,
+      quotas: { year: number, season: Season }[],
+      after?: string
     }
   ) {
-    this.variables = variables
+    this.variables = {
+      seasons: variables.quotas.map(q => `${q.year}-${q.season}`),
+      first: variables.first,
+      after: variables.after
+    }
   }
 
   readonly body: string = `
-  query fetchWorks($seasons: [String!], $first: Int!) {
+  query fetchWorks($seasons: [String!], $first: Int!, $after: String) {
     searchWorks(
       seasons: $seasons,
-      first: $first
+      first: $first,
+      after: $after
     ) {
       nodes {
         annictId
         title
         titleEn
         titleKana
+      }
+
+      pageInfo {
+        hasNextPage
+        endCursor
       }
     }
   }
