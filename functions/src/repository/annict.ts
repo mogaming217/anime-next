@@ -4,7 +4,8 @@ import { FetchWorksQuery, convertNode } from '../query/fetchWorks'
 import { GraphQLQuery, GraphQLResponse } from '../query/query'
 import { Result, Failure, Success } from '../common/result'
 import { Work } from '../model'
-import { compactMap } from '../util/array'
+import { compactMap } from '../helper/array'
+import { Season } from '../enum/season'
 
 export type QueryErrorCode = 'has_error_field' | 'parse_failed' | 'unexpected'
 export type QueryError = { code: QueryErrorCode, payload?: any }
@@ -48,11 +49,8 @@ export class AnnictRepository {
   }
 
   // TODO: specify type
-  async fetchWorks(): Promise<Result<Work[], QueryError>> {
-    const fetchWorksQuery = new FetchWorksQuery({
-      seasons: ['2019-winter'],
-      first: 10
-    })
+  async fetchWorks(quotas: { year: number, season: Season }[], first: number): Promise<Result<Work[], QueryError>> {
+    const fetchWorksQuery = new FetchWorksQuery({ quotas, first })
     const result = await this.query(fetchWorksQuery)
 
     if (result.isFailure) {
