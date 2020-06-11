@@ -5,7 +5,7 @@ import { AnnictRepository, WorkRepository } from '../../src/repository'
 
 const main = async () => {
   const repo = new AnnictRepository()
-  const result = await repo.fetchWorks([{ year: 2020, season: 'spring' }], 20)
+  const result = await repo.fetchWorks([{ year: 2020, season: 'spring' }], 100)
   if (result.isFailure) {
     console.log(result.error)
   } else {
