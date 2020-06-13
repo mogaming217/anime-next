@@ -17,10 +17,12 @@ const main = async () => {
     year: 2020,
     seasons: ['winter']
   }]
+  console.log(allSeasons)
 
-  for (let year = 2019; year < 2020; year++) {
-    list.push({ year, seasons: allSeasons })
-  }
+
+  // for (let year = 2019; year < 2020; year++) {
+  //   list.push({ year, seasons: allSeasons })
+  // }
 
   const failedWorkIDs: string[] = []
 
@@ -37,7 +39,7 @@ const main = async () => {
   }
 
   if (failedWorkIDs.length > 0) {
-    fs.writeFileSync('./src/script/setWorksResult.json', JSON.stringify({ failedWorkIDs }, null, 2))
+    fs.writeFileSync('./src/script/setWorksResult.json', JSON.stringify({ failedWorkIDs, list }, null, 2))
   }
 
   process.exit(0)

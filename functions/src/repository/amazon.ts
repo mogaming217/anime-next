@@ -33,13 +33,15 @@ export class AmazonRepository {
   }
 
   fetchImageURL(keyword: string): Promise<string | null> {
-    const request = this.constructRequest('MoviesAndTV', keyword)
+    const request = this.constructRequest('AmazonVideo', keyword)
     return new Promise<string | null>((resolve, reject) => {
       this.api.searchItems(request, async (error: any, data: any, r: any) => {
         if (error) {
           reject(error)
           return
         }
+
+        console.log(JSON.stringify(data, null, 2))
 
         const res = Amazon.SearchItemsResponse.constructFromObject(data)
         const imageURL = res.SearchResult?.Items?.[0]?.Images?.Primary?.Large?.URL || null

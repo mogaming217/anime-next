@@ -13,15 +13,23 @@ interface Work {
   title: string
   titleEn: string | null
   titleKana: string | null
+  image: {
+    recommendedImageUrl: string | null
+  } | null
 }
 
 // FIXME: 命名イマイチ
 export const convertNode = (node: Work): WorkModel | null => {
+  let imageURL = node.image?.recommendedImageUrl
+  if (imageURL && imageURL.length === 0) {
+    imageURL = null
+  }
   return new WorkModel(
     node.annictId.toString(),
     node.title,
     node.titleEn,
-    node.titleKana
+    node.titleKana,
+    imageURL
   )
 }
 
@@ -59,6 +67,9 @@ export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
         title
         titleEn
         titleKana
+        image {
+          recommendedImageUrl
+        }
       }
 
       pageInfo {
