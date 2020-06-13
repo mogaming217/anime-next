@@ -2,7 +2,7 @@ const Amazon = require('paapi5-nodejs-sdk')
 import { env } from '../env'
 
 export class AmazonRepository {
-  api: any
+  private api: any
 
   constructor() {
     const client = Amazon.ApiClient.instance
@@ -34,10 +34,10 @@ export class AmazonRepository {
 
   fetchImageURL(keyword: string): Promise<string | null> {
     const request = this.constructRequest('MoviesAndTV', keyword)
-    return new Promise<string | null>((resolve) => {
+    return new Promise<string | null>((resolve, reject) => {
       this.api.searchItems(request, async (error: any, data: any, r: any) => {
         if (error) {
-          resolve(null)
+          reject(error)
           return
         }
 

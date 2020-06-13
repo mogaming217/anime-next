@@ -48,13 +48,11 @@ export class AnnictRepository {
     }
   }
 
-  // TODO: specify type
   async fetchWorks(quotas: { year: number, season: Season }[], first: number): Promise<Result<Work[], QueryError>> {
     const fetchWorksQuery = new FetchWorksQuery({ quotas, first })
     const result = await this.query(fetchWorksQuery)
 
     if (result.isFailure) {
-      // TODO: error handling
       return new Failure(result.error)
     }
 
