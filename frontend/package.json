@@ -4,8 +4,9 @@
   "scripts": {
     "clean": "rm -rf .next && rm -rf dist",
     "dev": "npm run copy-static && cross-env APP_ENV=local nodemon",
-    "deploy": "npm run build && firebase deploy",
-    "deploy:dev": "firebase use default && cross-env APP_ENV=dev npm run deploy",
+    "deploy": "npm run build && firebase deploy --only hosting",
+    "deploy:dev": "firebase use dev && cross-env APP_ENV=dev npm run deploy",
+    "deploy:prod": "firebase use prod && cross-env APP_ENV=prod npm run deploy && firebase use dev",
     "build": "npm run clean && npm run build:next && npm run build:server",
     "build:next": "next build && npm run copy-static",
     "build:server": "tsc --project tsconfig.server.json",
