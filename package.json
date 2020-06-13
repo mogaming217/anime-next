@@ -1,0 +1,9 @@
+{
+  "name": "anime-next",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "deploy:rules:dev": "firebase use dev && npm run deploy:rules"
+  }
+}

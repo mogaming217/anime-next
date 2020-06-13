@@ -10,17 +10,19 @@
     ]
   },
   "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "frontend/.next/static",
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "**/**",
+        "run": {
+          "serviceId": "renderer",
+          "region": "asia-northeast1"
+        }
       }
+    ],
+    "postdeploy": [
+      "npm run gcloud:build",
+      "npm run gcloud:run"
     ]
   },
   "emulators": {
