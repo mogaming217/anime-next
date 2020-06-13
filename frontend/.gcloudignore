@@ -1,0 +1,8 @@
+*
+
+!package.json
+!package-lock.json
+!Dockerfile
+!.next/**
+!dist/**
+!env/**
