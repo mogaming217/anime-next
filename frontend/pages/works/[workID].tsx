@@ -8,17 +8,28 @@ interface Props {
 }
 
 const Page: NextPage<Props> = (props: Props) => {
+  const work = props.work
+  if (!work) {
+    return (
+      <App>
+        <div>not found</div>
+      </App>
+    )
+  }
+
   return (
     <App>
-      <div>{ props.work?.title || 'Not found' }</div>
+      <div>{ work.title }</div>
     </App>
   )
 }
 
-Page.getInitialProps = async ({ query }: NextPageContext): Promise<Props> => {
+Page.getInitialProps = async ({ res, query }: NextPageContext): Promise<Props> => {
   const workID = query.workID as string
   const result = await firestore.collection('works').doc(workID).get()
-  return { work: result.data() || null }
+  const work = result.data()
+  if (!work && res) res.statusCode = 404
+  return { work }
 }
 
 export default Page
