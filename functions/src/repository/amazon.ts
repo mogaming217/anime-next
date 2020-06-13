@@ -41,8 +41,6 @@ export class AmazonRepository {
           return
         }
 
-        console.log(JSON.stringify(data, null, 2))
-
         const res = Amazon.SearchItemsResponse.constructFromObject(data)
         const imageURL = res.SearchResult?.Items?.[0]?.Images?.Primary?.Large?.URL || null
         resolve(imageURL)

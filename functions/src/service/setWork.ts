@@ -32,7 +32,7 @@ export class SetWorkService {
     try {
       Logger.info({ type: 'start_set_works', query: { year, season }})
 
-      const annictResult = await this.annictRepo.fetchWorks([{ year, season }], 10)
+      const annictResult = await this.annictRepo.fetchWorks([{ year, season }], 500)
       if (annictResult.isFailure) {
         Logger.error({ type: 'fetch_annict_failed', query: { year, season }, error: annictResult.error })
         return new Failure('annict_error')
@@ -42,7 +42,7 @@ export class SetWorkService {
 
       await this.workRepo.save(works)
 
-      const setImageResult = await this.setImageURLToWorks(works, 1.5)
+      const setImageResult = await this.setImageURLToWorks(works, 2)
 
       return new Success({ setImageFailedWorkIDs: setImageResult.failedWorkIDs })
     } catch (error) {

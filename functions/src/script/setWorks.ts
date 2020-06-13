@@ -13,16 +13,10 @@ type Params = {
 const main = async () => {
   const service = new SetWorkService()
 
-  const list: Params[] = [{
-    year: 2020,
-    seasons: ['winter']
-  }]
-  console.log(allSeasons)
-
-
-  // for (let year = 2019; year < 2020; year++) {
-  //   list.push({ year, seasons: allSeasons })
-  // }
+  const list: Params[] = []
+  for (let year = 2000; year < 2006; year++) {
+    list.push({ year, seasons: allSeasons })
+  }
 
   const failedWorkIDs: string[] = []
 
