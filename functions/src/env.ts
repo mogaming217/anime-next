@@ -3,6 +3,10 @@ import * as functions from 'firebase-functions'
 export interface EnvorinmentVariables {
   annict: {
     token: string
+  },
+  amazon: {
+    access: string,
+    secret: string
   }
 }
 

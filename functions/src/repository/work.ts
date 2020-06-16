@@ -10,6 +10,7 @@ export class WorkRepository extends Repository {
       title: work.title,
       titleEn: work.titleEn,
       titleKana: work.titleKana,
+      imageURL: work.imageURL,
       updatedAt: firestore.Timestamp.now() // あまり重要ではないのであえてserverTimestampを使わない
     }
   }
@@ -21,6 +22,13 @@ export class WorkRepository extends Repository {
         batch.set(this.worksRef.doc(work.id), this.workDataForSet(work), { merge: true })
       })
       return batch.commit()
+    })
+  }
+
+  async updateImageURL(work: Work) {
+    return this.worksRef.doc(work.id).update({
+      imageURL: work.imageURL,
+      updatedAt: firestore.Timestamp.now()
     })
   }
 }

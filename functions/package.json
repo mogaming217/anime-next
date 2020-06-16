@@ -14,9 +14,11 @@
   },
   "main": "build/index.js",
   "dependencies": {
+    "@google-cloud/logging": "^7.3.0",
     "axios": "^0.19.2",
     "firebase-admin": "^8.12.1",
-    "firebase-functions": "^3.6.2"
+    "firebase-functions": "^3.6.2",
+    "paapi5-nodejs-sdk": "^1.0.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
