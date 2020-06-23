@@ -7,6 +7,11 @@ export interface EnvorinmentVariables {
   amazon: {
     access: string,
     secret: string
+  },
+  algolia: {
+    indexprefix: string,
+    id: string,
+    key: string
   }
 }
 
