@@ -25,7 +25,7 @@ const SearchPage: NextPage<Props> = (props: Props) => {
 SearchPage.getInitialProps = async ({ query }: NextPageContext): Promise<Props> => {
   const keyword = query.q as string | undefined
   const repo = new SearchRepository()
-  const works = await repo.searchWorks(keyword) as Work[]
+  const works = await repo.searchWorks(keyword) as Work[] // FIXME: 型は仮
   return {
     works
   }
