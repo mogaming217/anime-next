@@ -1,5 +1,10 @@
 {
   "annict": {
-    "token": "sample_value"
+    "token": "xxx",
+    "indexprefix": "dev_"
+  },
+  "amazon": {
+    "access": "xxx",
+    "secret": "xxx"
   }
 }
