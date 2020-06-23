@@ -1,10 +1,12 @@
 {
   "annict": {
-    "token": "xxx",
-    "indexprefix": "dev_"
+    "token": "xxx"
   },
   "amazon": {
     "access": "xxx",
     "secret": "xxx"
+  },
+  "algolia": {
+    "indexprefix": "dev_"
   }
 }
