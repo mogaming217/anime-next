@@ -1,28 +1,15 @@
-import React from 'react'
-import { NextPage, NextPageContext } from 'next'
+import { NextPage } from 'next'
 import { App } from 'components/App'
-import { Sample } from 'components/Sample'
-import { serverEnv, clientEnv } from 'env'
+import { SearchBar } from 'components/lv2/SearchBar'
 
-type Props = {
-  sampleValue?: string,
-  host: string
-}
-
-const RootPage: NextPage<Props> = (props: Props) => (
-  <App>
-    <Sample />
-    <div>{ props.sampleValue }{ props.host }</div>
-  </App>
-)
-
-RootPage.getInitialProps = ({}: NextPageContext): Props => {
-  // 404へいって、その後TOPへ返ってくるとちゃんとエラーになるので、サーバー側でしか読み取れない
-  let value = serverEnv.sampleValue
-  return {
-    sampleValue: value,
-    host: clientEnv.host
-  }
+const RootPage: NextPage = () => {
+  return (
+    <App>
+      <SearchBar
+        placeholder='アニメのタイトルを入力 例）鬼滅の刃'
+      />
+    </App>
+  )
 }
 
 export default RootPage
