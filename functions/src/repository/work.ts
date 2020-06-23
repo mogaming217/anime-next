@@ -15,6 +15,13 @@ export class WorkRepository extends Repository {
     }
   }
 
+  decode(snapshot: firestore.DocumentSnapshot): Work | undefined {
+    const data = snapshot.data()
+    if (!data) return
+    // FIXME: もう少しちゃんと
+    return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL)
+  }
+
   async save(works: Work[]) {
     return handleInBatch(works, 500, async list => {
       const batch = this.db.batch()

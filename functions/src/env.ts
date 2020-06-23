@@ -9,7 +9,9 @@ export interface EnvorinmentVariables {
     secret: string
   },
   algolia: {
-    indexprefix: string
+    indexprefix: string,
+    id: string,
+    key: string
   }
 }
 

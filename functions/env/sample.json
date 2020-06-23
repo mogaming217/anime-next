@@ -7,6 +7,8 @@
     "secret": "xxx"
   },
   "algolia": {
-    "indexprefix": "dev_"
+    "indexprefix": "dev_",
+    "id": "xxx",
+    "key": "xxx"
   }
 }
