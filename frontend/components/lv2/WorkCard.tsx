@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-
+import { Work } from 'model/work'
+import Link from "next/link"
 
 const WorkImage = styled.img`
   object-fit: cover;
@@ -12,17 +13,19 @@ const WorkCardContainer = styled.div`
 `
 
 type Props = {
-  work: any // FIXME: type
+  work: Work
 }
 
 export const WorkCard: FC<Props> = ({ work }: Props) => {
   return (
     <WorkCardContainer>
-      <a href={ `/works/${work.annictID}` }>
-        <WorkImage src={ work.imageURL } alt="アニメ画像"/>
-        <div>ID: { work.annictID }</div>
-        <div>Title: { work.title }</div>
-      </a>
+      <Link href='/works/[workID]' as={ `/works/${work.annictID}` }>
+        <a>
+          <WorkImage src={ work.imageURL || '' } alt="アニメ画像"/>
+          <div>ID: { work.annictID }</div>
+          <div>Title: { work.title }</div>
+        </a>
+      </Link>
     </WorkCardContainer>
   )
 }

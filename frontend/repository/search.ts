@@ -1,4 +1,3 @@
-import { firestore } from "lib/firebase/client";
 import algolia from 'algoliasearch/lite'
 import { clientEnv } from "env";
 import { Work } from "model/work";
