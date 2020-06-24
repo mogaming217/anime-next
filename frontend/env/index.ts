@@ -24,8 +24,18 @@ export const serverEnv: ServerEnv = (() => {
 
 interface ClientEnv {
   host: string
+  algolia: {
+    appID: string,
+    searchKey: string,
+    indexPrefix: string
+  }
 }
 
 export const clientEnv: ClientEnv = {
-  host: process.env.PUBLIC_HOST!
+  host: process.env.PUBLIC_HOST!,
+  algolia: {
+    appID: process.env.ALGOLIA_APP_ID!,
+    searchKey: process.env.ALGOLIA_SEARCH_KEY!,
+    indexPrefix: process.env.ALGOLIA_INDEX_PREFIX!
+  }
 }
