@@ -2,13 +2,7 @@ import { NextPage, NextPageContext } from 'next'
 import { App } from 'components/App'
 import { SearchRepository } from 'repository/search'
 import { WorkCard } from 'components/lv2/WorkCard'
-
-// TODO: 仮
-type Work = {
-  annictID: string
-  title: string
-  imageURL?: string
-}
+import { Work } from 'model'
 
 type Props = {
   works: Work[]

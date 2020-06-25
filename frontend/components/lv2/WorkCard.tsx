@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Work } from 'model/work'
+import { Work } from 'model'
 import Link from "next/link"
 import { WorkImage } from 'components/lv1/WorkImage'
 
