@@ -2,6 +2,7 @@ import * as React from 'react'
 import { NextPageContext, NextPage } from 'next'
 import { firestore } from 'lib/firebase/client'
 import { App } from 'components/App'
+import { WorkDetail } from 'components/lv4/WorkDetail'
 
 interface Props {
   work: any | null // FIXME: 型は仮
@@ -9,17 +10,15 @@ interface Props {
 
 const Page: NextPage<Props> = (props: Props) => {
   const work = props.work
-  if (!work) {
-    return (
-      <App>
-        <div>not found</div>
-      </App>
-    )
-  }
-
   return (
     <App>
-      <div>{ work.title }</div>
+      { !work && (
+        <div>not found</div>
+      ) }
+
+      { work && (
+        <WorkDetail work={ work } />
+      )}
     </App>
   )
 }
