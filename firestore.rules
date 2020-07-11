@@ -7,6 +7,8 @@ service cloud.firestore {
       match /originals/{originalID} {
         // TODO: 認証済みユーザーのみ取得可能にしておく？
         allow list: if true;
+        // TODO: work is not locked and authenticated
+        allow create: if true;
       }
     }
   }
