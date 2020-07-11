@@ -15,7 +15,12 @@ const FONT_WEIGHT = {
   BOLD: 600,
 } as const
 
+const COLOR = {
+  IMAGE_BACKGROUND: '#DDDDDD'
+}
+
 export default {
   FONT,
   FONT_WEIGHT,
+  COLOR
 }

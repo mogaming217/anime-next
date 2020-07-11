@@ -3,6 +3,11 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /works/{workID} {
       allow get: if true;
+
+      match /originals/{originalID} {
+        // TODO: 認証済みユーザーのみ取得可能にしておく？
+        allow list: if true;
+      }
     }
   }
 }

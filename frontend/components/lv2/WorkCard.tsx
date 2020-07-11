@@ -1,13 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Work } from 'model/work'
+import { Work } from 'model'
 import Link from "next/link"
+import { WorkImage } from 'components/lv1/WorkImage'
 
-const WorkImage = styled.img`
-  object-fit: cover;
-  height: 150px;
-  width: 150px;
-`
 const WorkCardContainer = styled.div`
   margin: 16px;
 `
@@ -21,7 +17,7 @@ export const WorkCard: FC<Props> = ({ work }: Props) => {
     <WorkCardContainer>
       <Link href='/works/[workID]' as={ `/works/${work.annictID}` }>
         <a>
-          <WorkImage src={ work.imageURL || '' } alt="アニメ画像"/>
+          <WorkImage width={150} height={150} src={ work.imageURL || '' } alt="アニメ画像"/>
           <div>ID: { work.annictID }</div>
           <div>Title: { work.title }</div>
         </a>
