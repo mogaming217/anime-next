@@ -2,8 +2,16 @@ import { Original, OriginalLink } from "model"
 import firebase from 'firebase/app'
 import { FirestoreRepository } from "./firestore";
 import { compactMap } from "helper/array";
+import { firestore } from "lib/firebase/client";
 
 export class OriginalRepository extends FirestoreRepository {
+  constructor(
+    readonly myUserID: string,
+    readonly db: firebase.firestore.Firestore = firestore,
+  ) {
+    super(db)
+  }
+
   decode(snap: firebase.firestore.DocumentSnapshot): Original | undefined {
     const data = snap.data()
     if (!data) return
@@ -19,8 +27,7 @@ export class OriginalRepository extends FirestoreRepository {
       originalType: data.originalType,
       originalNo: data.originalNo || null,
       animeEpisodeNo: data.animeEpisodeNo || null,
-      // TODO: userID
-      // userID,
+      userID: this.myUserID,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
   }

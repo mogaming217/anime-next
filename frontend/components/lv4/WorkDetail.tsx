@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Work, Original } from "model";
+import { Work } from "model";
 import { WorkImage } from "components/lv1/WorkImage";
 import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";

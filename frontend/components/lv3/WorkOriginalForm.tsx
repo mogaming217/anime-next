@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { Work, OriginalType, Original } from "model"
 import styled from "styled-components";
 import { OriginalRepository } from "repository";
+import { useAuth } from "hooks/useAuth";
 
 type Props = {
   work: Work,
@@ -19,25 +20,26 @@ const InputContentContainer = styled.div`
 `
 
 export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
-  const [ isSendEnabled, updateSendEnability ] = useState<boolean>(true)
+  const authState = useAuth()
+  const [ isSubmitting, updateIsSubmitting ] = useState<boolean>(false)
   const { handleSubmit, register, errors, reset } = useForm<FormInputData>()
 
   const onSubmit = handleSubmit(async body => {
-    if (!OriginalType[body.originalType]) {
+    if (!OriginalType[body.originalType] || !authState.user) {
       return
     }
 
     const original = new Original(body.originalType, body.animeEpisodeNo, body.originalNo, undefined)
-    const repo = new OriginalRepository()
-    updateSendEnability(false)
+    const repo = new OriginalRepository(authState.user.id)
+    updateIsSubmitting(true)
     try {
       await repo.create(work.id, original)
       reset()
-      onCreate(original)
+      if (onCreate) onCreate(original)
     } catch (error) {
       console.error(error)
     } finally {
-      updateSendEnability(true)
+      updateIsSubmitting(false)
     }
   })
 
@@ -60,7 +62,7 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
         <input id='originalNo' name='originalNo' ref={ register } type="text" placeholder='原作何巻？' />
       </InputContentContainer>
 
-      <button type="submit" disabled={ !isSendEnabled }>送信</button>
+      <button type="submit" disabled={ isSubmitting || authState.loading || !authState.user }>送信</button>
 
       {Object.keys(errors).length > 0 && (
         <div>入力エラー</div>
