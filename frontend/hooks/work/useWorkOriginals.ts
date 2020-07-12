@@ -1,17 +1,23 @@
 import { Work, Original } from "model"
 import { useState, useEffect } from "react"
-import { WorkRepository } from "repository/work"
+import { OriginalRepository } from "repository"
 
-export const useWorkOriginals = (work: Work): { loading: boolean, originals: Original[] } => {
+type ReturnType = {
+  loading: boolean,
+  originals: Original[],
+  addOriginal: (original: Original) => void
+}
+
+export const useWorkOriginals = (work: Work): ReturnType => {
   const [originals, setOriginals] = useState<Original[]>([])
   const [loading, setLoading] = useState(true)
-  const workRepo = new WorkRepository()
+  const originalRepo = new OriginalRepository()
 
   useEffect(() => {
     let cancel = false
     const retrive = async () => {
       setLoading(true)
-      const originals = await workRepo.fetchOriginals(work.id)
+      const originals = await originalRepo.fetchOriginals(work.id)
       if (!cancel) {
         setOriginals(originals)
         setLoading(false)
@@ -21,5 +27,9 @@ export const useWorkOriginals = (work: Work): { loading: boolean, originals: Ori
     return () => { cancel = true }
   }, [])
 
-  return { loading, originals }
+  const addOriginal = (original: Original) => {
+    setOriginals([original, ...originals])
+  }
+
+  return { loading, originals, addOriginal }
 }

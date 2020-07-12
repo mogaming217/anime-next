@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Work } from "model";
 import { WorkImage } from "components/lv1/WorkImage";
+import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
@@ -14,14 +15,18 @@ const WorkTitle = styled.div`
   font-weight: ${Constants.FONT_WEIGHT.BOLD};
 `
 
-const WorkOriginal: FC<{ work: Work }> = (props) => {
-  const { loading, originals } = useWorkOriginals(props.work)
+const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
+  const { loading, originals, addOriginal } = useWorkOriginals(work)
+
   if (loading) return (
     <div>...loading</div>
   )
 
   if (originals.length === 0) return (
-    <div>no data</div>
+    <div>
+      原作情報がまだないよ…情報お待ちしてます！
+      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+    </div>
   )
 
   return (
@@ -29,6 +34,8 @@ const WorkOriginal: FC<{ work: Work }> = (props) => {
       {originals.map((original, i) => (
         <div key={`original_${i}`}>{JSON.stringify(original)}</div>
       ))}
+
+      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
     </div>
   )
 }
