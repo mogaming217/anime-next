@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
 import { Work } from "model";
 import { WorkImage } from "components/lv1/WorkImage";
 import styled from "styled-components";
@@ -14,14 +14,33 @@ const WorkTitle = styled.div`
   font-weight: ${Constants.FONT_WEIGHT.BOLD};
 `
 
-const WorkOriginal: FC<{ work: Work }> = (props) => {
-  const { loading, originals } = useWorkOriginals(props.work)
+const WorkOriginalInput: FC<{ work: Work }> = ({ work }) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.log('on submit')
+  }
+
+  return (
+    <form onSubmit={ onSubmit }>
+      <input type="text" placeholder="原作種別"/>
+      <input type="number" placeholder="何巻？"/>
+      <input type="text" placeholder="アニメ何話時点？"/>
+      <button type="submit">送信</button>
+    </form>
+  )
+}
+
+const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
+  const { loading, originals } = useWorkOriginals(work)
   if (loading) return (
     <div>...loading</div>
   )
 
   if (originals.length === 0) return (
-    <div>no data</div>
+    <div>
+      no data
+      <WorkOriginalInput work={ work } />
+    </div>
   )
 
   return (
@@ -29,6 +48,8 @@ const WorkOriginal: FC<{ work: Work }> = (props) => {
       {originals.map((original, i) => (
         <div key={`original_${i}`}>{JSON.stringify(original)}</div>
       ))}
+
+      <WorkOriginalInput work={ work } />
     </div>
   )
 }

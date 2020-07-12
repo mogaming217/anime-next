@@ -1,4 +1,4 @@
-import { Work, Original } from "model";
+import { Work, Original, OriginalLink } from "model";
 import { firestore } from 'lib/firebase/client'
 import firebase from 'firebase/app'
 import { compactMap } from "helper/array";
@@ -19,7 +19,11 @@ export class WorkRepository {
   decodeOriginal(snap: firebase.firestore.DocumentSnapshot): Original | undefined {
     const data = snap.data()
     if (!data) return
-    return new Original(data)
+    let link: OriginalLink | undefined
+    if (data.link) {
+      link = new OriginalLink(data.link.amazon)
+    }
+    return new Original(data.originalType, data.animeEpisodeNo, data.originalNo, link)
   }
 
   async find(workID: string): Promise<Work | undefined> {
