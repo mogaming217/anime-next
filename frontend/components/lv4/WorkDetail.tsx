@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Work } from "model";
+import { Work, Original } from "model";
 import { WorkImage } from "components/lv1/WorkImage";
 import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";
@@ -16,15 +16,16 @@ const WorkTitle = styled.div`
 `
 
 const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
-  const { loading, originals } = useWorkOriginals(work)
+  const { loading, originals, addOriginal } = useWorkOriginals(work)
+
   if (loading) return (
     <div>...loading</div>
   )
 
   if (originals.length === 0) return (
     <div>
-      no data
-      <WorkOriginalForm work={ work } />
+      原作情報がまだないよ…情報お待ちしてます！
+      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
     </div>
   )
 
@@ -34,7 +35,7 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
         <div key={`original_${i}`}>{JSON.stringify(original)}</div>
       ))}
 
-      <WorkOriginalForm work={ work } />
+      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
     </div>
   )
 }

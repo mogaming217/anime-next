@@ -1,4 +1,4 @@
-const OriginalType = {
+export const OriginalType = {
   comic: 'comic',
   lightNovel: 'lightNovel',
   novel: 'novel',
