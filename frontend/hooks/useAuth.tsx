@@ -20,11 +20,9 @@ const _useAuth = (): AuthReturnType => {
   useEffect(() => {
     let cancel = false
 
-    console.log('call onAuthStateChanged')
     const unsubscribe = auth.onAuthStateChanged(
       async user => {
         if (cancel) return
-        console.log('call onAuthStateChanged', user)
         if (user) {
           setAuth({ loading: false, user: convertUser(user)})
           return
