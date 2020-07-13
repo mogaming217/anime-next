@@ -6,4 +6,8 @@ export class Repository {
   get worksRef() {
     return this.db.collection('works')
   }
+
+  originalsRef(workID: string) {
+    return this.worksRef.doc(workID).collection('originals')
+  }
 }
