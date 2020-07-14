@@ -12,6 +12,11 @@ export class OriginalLink {
   ){}
 }
 
+export const OriginalLinkSite = {
+  amazon: 'amazon'
+}
+export type OriginalLinkSite = typeof OriginalLinkSite[keyof typeof OriginalLinkSite]
+
 export class Original {
   constructor(
     readonly id: string,

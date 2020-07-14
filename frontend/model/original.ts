@@ -14,9 +14,12 @@ export class OriginalLink {
 
 export class Original {
   constructor(
+    readonly id: string,
     readonly originalType: OriginalType,
     readonly animeEpisodeNo: string | undefined,
     readonly originalNo: string | undefined,
-    readonly link: OriginalLink | undefined
+    readonly link: OriginalLink | undefined,
+    readonly title: string | null,
+    readonly imageURL: string | null,
   ){}
 }

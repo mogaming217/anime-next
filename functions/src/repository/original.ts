@@ -1,6 +1,6 @@
 import { Repository } from "./base";
 import { firestore } from "firebase-admin";
-import { Original } from "../model/original";
+import { Original, OriginalLinkSite } from "../model/original";
 
 export class OriginalRepository extends Repository {
   decode(snap: firestore.DocumentSnapshot): Original | undefined {
@@ -11,10 +11,12 @@ export class OriginalRepository extends Repository {
     return new Original(snap.id, workID, data.originalType, data.animeEpisodeNo, data.originalNo, data.link, data.title, data.imageURL)
   }
 
-  setAffiriateInfo(original: Original, info: { title: string, link: string, imageURL: string | null }) {
+  setAffiriateInfo(original: Original, info: { title: string, link: { site: OriginalLinkSite, url: string }, imageURL: string | null }) {
+    const link: any = {}
+    link[info.link.site] = info.link.url
     return this.originalsRef(original.workID).doc(original.id).update({
       title: info.title,
-      link: info.link,
+      link,
       imageURL: info.imageURL,
     })
   }

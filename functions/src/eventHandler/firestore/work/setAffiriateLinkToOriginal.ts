@@ -2,7 +2,7 @@ import { defaultFunctions } from '../../function'
 import { workPath } from '.'
 import { OriginalRepository } from '../../../repository/original'
 import { firestore } from 'firebase-admin'
-import { Original } from '../../../model/original'
+import { Original, OriginalLinkSite } from '../../../model/original'
 import { AmazonRepository, WorkRepository } from '../../../repository'
 
 const path = workPath + `/originals/{originalID}`
@@ -42,6 +42,10 @@ export class Service {
     }
 
     const itemInfo = await this.amazonRepo.fetchItemInfo(`${work.title} ${typeLabel} ${original.originalNo || ''}`)
-    await this.originalRepo.setAffiriateInfo(original, itemInfo)
+    await this.originalRepo.setAffiriateInfo(original, {
+      title: itemInfo.title,
+      imageURL: itemInfo.imageURL,
+      link: { site: OriginalLinkSite.amazon, url: itemInfo.link }
+    })
   }
 }
