@@ -11,7 +11,7 @@ const execCommand = (command: string) => {
   // キーには小文字しか使用できない（Firebaseの仕様）
   // JSONは2階層で指定しなければならない（Firebaseの仕様）
 const generateEnvString = (env: AppEnvironment): string[] => {
-  const json = require(path.resolve(__dirname, '../env', `${env}.json`))
+  const json = require(path.resolve(__dirname, '../../env', `${env}.json`))
   const envValues: string[] = []
 
   Object.keys(json).forEach(key => {

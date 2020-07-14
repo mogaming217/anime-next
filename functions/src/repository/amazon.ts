@@ -1,6 +1,12 @@
 const Amazon = require('paapi5-nodejs-sdk')
 import { env } from '../env'
 
+type ItemInfo = {
+  title: string,
+  link: string,
+  imageURL: string | null,
+}
+
 export class AmazonRepository {
   private api: any
 
@@ -44,6 +50,33 @@ export class AmazonRepository {
         const res = Amazon.SearchItemsResponse.constructFromObject(data)
         const imageURL = res.SearchResult?.Items?.[0]?.Images?.Primary?.Large?.URL || null
         resolve(imageURL)
+      })
+    })
+  }
+
+  fetchItemInfo(keyword: string): Promise<ItemInfo> {
+    const request = this.constructRequest('Books', keyword)
+    return new Promise<ItemInfo>((resolve, reject) => {
+      this.api.searchItems(request,  async (error: any, data: any, r: any) => {
+        if (error) {
+          reject(error)
+          return
+        }
+
+        const res = Amazon.SearchItemsResponse.constructFromObject(data)
+        const item = res.SearchResult?.Items?.[0]
+        const title = item?.ItemInfo?.Title?.DisplayValue
+        const link = item?.DetailPageURL
+
+        if (!(item && title && link)) {
+          reject(new Error('not found'))
+          return
+        }
+
+        const imageURL = item.Images?.Primary?.Large?.URL || null
+        resolve({
+          imageURL, title, link
+        })
       })
     })
   }

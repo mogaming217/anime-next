@@ -29,11 +29,14 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
       return
     }
 
-    const original = new Original(body.originalType, body.animeEpisodeNo, body.originalNo, undefined)
     const repo = new OriginalRepository(authState.user.id)
     updateIsSubmitting(true)
     try {
-      await repo.create(work.id, original)
+      const original = await repo.create(work.id, {
+        originalType: body.originalType,
+        originalNo: body.originalNo,
+        animeEpisodeNo: body.animeEpisodeNo
+      })
       reset()
       if (onCreate) onCreate(original)
     } catch (error) {

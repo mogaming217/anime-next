@@ -22,6 +22,11 @@ export class WorkRepository extends Repository {
     return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL)
   }
 
+  async find(workID: string) {
+    const snap = await this.worksRef.doc(workID).get()
+    return this.decode(snap)
+  }
+
   async save(works: Work[]) {
     return handleInBatch(works, 500, async list => {
       const batch = this.db.batch()

@@ -12,13 +12,19 @@ export class OriginalLink {
   ){}
 }
 
+export const OriginalLinkSite = {
+  amazon: 'amazon'
+}
+export type OriginalLinkSite = typeof OriginalLinkSite[keyof typeof OriginalLinkSite]
+
 export class Original {
   constructor(
     readonly id: string,
+    readonly workID: string,
     readonly originalType: OriginalType,
-    readonly animeEpisodeNo: string | undefined,
-    readonly originalNo: string | undefined,
-    readonly link: OriginalLink | undefined,
+    readonly animeEpisodeNo: string | null,
+    readonly originalNo: string | null,
+    readonly link: OriginalLink | null,
     readonly title: string | null,
     readonly imageURL: string | null,
   ){}
