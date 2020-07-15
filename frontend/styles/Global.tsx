@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   ${resetCss}
 
   body {
+    background-color: ${Constants.COLOR.SYSTEM_BACKGROUND};
     font-size: ${Constants.FONT.BASE}px;
     font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   }
