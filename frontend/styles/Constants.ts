@@ -19,8 +19,13 @@ const COLOR = {
   IMAGE_BACKGROUND: '#DDDDDD'
 }
 
+const WIDTH = {
+  CONTENT_MAX: 520
+}
+
 export default {
   FONT,
   FONT_WEIGHT,
-  COLOR
+  COLOR,
+  WIDTH,
 }

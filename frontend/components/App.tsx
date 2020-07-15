@@ -1,6 +1,16 @@
 import React from 'react'
 import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
+import styled from 'styled-components'
+import Constants from 'styles/Constants'
+
+const AppContainer = styled.div`
+  position: relative;
+  /* padding-top: $headerHeight; */
+  margin: 0 auto;
+  max-width: ${Constants.WIDTH.CONTENT_MAX}px;
+  min-height: 100vh;
+`
 
 const Provider = ({ children }: { children: React.ReactNode }) => (
   <AuthProvider>
@@ -12,7 +22,9 @@ export const App: React.FC = ({ children }) => {
   return (
     <Provider>
       <GlobalStyle />
-      {children}
+      <AppContainer>
+        {children}
+      </AppContainer>
     </Provider>
   )
 }
