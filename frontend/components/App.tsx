@@ -6,7 +6,7 @@ import Constants from 'styles/Constants'
 
 const AppContainer = styled.div`
   position: relative;
-  /* padding-top: $headerHeight; */
+  padding: 0px 8px 32px;
   margin: 0 auto;
   max-width: ${Constants.WIDTH.CONTENT_MAX}px;
   min-height: 100vh;

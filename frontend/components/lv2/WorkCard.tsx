@@ -9,9 +9,8 @@ const WorkCardContainer = styled.div`
   background: ${Constants.COLOR.ACTIVE_BACKGROUND};
   border-radius: 6px;
   overflow: hidden;
+  width: 100%;
   text-align: center;
-  width: calc(50% - 5px);
-  margin-top: 10px;
 
   a {
     display: flex;

@@ -38,7 +38,6 @@ export const SearchBar: FC<Props> = (props: Props) => {
 
   return (
     <Form onSubmit={ onSearch }  >
-
       <SearchInput
         type="text"
         height={ props.height || 36 }
