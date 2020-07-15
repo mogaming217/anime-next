@@ -21,6 +21,7 @@ const COLOR = {
   SHADOW: '#e8e8e8',
   PRIMARY: '#e8e8e8',
   IMAGE_BACKGROUND: '#DDDDDD',
+  LABEL: '#444444',
 }
 
 const WIDTH = {

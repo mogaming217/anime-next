@@ -5,6 +5,7 @@ import Constants from 'styles/Constants'
 
 type Props = {
   placeholder?: string,
+  searchText?: string,
   height?: number,
 }
 
