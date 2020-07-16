@@ -29,10 +29,10 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
       return
     }
 
-    const repo = new OriginalRepository(authState.user.id)
+    const repo = new OriginalRepository()
     updateIsSubmitting(true)
     try {
-      const original = await repo.create(work.id, {
+      const original = await repo.create(authState.user.id, work.id, {
         originalType: body.originalType,
         originalNo: body.originalNo,
         animeEpisodeNo: body.animeEpisodeNo
