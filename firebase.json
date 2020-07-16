@@ -21,8 +21,8 @@
       }
     ],
     "postdeploy": [
-      "npm run gcloud:build",
-      "npm run gcloud:run"
+      "npm --prefix frontend run gcloud:build",
+      "npm --prefix frontend run gcloud:run"
     ]
   },
   "emulators": {
