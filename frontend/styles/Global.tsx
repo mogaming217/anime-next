@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-size: ${Constants.FONT.XLARGE}px;
-    padding: 12px 0px;
+    font-weight: ${Constants.FONT_WEIGHT.BOLD};
+    padding: 16px 0px;
   }
 `

@@ -19,7 +19,7 @@ const COLOR = {
   SYSTEM_BACKGROUND: '#e8e8e8',
   ACTIVE_BACKGROUND: '#fdfdfd',
   SHADOW: '#e8e8e8',
-  PRIMARY: '#e8e8e8',
+  PRIMARY: '#f59042',
   IMAGE_BACKGROUND: '#DDDDDD',
   LABEL: '#444444',
 }

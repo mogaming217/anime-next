@@ -3,6 +3,7 @@ import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
 import styled from 'styled-components'
 import Constants from 'styles/Constants'
+import NProgress from 'nextjs-progressbar'
 
 const AppContainer = styled.div`
   position: relative;
@@ -21,6 +22,11 @@ const Provider = ({ children }: { children: React.ReactNode }) => (
 export const App: React.FC = ({ children }) => {
   return (
     <Provider>
+      <NProgress
+        color={ Constants.COLOR.PRIMARY }
+        height="1"
+        options={{ showSpinner: false }}
+      />
       <GlobalStyle />
       <AppContainer>
         {children}
