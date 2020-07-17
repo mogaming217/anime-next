@@ -16,4 +16,9 @@ export const GlobalStyle = createGlobalStyle`
     color: ${Constants.COLOR.LABEL};
     text-decoration: none;
   }
+
+  h2 {
+    font-size: ${Constants.FONT.XLARGE}px;
+    padding: 12px 0px;
+  }
 `
