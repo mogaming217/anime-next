@@ -5,6 +5,7 @@ import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
+import { LoadingIndicator } from "components/lv1/LoadingIndicator";
 
 type Props = {
   work: Work
@@ -19,7 +20,7 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
   const { loading, originals, addOriginal } = useWorkOriginals(work)
 
   if (loading) return (
-    <div>...loading</div>
+    <LoadingIndicator />
   )
 
   if (originals.length === 0) return (

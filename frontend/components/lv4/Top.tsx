@@ -3,6 +3,7 @@ import { SearchBar } from "components/lv2/SearchBar";
 import styled from "styled-components";
 import { useTrendWorks } from "hooks/work/useTrendWorks";
 import { WorkList } from "components/lv3";
+import { LoadingIndicator } from "components/lv1/LoadingIndicator";
 
 const SearchBarContainer = styled.div`
   text-align: center;
@@ -22,7 +23,7 @@ export const Top: FC = () => {
 
       <h2>人気の作品</h2>
       { loading ? (
-        <div>loading...</div>
+        <LoadingIndicator />
       ) : (
         <WorkList works={ works } />
       )}
