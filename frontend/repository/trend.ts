@@ -9,7 +9,7 @@ export class TrendRepository {
     this.workRepo = new WorkRepository(db)
   }
 
-  async fetchTrendWorks(count: number) {
+  async fetchTrendWorks(_count: number) {
     // FIXME: ひとまず仮で workID 指定で返す
     const workIDs: string[] = [
       '6089', // 鬼滅の刃

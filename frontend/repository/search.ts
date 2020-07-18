@@ -1,4 +1,3 @@
-import algolia from 'algoliasearch/lite'
 import { Work } from "model/work"
 import { compactMap } from "helper/array"
 import { AlgoliaRepository } from './algolia'
