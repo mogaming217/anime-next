@@ -39,7 +39,8 @@ const WorkCardContainer = styled.div`
 
   div.title {
     font-weight: bold;
-    padding: 8px 6px;
+    font-size: ${Constants.FONT.MEDIUM}px;
+    padding: 14px 6px;
     flex: 1;
     display: flex;
     justify-content: center;

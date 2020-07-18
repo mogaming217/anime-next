@@ -16,7 +16,7 @@ const FONT_WEIGHT = {
 } as const
 
 const COLOR = {
-  SYSTEM_BACKGROUND: '#e8e8e8',
+  SYSTEM_BACKGROUND: '#fdfdfd',
   ACTIVE_BACKGROUND: '#fdfdfd',
   SHADOW: '#e8e8e8',
   PRIMARY: '#f59042',
