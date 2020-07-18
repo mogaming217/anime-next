@@ -1,10 +1,10 @@
 const FONT = {
   XXXLARGE: 32,
   XXLARGE: 24,
-  XLARGE: 18,
-  LARGE: 16,
-  MEDIUM: 14,
-  BASE: 12,
+  XLARGE: 20,
+  LARGE: 18,
+  MEDIUM: 16,
+  BASE: 14,
   SMALL: 11,
   XSMALL: 10,
   TINY: 8,
@@ -23,10 +23,13 @@ const COLOR = {
   IMAGE_BACKGROUND: '#DDDDDD',
   LABEL: '#444444',
   STRONG_LABEL: '#000000',
+  TEXT_INPUT_BORDER: '#dddddd',
+  TEXT_INPUT_FOCUS_BORDER: '#f59042',
+  FORM_BACKGROUND: '#f2f2f2',
 }
 
 const WIDTH = {
-  CONTENT_MAX: 520
+  CONTENT_MAX: 768
 }
 
 const SHADOW = {
