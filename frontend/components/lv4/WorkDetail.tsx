@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
 import { LoadingIndicator } from "components/lv1";
-import { WorkOriginalEmpty, SectionContainer, WorkImage } from "components/lv2";
+import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from "components/lv2";
 import { WorkOriginalForm } from 'components/lv3'
 
 const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
@@ -27,8 +27,8 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
 
   return (
     <div>
-      {originals.map((original, i) => (
-        <div key={`original_${i}`}>{JSON.stringify(original)}</div>
+      {originals.map(original => (
+        <OriginalCard key={ original.id } original={ original } />
       ))}
 
       <div>原作情報を追加する</div>
