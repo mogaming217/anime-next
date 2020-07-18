@@ -28,9 +28,14 @@ const WIDTH = {
   CONTENT_MAX: 520
 }
 
+const SHADOW = {
+  DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`
+}
+
 export default {
   FONT,
   FONT_WEIGHT,
   COLOR,
   WIDTH,
+  SHADOW,
 }

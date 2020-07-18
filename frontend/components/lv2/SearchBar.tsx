@@ -23,7 +23,7 @@ const SearchInput = styled.input<SearchInputProps>`
   border-style: none;
   border-radius: 4px;
   background: ${Constants.COLOR.ACTIVE_BACKGROUND};
-  box-shadow: 0px 0px 6px 3px ${Constants.COLOR.SHADOW};
+  box-shadow: ${Constants.SHADOW.DEFAULT};
   padding: 0px ${props => props.height / 4}px;
 `
 

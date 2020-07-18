@@ -9,8 +9,8 @@ type Props = {
 
 const WorkListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 49%);
-  row-gap: 8px;
+  grid-template-columns: repeat(auto-fit, 48%);
+  row-gap: 12px;
   justify-content: space-between;
 `
 
