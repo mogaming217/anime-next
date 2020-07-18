@@ -22,6 +22,7 @@ const COLOR = {
   PRIMARY: '#f59042',
   IMAGE_BACKGROUND: '#DDDDDD',
   LABEL: '#444444',
+  STRONG_LABEL: '#000000',
 }
 
 const WIDTH = {
@@ -32,10 +33,15 @@ const SHADOW = {
   DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`
 }
 
+const PADDING = {
+  SIDE: 8,
+}
+
 export default {
   FONT,
   FONT_WEIGHT,
   COLOR,
   WIDTH,
   SHADOW,
+  PADDING,
 }

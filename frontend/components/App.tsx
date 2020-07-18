@@ -7,7 +7,7 @@ import NProgress from 'nextjs-progressbar'
 
 const AppContainer = styled.div`
   position: relative;
-  padding: 0px 8px 32px;
+  padding: 0px ${Constants.PADDING.SIDE}px 32px;
   margin: 0 auto;
   max-width: ${Constants.WIDTH.CONTENT_MAX}px;
   min-height: 100vh;
