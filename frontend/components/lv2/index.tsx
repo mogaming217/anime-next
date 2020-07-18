@@ -1,2 +1,5 @@
 export * from './SearchBar'
 export * from './WorkCard'
+export * from './SectionContainer'
+export * from './WorkImage'
+export * from './WorkOriginalEmpty'

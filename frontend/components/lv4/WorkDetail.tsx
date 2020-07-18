@@ -1,12 +1,11 @@
 import { FC } from "react";
 import { Work } from "model";
-import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
-import { LoadingIndicator } from "components/lv1/LoadingIndicator";
-import { WorkImage } from "components/lv2/WorkImage";
-import { WorkOriginalEmpty } from "components/lv2/WorkOriginalEmpty";
+import { LoadingIndicator } from "components/lv1";
+import { WorkOriginalEmpty, SectionContainer, WorkImage } from "components/lv2";
+import { WorkOriginalForm } from 'components/lv3'
 
 const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
   const { loading, originals, addOriginal } = useWorkOriginals(work)
@@ -17,8 +16,12 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
 
   if (originals.length === 0) return (
     <div>
-      <WorkOriginalEmpty work={ work } />
-      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+      <SectionContainer>
+        <WorkOriginalEmpty work={ work } />
+      </SectionContainer>
+      <SectionContainer>
+        <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+      </SectionContainer>
     </div>
   )
 
@@ -28,7 +31,7 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
         <div key={`original_${i}`}>{JSON.stringify(original)}</div>
       ))}
 
-      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+      <div>原作情報を追加する</div>
     </div>
   )
 }

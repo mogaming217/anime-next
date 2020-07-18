@@ -54,9 +54,13 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
   const { handleSubmit, register, errors, reset } = useForm<FormInputData>()
 
   const onSubmit = handleSubmit(async body => {
-    if (!OriginalType[body.originalType] || !authState.user) {
+    if (!authState.user) { return }
+    if (!(OriginalType[body.originalType] && body.originalNo)) {
+      // FIXME: show error message
       return
     }
+
+    console.log(body)
 
     const repo = new OriginalRepository()
     updateIsSubmitting(true)
