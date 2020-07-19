@@ -9,12 +9,13 @@ const Container = styled.div`
   background-color: ${Constants.COLOR.HIGHLIGHT_BACKGROUND};
   border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   display: flex;
-  justify-content: start;
 `
 
 const ImageContainer = styled.div`
   width: 120px;
   height: auto;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
+  overflow: hidden;
 `
 
 const TextContainer = styled.div`
@@ -26,6 +27,10 @@ const TextContainer = styled.div`
   .title {
     font-weight: ${Constants.FONT_WEIGHT.BOLD};
   }
+`
+
+const PurchaseButtonContainer = styled.div`
+  margin-top: 8px;
 `
 
 type Props = {
@@ -44,11 +49,16 @@ export const OriginalCard: FC<Props> = ({ original }) => {
         <Image src={ original.imageURL } />
       </ImageContainer>
       <TextContainer>
-        <div className='title'>{original.title}</div>
+        <div>
+          <div className='title'>{original.title}</div>
+          { original.animeEpisodeNo && (
+            <div>アニメ{original.animeEpisodeNo}時点</div>
+          )}
+        </div>
           { !!original.link && (
-            <div>
-              <AmazonButton as="a" href={ original.link.amazon } target="_blank">Amazonで確認する</AmazonButton>
-            </div>
+            <PurchaseButtonContainer>
+              <AmazonButton as="a" href={ original.link.amazon } target="_blank" style={{ display: 'inline-block' }}>Amazonで確認する</AmazonButton>
+            </PurchaseButtonContainer>
           )}
       </TextContainer>
     </Container>

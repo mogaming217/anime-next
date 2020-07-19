@@ -3,7 +3,7 @@ import { Work } from "model";
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
-import { LoadingIndicator, SectionTitle, SectionDescription, Center } from "components/lv1";
+import { LoadingIndicator, SectionDescription, Center } from "components/lv1";
 import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from "components/lv2";
 import { WorkOriginalForm } from 'components/lv3'
 import { LabelButton } from "components/lv1/LabelButton";
@@ -30,7 +30,6 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
   return (
     <>
       <SectionContainer withMargin>
-        <SectionTitle>原作情報</SectionTitle>
         <SectionDescription>
           アニメの続きはこちら👇
         </SectionDescription>
