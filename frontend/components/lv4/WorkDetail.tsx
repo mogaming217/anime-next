@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { PlusCircle } from 'react-feather'
 import { Work } from "model";
 import styled from "styled-components";
 import Constants from "styles/Constants";

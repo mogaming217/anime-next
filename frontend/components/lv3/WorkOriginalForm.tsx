@@ -22,8 +22,9 @@ const FormTitle = styled.div`
 const InputContentContainer = styled.div`
   margin-top: 16px;
 
-  label {
+  label.radio {
     display: inline-flex;
+    padding-right: 10px;
   }
 `
 
@@ -60,8 +61,6 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
       return
     }
 
-    console.log(body)
-
     const repo = new OriginalRepository()
     updateIsSubmitting(true)
     try {
@@ -86,17 +85,17 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
       <InputContentContainer>
         <ContentName>原作の種類（必須）</ContentName>
 
-        <label>
+        <label className="radio">
           <input name="originalType" type="radio" value="comic" ref={register({ required: true })} id="comic"/>
           コミック
         </label>
 
-        <label>
+        <label className="radio">
           <input name="originalType" type="radio" value="lightNovel" ref={register({ required: true })} id="lightNovel"/>
           ライトノベル
         </label>
 
-        <label htmlFor="novel">
+        <label className="radio">
           <input name="originalType" type="radio" value="novel" ref={register({ required: true })} id="novel"/>
           小説
         </label>
