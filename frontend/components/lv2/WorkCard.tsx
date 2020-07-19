@@ -2,10 +2,31 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Work } from 'model'
 import Link from "next/link"
-import { WorkImage } from 'components/lv1/WorkImage'
+import Constants from 'styles/Constants'
+import { WorkImage } from './WorkImage'
 
 const WorkCardContainer = styled.div`
-  margin: 16px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  box-shadow: ${Constants.SHADOW.DEFAULT};
+
+  a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  div.title {
+    font-weight: bold;
+    font-size: ${Constants.FONT.BASE}px;
+    padding: 12px 6px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 type Props = {
@@ -17,9 +38,8 @@ export const WorkCard: FC<Props> = ({ work }: Props) => {
     <WorkCardContainer>
       <Link href='/works/[workID]' as={ `/works/${work.annictID}` }>
         <a>
-          <WorkImage width={150} height={150} src={ work.imageURL || '' } alt="アニメ画像"/>
-          <div>ID: { work.annictID }</div>
-          <div>Title: { work.title }</div>
+          <WorkImage src={ work.imageURL } />
+          <div className='title'>{ work.title }</div>
         </a>
       </Link>
     </WorkCardContainer>

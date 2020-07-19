@@ -1,15 +1,8 @@
-import algolia from 'algoliasearch/lite'
-import { clientEnv } from "env";
-import { Work } from "model/work";
-import { compactMap } from "helper/array";
+import { Work } from "model/work"
+import { compactMap } from "helper/array"
+import { AlgoliaRepository } from './algolia'
 
-export class SearchRepository {
-  private client = algolia(clientEnv.algolia.appID, clientEnv.algolia.searchKey)
-
-  get workIndex() {
-    return this.client.initIndex(`${clientEnv.algolia.indexPrefix}works`)
-  }
-
+export class SearchRepository extends AlgoliaRepository {
   decode(hit: any): Work | undefined {
     return new Work(hit.annictID, hit.title, hit.imageURL)
   }

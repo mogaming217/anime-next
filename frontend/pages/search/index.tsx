@@ -1,30 +1,41 @@
 import { NextPage, NextPageContext } from 'next'
 import { App } from 'components/App'
+import { SearchBar } from 'components/lv2'
+import { WorkList } from 'components/lv3'
 import { SearchRepository } from 'repository/search'
-import { WorkCard } from 'components/lv2/WorkCard'
 import { Work } from 'model'
+import styled from 'styled-components'
 
 type Props = {
+  searchText: string | null,
   works: Work[]
 }
+
+const SearchBarContainer = styled.div`
+  padding: 16px 0px;
+`
 
 const SearchPage: NextPage<Props> = (props: Props) => {
   return (
     <App>
-      {props.works.map(work => (<WorkCard key={ work.annictID } work={ work } />))}
+      <SearchBarContainer>
+        <SearchBar searchText={ props.searchText || undefined } />
+      </SearchBarContainer>
+      <WorkList works={ props.works } />
     </App>
   )
 }
 
 SearchPage.getInitialProps = async ({ query }: NextPageContext): Promise<Props> => {
-  const keyword = query.q as string | undefined
+  const keyword = query.q as string | null
   const repo = new SearchRepository()
   if (!keyword) {
-    return { works: [] }
+    return { searchText: keyword, works: [] }
   }
 
-  const works = await repo.searchWorks(keyword) as Work[] // FIXME: 型は仮
+  const works = await repo.searchWorks(keyword)
   return {
+    searchText: keyword,
     works
   }
 }

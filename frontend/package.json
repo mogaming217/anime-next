@@ -27,8 +27,10 @@
     "firebase": "^7.15.1",
     "firebase-admin": "^8.12.1",
     "next": "^9.4.4",
+    "nextjs-progressbar": "0.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.8",
     "react-hook-form": "^6.0.4",
     "styled-components": "^5.1.1"
   },

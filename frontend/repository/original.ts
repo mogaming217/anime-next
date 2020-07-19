@@ -6,7 +6,6 @@ import { firestore } from "lib/firebase/client";
 
 export class OriginalRepository extends FirestoreRepository {
   constructor(
-    readonly myUserID: string,
     readonly db: firebase.firestore.Firestore = firestore,
   ) {
     super(db)
@@ -22,13 +21,13 @@ export class OriginalRepository extends FirestoreRepository {
     return new Original(snap.id, data.originalType, data.animeEpisodeNo, data.originalNo, link, data.title, data.imageURL)
   }
 
-  async create(workID: string, data: { originalType: OriginalType, originalNo: string | undefined, animeEpisodeNo: string | undefined }): Promise<Original> {
+  async create(myUserID: string, workID: string, data: { originalType: OriginalType, originalNo: string | undefined, animeEpisodeNo: string | undefined }): Promise<Original> {
     const ref = this.originalsRef(workID).doc()
     await ref.set({
       originalType: data.originalType,
       originalNo: data.originalNo || null,
       animeEpisodeNo: data.animeEpisodeNo || null,
-      userID: this.myUserID,
+      userID: myUserID,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     return new Original(ref.id, data.originalType, data.animeEpisodeNo, data.originalNo, undefined, null, null)

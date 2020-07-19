@@ -1,50 +1,80 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Work } from "model";
-import { WorkImage } from "components/lv1/WorkImage";
-import { WorkOriginalForm } from 'components/lv3/WorkOriginalForm'
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
+import { LoadingIndicator, SectionDescription, Center } from "components/lv1";
+import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from "components/lv2";
+import { WorkOriginalForm } from 'components/lv3'
+import { LabelButton } from "components/lv1/LabelButton";
 
-type Props = {
-  work: Work
+const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
+  const { loading, originals, addOriginal } = useWorkOriginals(work)
+  const [isFormExpanded, setExpanded] = useState(false)
+
+  if (loading) return (
+    <LoadingIndicator />
+  )
+
+  if (originals.length === 0) return (
+    <>
+      <SectionContainer withMargin>
+        <WorkOriginalEmpty work={ work } />
+      </SectionContainer>
+      <SectionContainer withMargin>
+        <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+      </SectionContainer>
+    </>
+  )
+
+  return (
+    <>
+      <SectionContainer withMargin>
+        <SectionDescription>
+          アニメの続きはこちら👇
+        </SectionDescription>
+        <div style={{ marginTop: 16 }}>
+          {originals.map(original => (
+            <OriginalCard key={ original.id } original={ original } />
+          ))}
+        </div>
+      </SectionContainer>
+      <SectionContainer withMargin>
+        {isFormExpanded ? (
+          <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+        ) : (
+          <Center>
+            <LabelButton label='原作情報を追加する' onClick={ () => setExpanded(true) } />
+          </Center>
+        )}
+      </SectionContainer>
+    </>
+  )
 }
+
+const WorkHeader = styled.div`
+  width: calc(100% + ${Constants.PADDING.SIDE * 2}px);
+  margin: 0px -${Constants.PADDING.SIDE}px;
+`
 
 const WorkTitle = styled.div`
   font-size: ${Constants.FONT.LARGE}px;
   font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  text-align: center;
+  margin: 24px 0px;
 `
 
-const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
-  const { loading, originals, addOriginal } = useWorkOriginals(work)
-
-  if (loading) return (
-    <div>...loading</div>
-  )
-
-  if (originals.length === 0) return (
-    <div>
-      原作情報がまだないよ…情報お待ちしてます！
-      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
-    </div>
-  )
-
-  return (
-    <div>
-      {originals.map((original, i) => (
-        <div key={`original_${i}`}>{JSON.stringify(original)}</div>
-      ))}
-
-      <WorkOriginalForm work={ work } onCreate={ addOriginal } />
-    </div>
-  )
+type Props = {
+  work: Work
 }
 
 export const WorkDetail: FC<Props> = (props: Props) => {
   const work = props.work
   return (
     <div>
-      <WorkImage src={ work.imageURL } width={120} height={120} />
+      <WorkHeader>
+        <WorkImage src={ work.imageURL } />
+      </WorkHeader>
       <WorkTitle>{ work.title }</WorkTitle>
       <WorkOriginal work={ work }/>
     </div>
