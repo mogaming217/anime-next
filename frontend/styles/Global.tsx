@@ -22,4 +22,20 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: ${Constants.FONT_WEIGHT.BOLD};
     padding: 16px 0px;
   }
+
+  input {
+    color: ${Constants.COLOR.LABEL};
+  }
+
+  input::placeholder {
+    color: ${Constants.COLOR.PLACEHOLDER};
+  }
+
+  input::-ms-input-placeholder {
+    color: ${Constants.COLOR.PLACEHOLDER};
+  }
+
+  input::-webkit-input-placeholder {
+     color: ${Constants.COLOR.PLACEHOLDER};
+  }
 `

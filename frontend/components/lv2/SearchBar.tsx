@@ -2,6 +2,8 @@ import { FC, useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import Constants from 'styles/Constants'
+import { TextInput } from 'components/lv1'
+import { Search } from 'react-feather'
 
 type Props = {
   placeholder?: string,
@@ -9,22 +11,28 @@ type Props = {
   height?: number,
 }
 
-const Form = styled.form`
-  width: 100%;
-`
-
 type SearchInputProps = {
   height: number,
 }
 
-const SearchInput = styled.input<SearchInputProps>`
+const Form = styled.form<SearchInputProps>`
   width: 100%;
   height: ${(props) => props.height}px;
-  border-style: none;
-  border-radius: 4px;
-  background: ${Constants.COLOR.ACTIVE_BACKGROUND};
-  box-shadow: ${Constants.SHADOW.DEFAULT};
   padding: 0px ${props => props.height / 4}px;
+  border-radius: 4px;
+  box-shadow: ${Constants.SHADOW.DEFAULT};
+  display: flex;
+  justify-content: start;
+  align-items: center;
+`
+
+const SearchInput = styled(TextInput)`
+  width: 100%;
+  height: 100%;
+  outline-style: none;
+  border-style: none;
+  background: ${Constants.COLOR.ACTIVE_BACKGROUND};
+  flex: 1;
 `
 
 export const SearchBar: FC<Props> = (props: Props) => {
@@ -36,11 +44,12 @@ export const SearchBar: FC<Props> = (props: Props) => {
     router.push(`/search?q=${searchText}`)
   }
 
+  const height = props.height || 36
   return (
-    <Form onSubmit={ onSearch }  >
+    <Form onSubmit={ onSearch } height={ height }>
+      <Search size={ 16 } />
       <SearchInput
         type="text"
-        height={ props.height || 36 }
         placeholder={ props.placeholder || 'アニメのタイトルを入力' }
         onChange={ e => setSearchText(e.target.value) }
       />

@@ -18,6 +18,7 @@ export const Top: FC = () => {
       <SearchBarContainer>
         <SearchBar
           placeholder='アニメのタイトルを入力 例）鬼滅の刃'
+          height={ 48 }
         />
       </SearchBarContainer>
 

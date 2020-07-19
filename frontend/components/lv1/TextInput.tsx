@@ -7,4 +7,6 @@ export const TextInput = styled.input`
   outline-color: ${Constants.COLOR.TEXT_INPUT_FOCUS_BORDER};
   padding: 6px 8px;
   width: 100%;
+  font-size: 16px;
+  -webkit-appearance: none;
 `

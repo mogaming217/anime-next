@@ -3,6 +3,7 @@ import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
 import styled from 'styled-components'
 import Constants from 'styles/Constants'
+import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
 
 const AppContainer = styled.div`
@@ -22,6 +23,10 @@ const Provider = ({ children }: { children: React.ReactNode }) => (
 export const App: React.FC = ({ children }) => {
   return (
     <Provider>
+      <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+      </Head>
+
       <NProgress
         color={ Constants.COLOR.PRIMARY }
         height="1"
