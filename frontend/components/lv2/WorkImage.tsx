@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { Image } from "components/lv1";
 
+const imageRatio = 630 / 1200 * 100
 const Container = styled.div`
   width: 100%;
   position: relative;
@@ -10,13 +11,13 @@ const Container = styled.div`
   ::before {
     content: '';
     display: block;
-    padding-top: 45%; /* div.imageContainerの幅の50％ */
+    padding-top: ${imageRatio}%; /* div.imageContainerの幅の50％ */
   }
 
   div.cardImage {
     position: absolute;
-    top: 45%;
-    transform: translateY(-47.5%);
+    top: ${imageRatio}%;
+    transform: translateY(-${imageRatio}%);
     width: 100%;
 
     img {

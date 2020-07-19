@@ -9,11 +9,15 @@ const Container = styled.div`
   background-color: ${Constants.COLOR.HIGHLIGHT_BACKGROUND};
   border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   display: flex;
+
+  & + & {
+    margin-top: 16px;
+  }
 `
 
 const ImageContainer = styled.div`
   width: 120px;
-  height: auto;
+  height: 100%;
   border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   overflow: hidden;
 `
@@ -32,6 +36,12 @@ const TextContainer = styled.div`
 const PurchaseButtonContainer = styled.div`
   margin-top: 8px;
 `
+
+// FIXME: だいぶ雑だけどいいアイデアがないので一旦これで
+const makeAnimeEpisodeNoLabel = (animeEpisodeNo: string): string => {
+  if (animeEpisodeNo.includes('話')) return animeEpisodeNo
+  return animeEpisodeNo + '話'
+}
 
 type Props = {
   original: Original
@@ -52,7 +62,7 @@ export const OriginalCard: FC<Props> = ({ original }) => {
         <div>
           <div className='title'>{original.title}</div>
           { original.animeEpisodeNo && (
-            <div>アニメ{original.animeEpisodeNo}時点</div>
+            <div>アニメ{makeAnimeEpisodeNoLabel(original.animeEpisodeNo)}時点</div>
           )}
         </div>
           { !!original.link && (
