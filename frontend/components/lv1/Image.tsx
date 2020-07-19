@@ -24,5 +24,4 @@ export const Image: FC<Props> = (props) => {
       alt={ props.alt || '画像' }
     />
   )
-
 }
