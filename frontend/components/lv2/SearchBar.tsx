@@ -19,7 +19,7 @@ const Form = styled.form<SearchInputProps>`
   width: 100%;
   height: ${(props) => props.height}px;
   padding: 0px ${props => props.height / 4}px;
-  border-radius: 4px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   box-shadow: ${Constants.SHADOW.DEFAULT};
   display: flex;
   justify-content: start;

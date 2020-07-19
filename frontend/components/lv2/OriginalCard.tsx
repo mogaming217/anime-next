@@ -7,7 +7,7 @@ import Constants from "styles/Constants";
 const Container = styled.div`
   padding: 16px;
   background-color: ${Constants.COLOR.HIGHLIGHT_BACKGROUND};
-  border-radius: 12px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   display: flex;
   justify-content: start;
 `

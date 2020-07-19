@@ -7,6 +7,6 @@ export const Button = styled.button`
   font-size: ${Constants.FONT.MEDIUM};
   background-color: ${Constants.COLOR.PRIMARY};
   color: white;
-  border-radius: 4px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   border-width: 0px;
 `

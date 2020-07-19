@@ -41,6 +41,10 @@ const PADDING = {
   SIDE: 16,
 } as const
 
+const CORNER_RADIUS = {
+  DEFAULT: 6
+} as const
+
 export default {
   FONT,
   FONT_WEIGHT,
@@ -48,4 +52,5 @@ export default {
   WIDTH,
   SHADOW,
   PADDING,
+  CORNER_RADIUS,
 }

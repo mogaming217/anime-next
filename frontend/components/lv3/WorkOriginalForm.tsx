@@ -10,7 +10,7 @@ import { TextInput, Button } from "components/lv1";
 const Form = styled.form`
   background-color: ${Constants.COLOR.FORM_BACKGROUND};
   padding: 20px;
-  border-radius: 8px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   border-width: 0px;
 `
 

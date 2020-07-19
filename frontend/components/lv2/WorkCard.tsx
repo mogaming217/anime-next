@@ -6,7 +6,7 @@ import Constants from 'styles/Constants'
 import { WorkImage } from './WorkImage'
 
 const WorkCardContainer = styled.div`
-  border-radius: 6px;
+  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
   overflow: hidden;
   width: 100%;
   text-align: center;
