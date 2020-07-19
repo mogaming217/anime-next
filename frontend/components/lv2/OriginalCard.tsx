@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Original } from "model";
 import styled from "styled-components";
-import { Image } from "components/lv1";
+import { Image, AmazonButton } from "components/lv1";
 import Constants from "styles/Constants";
 
 const Container = styled.div`
@@ -18,9 +18,10 @@ const ImageContainer = styled.div`
 `
 
 const TextContainer = styled.div`
-  margin-left: 12px;
+  margin-left: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 
   .title {
     font-weight: ${Constants.FONT_WEIGHT.BOLD};
@@ -32,6 +33,11 @@ type Props = {
 }
 
 export const OriginalCard: FC<Props> = ({ original }) => {
+  if (!original.title) return (
+    <Container>
+      原作の詳細な情報を取得中です…
+    </Container>
+  )
   return (
     <Container>
       <ImageContainer>
@@ -39,7 +45,11 @@ export const OriginalCard: FC<Props> = ({ original }) => {
       </ImageContainer>
       <TextContainer>
         <div className='title'>{original.title}</div>
-        <a href={ original.link?.amazon } target="_blank">Amazonで見る</a>
+          { !!original.link && (
+            <div>
+              <AmazonButton as="a" href={ original.link.amazon } target="_blank">Amazonで確認する</AmazonButton>
+            </div>
+          )}
       </TextContainer>
     </Container>
   )

@@ -19,7 +19,7 @@ export const WorkOriginalEmpty: FC<Props> = (props: Props) => {
   return (
     <Container>
       まだ原作情報が登録されていません😫<br/>
-      続きが何巻からなのかを調べて登録してみませんか🤤？
+      アニメの続きは原作の何巻からなのかを調べて登録してみませんか…？
 
       <Button
         style={{ marginTop: 16 }}
