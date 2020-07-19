@@ -26,19 +26,19 @@ const COLOR = {
   TEXT_INPUT_BORDER: '#dddddd',
   TEXT_INPUT_FOCUS_BORDER: '#f59042',
   FORM_BACKGROUND: '#f2f2f2',
-}
+} as const
 
 const WIDTH = {
   CONTENT_MAX: 768
-}
+} as const
 
 const SHADOW = {
   DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`
-}
+} as const
 
 const PADDING = {
-  SIDE: 8,
-}
+  SIDE: 16,
+} as const
 
 export default {
   FONT,

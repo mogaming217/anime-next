@@ -1,5 +1,22 @@
 import styled from "styled-components";
+import { FC } from "react";
 
-export const SectionContainer = styled.div`
-  padding: 20px 0px;
-`
+type Props = {
+  withMargin?: boolean
+}
+
+const defaultProps: Props = {
+  withMargin: true
+}
+
+const _SectionContainer = styled.div<Props>(p => `
+  margin: ${p.withMargin ? '20px' : '0px' } 0px;
+`)
+
+export const SectionContainer: FC<Props> = ({ withMargin, children } = defaultProps) => {
+  return (
+    <_SectionContainer withMargin={ withMargin }>
+      {children}
+    </_SectionContainer>
+  )
+}

@@ -5,14 +5,14 @@ import { Image } from "components/lv1";
 
 const Container = styled.div`
   padding: 12px;
-  border: soild 1px gray;
+  border: 1px solid gray;
   border-radius: 12px;
   display: flex;
   justify-content: start;
 `
 
 const ImageContainer = styled.div`
-  width: 100px;
+  width: 120px;
   height: auto;
 `
 
