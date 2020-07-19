@@ -33,6 +33,10 @@ const WIDTH = {
   CONTENT_MAX: 768
 } as const
 
+const HEIGHT = {
+  HEADER: 52
+} as const
+
 const SHADOW = {
   DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`
 } as const
@@ -50,6 +54,7 @@ export default {
   FONT_WEIGHT,
   COLOR,
   WIDTH,
+  HEIGHT,
   SHADOW,
   PADDING,
   CORNER_RADIUS,

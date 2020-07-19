@@ -5,10 +5,11 @@ import styled from 'styled-components'
 import Constants from 'styles/Constants'
 import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
+import { Header } from 'components/lv2'
 
 const AppContainer = styled.div`
   position: relative;
-  padding: 0px ${Constants.PADDING.SIDE}px 32px;
+  padding: ${Constants.HEIGHT.HEADER}px ${Constants.PADDING.SIDE}px 32px;
   margin: 0 auto;
   max-width: ${Constants.WIDTH.CONTENT_MAX}px;
   min-height: 100vh;
@@ -27,6 +28,7 @@ export const App: React.FC = ({ children }) => {
         <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
       </Head>
 
+      <Header />
       <NProgress
         color={ Constants.COLOR.PRIMARY }
         height="1"
