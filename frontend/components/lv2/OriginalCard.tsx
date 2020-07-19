@@ -2,10 +2,11 @@ import { FC } from "react";
 import { Original } from "model";
 import styled from "styled-components";
 import { Image } from "components/lv1";
+import Constants from "styles/Constants";
 
 const Container = styled.div`
-  padding: 12px;
-  border: 1px solid gray;
+  padding: 16px;
+  background-color: ${Constants.COLOR.HIGHLIGHT_BACKGROUND};
   border-radius: 12px;
   display: flex;
   justify-content: start;
@@ -20,6 +21,10 @@ const TextContainer = styled.div`
   margin-left: 12px;
   display: flex;
   flex-direction: column;
+
+  .title {
+    font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  }
 `
 
 type Props = {
@@ -33,7 +38,7 @@ export const OriginalCard: FC<Props> = ({ original }) => {
         <Image src={ original.imageURL } />
       </ImageContainer>
       <TextContainer>
-        <div>{original.title}</div>
+        <div className='title'>{original.title}</div>
         <a href={ original.link?.amazon } target="_blank">Amazonで見る</a>
       </TextContainer>
     </Container>

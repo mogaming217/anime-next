@@ -31,7 +31,6 @@ const SearchInput = styled(TextInput)`
   height: 100%;
   outline-style: none;
   border-style: none;
-  background: ${Constants.COLOR.ACTIVE_BACKGROUND};
   flex: 1;
 `
 

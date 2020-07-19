@@ -16,17 +16,17 @@ const FONT_WEIGHT = {
 } as const
 
 const COLOR = {
-  SYSTEM_BACKGROUND: '#fdfdfd',
-  ACTIVE_BACKGROUND: '#fdfdfd',
-  SHADOW: '#e8e8e8',
   PRIMARY: '#f59042',
+  SYSTEM_BACKGROUND: '#fdfdfd',
+  HIGHLIGHT_BACKGROUND: '#f2f0ed',
+  FORM_BACKGROUND: '#f2f2f2',
   IMAGE_BACKGROUND: '#DDDDDD',
+  SHADOW: '#e8e8e8',
   LABEL: '#444444',
   PLACEHOLDER: '#c7c7c7',
   STRONG_LABEL: '#000000',
   TEXT_INPUT_BORDER: '#dddddd',
   TEXT_INPUT_FOCUS_BORDER: '#f59042',
-  FORM_BACKGROUND: '#f2f2f2',
 } as const
 
 const WIDTH = {

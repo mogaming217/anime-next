@@ -32,11 +32,13 @@ const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
       <SectionContainer withMargin>
         <SectionTitle>原作情報</SectionTitle>
         <SectionDescription>
-          アニメの続きを👇から確認しよう👍
+          アニメの続きはこちら👇
         </SectionDescription>
-        {originals.map(original => (
-          <OriginalCard key={ original.id } original={ original } />
-        ))}
+        <div style={{ marginTop: 16 }}>
+          {originals.map(original => (
+            <OriginalCard key={ original.id } original={ original } />
+          ))}
+        </div>
       </SectionContainer>
       <SectionContainer withMargin>
         {isFormExpanded ? (
@@ -56,11 +58,11 @@ const WorkHeader = styled.div`
   margin: 0px -${Constants.PADDING.SIDE}px;
 `
 
-
 const WorkTitle = styled.div`
   font-size: ${Constants.FONT.LARGE}px;
   font-weight: ${Constants.FONT_WEIGHT.BOLD};
   text-align: center;
+  margin: 24px 0px;
 `
 
 type Props = {

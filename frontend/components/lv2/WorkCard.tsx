@@ -6,7 +6,6 @@ import Constants from 'styles/Constants'
 import { WorkImage } from './WorkImage'
 
 const WorkCardContainer = styled.div`
-  background: ${Constants.COLOR.ACTIVE_BACKGROUND};
   border-radius: 6px;
   overflow: hidden;
   width: 100%;
