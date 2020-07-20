@@ -14,7 +14,7 @@ export class SearchRepository extends Repository {
 
   setWorkSettings() {
     return this.workIndex.setSettings({
-      searchableAttributes: ['title', 'titleEn', 'titleKana']
+      searchableAttributes: ['title', 'titleEn', 'titleKana', 'seasonYear']
     })
   }
 
