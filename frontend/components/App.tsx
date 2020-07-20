@@ -6,6 +6,7 @@ import Constants from 'styles/Constants'
 import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
 import { Header } from 'components/lv2'
+import { Footer } from './lv2'
 
 const AppContainer = styled.div`
   position: relative;
@@ -38,6 +39,7 @@ export const App: React.FC = ({ children }) => {
       <AppContainer>
         {children}
       </AppContainer>
+      <Footer />
     </Provider>
   )
 }
