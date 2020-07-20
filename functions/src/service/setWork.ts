@@ -28,7 +28,7 @@ export class SetWorkService {
     this.amazonRepo = new AmazonRepository()
   }
 
-  async execute(year: number, season: Season): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
+  async execute(year: number, season: Season, skipToGetAdditionalImage: boolean = true): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
     try {
       Logger.info({ type: 'start_set_works', query: { year, season }})
 
@@ -41,9 +41,9 @@ export class SetWorkService {
       Logger.debug({ message: 'fetched_works', length: works.length, query: { year, season } })
 
       await this.workRepo.save(works)
+      if (skipToGetAdditionalImage) return new Success({ setImageFailedWorkIDs: [] })
 
       const setImageResult = await this.setImageURLToWorks(works, 2)
-
       return new Success({ setImageFailedWorkIDs: setImageResult.failedWorkIDs })
     } catch (error) {
       Logger.error({ type: 'unexpected', year, season }, error)

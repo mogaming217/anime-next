@@ -8,6 +8,26 @@ export interface FetchWorksData {
   }
 }
 
+// FIXME: 命名イマイチ
+export const convertNode = (node: Work): WorkModel | null => {
+  let imageURL = node.image?.recommendedImageUrl
+  if (imageURL && imageURL.length === 0) {
+    imageURL = null
+  }
+  if (!(node.seasonName && node.seasonYear)) return null
+  const season = node.seasonName.toLowerCase() as Season
+
+  return new WorkModel(
+    node.annictId.toString(),
+    node.title,
+    node.titleEn,
+    node.titleKana,
+    imageURL,
+    season,
+    node.seasonYear
+  )
+}
+
 interface Work {
   annictId: number
   title: string
@@ -15,22 +35,9 @@ interface Work {
   titleKana: string | null
   image: {
     recommendedImageUrl: string | null
-  } | null
-}
-
-// FIXME: 命名イマイチ
-export const convertNode = (node: Work): WorkModel | null => {
-  let imageURL = node.image?.recommendedImageUrl
-  if (imageURL && imageURL.length === 0) {
-    imageURL = null
-  }
-  return new WorkModel(
-    node.annictId.toString(),
-    node.title,
-    node.titleEn,
-    node.titleKana,
-    imageURL
-  )
+  } | null,
+  seasonName: string | null
+  seasonYear: number | null
 }
 
 type Variables = {
@@ -70,6 +77,8 @@ export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
         image {
           recommendedImageUrl
         }
+        seasonName
+        seasonYear
       }
 
       pageInfo {

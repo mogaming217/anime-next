@@ -11,6 +11,8 @@ export class WorkRepository extends Repository {
       titleEn: work.titleEn,
       titleKana: work.titleKana,
       imageURL: work.imageURL,
+      season: work.season,
+      year: work.year,
       updatedAt: firestore.Timestamp.now() // あまり重要ではないのであえてserverTimestampを使わない
     }
   }
@@ -19,7 +21,7 @@ export class WorkRepository extends Repository {
     const data = snapshot.data()
     if (!data) return
     // FIXME: もう少しちゃんと
-    return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL)
+    return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL, data.season, data.year)
   }
 
   async find(workID: string) {

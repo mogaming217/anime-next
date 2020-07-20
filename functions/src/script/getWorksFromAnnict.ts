@@ -4,6 +4,7 @@ initializeProject('dev')
 import { SetWorkService } from '../service'
 import { Season, allSeasons } from "../enum/season"
 import * as fs from 'fs'
+import { sleep } from "../common/sleep"
 
 type Params = {
   year: number,
@@ -14,9 +15,11 @@ const main = async () => {
   const service = new SetWorkService()
 
   const list: Params[] = []
-  for (let year = 2000; year < 2006; year++) {
+  // from: 2000~
+  for (let year = 2016; year < 2020; year++) {
     list.push({ year, seasons: allSeasons })
   }
+  // list.push({ year: 2020, seasons: ['winter', 'spring', 'summer'] })
 
   const failedWorkIDs: string[] = []
 
@@ -29,6 +32,7 @@ const main = async () => {
       }
 
       failedWorkIDs.push(...result.value.setImageFailedWorkIDs)
+      await sleep(10 * 1000)
     }
   }
 
