@@ -3,10 +3,11 @@ import { Work } from "model";
 import styled from "styled-components";
 import Constants from "styles/Constants";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
-import { LoadingIndicator, SectionDescription, Center } from "components/lv1";
+import { LoadingIndicator, SectionDescription, Center, SectionTitle } from "components/lv1";
 import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from "components/lv2";
-import { WorkOriginalForm } from 'components/lv3'
+import { WorkOriginalForm, WorkList } from 'components/lv3'
 import { LabelButton } from "components/lv1/LabelButton";
+import { useRelatedWorks } from "hooks/work/useRelatedWorks";
 
 const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
   const { loading, originals, addOriginal } = useWorkOriginals(work)
@@ -70,6 +71,8 @@ type Props = {
 
 export const WorkDetail: FC<Props> = (props: Props) => {
   const work = props.work
+  const relatedWorksState = useRelatedWorks(work)
+
   return (
     <div>
       <WorkHeader>
@@ -77,6 +80,17 @@ export const WorkDetail: FC<Props> = (props: Props) => {
       </WorkHeader>
       <WorkTitle>{ work.title }</WorkTitle>
       <WorkOriginal work={ work }/>
+
+      <SectionContainer withMargin>
+        <SectionTitle>関連する作品</SectionTitle>
+        { relatedWorksState.loading ? (
+          <LoadingIndicator />
+        ) : relatedWorksState.relatedWorks.length === 0 ? (
+          <div>関連する作品が見つかりませんでした</div>
+        ) : (
+          <WorkList works={ relatedWorksState.relatedWorks } />
+        )}
+      </SectionContainer>
     </div>
   )
 }

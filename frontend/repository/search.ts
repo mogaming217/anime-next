@@ -7,8 +7,8 @@ export class SearchRepository extends AlgoliaRepository {
     return new Work(hit.annictID, hit.title, hit.imageURL, hit.season, hit.year)
   }
 
-  async searchWorks(keyword: string): Promise<Work[]> {
-    const result = await this.workIndex.search(keyword, { hitsPerPage: 30 })
+  async searchWorks(keyword: string, count: number = 30): Promise<Work[]> {
+    const result = await this.workIndex.search(keyword, { hitsPerPage: count })
     return compactMap(result.hits, hit => this.decode(hit))
   }
 }

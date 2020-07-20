@@ -10,7 +10,7 @@ const defaultProps: Props = {
 }
 
 const _SectionContainer = styled.div<Props>(p => `
-  margin: ${p.withMargin ? '20px' : '0px' } 0px;
+  margin: ${p.withMargin ? '32px' : '0px' } 0px;
 `)
 
 export const SectionContainer: FC<Props> = ({ withMargin, children } = defaultProps) => {

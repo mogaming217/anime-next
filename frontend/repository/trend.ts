@@ -27,9 +27,9 @@ export class TrendRepository {
     return compactMap(works, work => work)
   }
 
-  async fetchRelatedWorks(work: Work): Promise<Work[]> {
+  async fetchRelatedWorks(work: Work, count: number): Promise<Work[]> {
     // ひとまず同じ期のアニメ
-    const works = await this.searchRepo.searchWorks(`${work.year}_${work.season}`)
+    const works = await this.searchRepo.searchWorks(`${work.year}_${work.season}`, count)
     return works
   }
 }
