@@ -4,7 +4,7 @@ import { AlgoliaRepository } from './algolia'
 
 export class SearchRepository extends AlgoliaRepository {
   decode(hit: any): Work | undefined {
-    return new Work(hit.annictID, hit.title, hit.imageURL)
+    return new Work(hit.annictID, hit.title, hit.imageURL, hit.season, hit.year)
   }
 
   async searchWorks(keyword: string): Promise<Work[]> {
