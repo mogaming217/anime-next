@@ -25,7 +25,9 @@ export class SearchRepository extends Repository {
       title: work.title,
       titleEn: work.titleEn,
       titleKana: work.titleKana,
-      imageURL: work.imageURL
+      imageURL: work.imageURL,
+      season: work.season,
+      year: work.year,
     }
   }
 
