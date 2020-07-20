@@ -28,6 +28,7 @@ export class SearchRepository extends Repository {
       imageURL: work.imageURL,
       season: work.season,
       year: work.year,
+      seasonYear: `${work.year}_${work.season}`,
     }
   }
 
