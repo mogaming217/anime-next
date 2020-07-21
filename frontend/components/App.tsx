@@ -5,9 +5,8 @@ import styled from 'styled-components'
 import Constants from 'styles/Constants'
 import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
-import { Header } from 'components/lv2'
-import { Footer } from './lv2'
-import { DefaultSeo } from './seo/DefaultSeo'
+import { Header, Footer } from 'components/lv2'
+import { DefaultSeo } from 'components/seo'
 
 const AppContainer = styled.div`
   position: relative;
