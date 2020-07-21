@@ -1,13 +1,13 @@
 interface ServerEnv {
-  sampleValue: string,
-  firebase: object
+  host: string,
+  firebase: object,
 }
 
 // ブラウザから触ると落ちるようにしている
 export const serverEnv: ServerEnv = (() => {
   if (process.browser) return undefined as any
   return {
-    sampleValue: process.env.SAMPLE_VALUE!,
+    host: process.env.PUBLIC_HOST!,
     firebase: {
       project_id: process.env.PUBLIC_PROJECT_ID,
       private_key_id: process.env.PRIVATE_KEY_ID,
