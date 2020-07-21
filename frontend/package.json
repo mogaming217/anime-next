@@ -27,6 +27,7 @@
     "firebase": "^7.15.1",
     "firebase-admin": "^8.12.1",
     "next": "^9.4.4",
+    "next-seo": "^4.7.3",
     "nextjs-progressbar": "0.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
