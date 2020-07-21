@@ -25,7 +25,7 @@ export const useWorkOriginals = (work: Work): ReturnType => {
     }
     retrive()
     return () => { cancel = true }
-  }, [])
+  }, [work])
 
   const addOriginal = (original: Original) => {
     setOriginals([original, ...originals])
