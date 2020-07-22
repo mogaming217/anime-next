@@ -4,9 +4,10 @@ import { App } from 'components/App'
 import { WorkDetail } from 'components/lv4/WorkDetail'
 import { WorkRepository } from 'repository/work'
 import { WorkDetailSeo } from 'components/seo'
+import { Work } from 'model'
 
 interface Props {
-  work: any | null // FIXME: 型は仮
+  work: Work | undefined // FIXME: 型は仮
 }
 
 const Page: NextPage<Props> = (props: Props) => {
@@ -19,7 +20,7 @@ const Page: NextPage<Props> = (props: Props) => {
 
       { work && (
         <>
-          <WorkDetailSeo />
+          <WorkDetailSeo work={ work } />
           <WorkDetail work={ work } />
         </>
       )}

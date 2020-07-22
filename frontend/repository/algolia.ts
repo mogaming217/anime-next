@@ -1,10 +1,10 @@
 import algolia from 'algoliasearch/lite'
-import { clientEnv } from "env"
+import { publicEnv } from "env"
 
 export class AlgoliaRepository {
-  private client = algolia(clientEnv.algolia.appID, clientEnv.algolia.searchKey)
+  private client = algolia(publicEnv.algolia.appID, publicEnv.algolia.searchKey)
 
   get workIndex() {
-    return this.client.initIndex(`${clientEnv.algolia.indexPrefix}works`)
+    return this.client.initIndex(`${publicEnv.algolia.indexPrefix}works`)
   }
 }

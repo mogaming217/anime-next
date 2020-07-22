@@ -22,7 +22,7 @@ export const serverEnv: ServerEnv = (() => {
   } as ServerEnv
 })()
 
-interface ClientEnv {
+interface PublicEnv {
   host: string
   algolia: {
     appID: string,
@@ -31,7 +31,7 @@ interface ClientEnv {
   }
 }
 
-export const clientEnv: ClientEnv = {
+export const publicEnv: PublicEnv = {
   host: process.env.PUBLIC_HOST!,
   algolia: {
     appID: process.env.ALGOLIA_APP_ID!,
