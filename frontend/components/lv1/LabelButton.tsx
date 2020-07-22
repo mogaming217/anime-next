@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FC } from "react";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 
 const _Button = styled.button`
   color: ${Constants.COLOR.PRIMARY};

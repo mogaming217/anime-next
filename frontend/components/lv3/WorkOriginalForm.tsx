@@ -4,7 +4,7 @@ import { Work, OriginalType, Original } from "model"
 import styled from "styled-components";
 import { OriginalRepository } from "repository";
 import { useAuth } from "hooks/useAuth";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 import { TextInput, Button } from "components/lv1";
 
 const Form = styled.form`

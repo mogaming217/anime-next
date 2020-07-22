@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Work } from "model";
 import styled from "styled-components";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
 import { LoadingIndicator, SectionDescription, Center, SectionTitle } from "components/lv1";
 import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from "components/lv2";

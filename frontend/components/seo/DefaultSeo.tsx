@@ -4,7 +4,7 @@ import { clientEnv } from 'env'
 export const DefaultSeo = () => <DS
   openGraph={{
     type: 'website',
-    title: 'アニオリ｜アニメの続きを楽しめる原作情報メディア',
+    title: 'アニオリ｜アニメの続きを楽しめる原作情報が探せるサービス',
     description: 'おもしろかったアニメの続きは原作の何巻から読めるのかがすぐ見つかる！原作のマンガやライトノベル、小説をすぐ購入できるサービスです。',
     url: clientEnv.host,
     images: [{

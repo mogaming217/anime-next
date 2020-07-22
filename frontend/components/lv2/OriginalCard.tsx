@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Original } from "model";
 import styled from "styled-components";
 import { Image, AmazonButton } from "components/lv1";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 
 const Container = styled.div`
   padding: 16px;
