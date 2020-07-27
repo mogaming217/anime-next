@@ -20,8 +20,7 @@ export class WorkRepository extends Repository {
   decode(snapshot: firestore.DocumentSnapshot): Work | undefined {
     const data = snapshot.data()
     if (!data) return
-    // FIXME: もう少しちゃんと
-    return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL, data.season, data.year)
+    return new Work(data.annictID, data.title, data.titleEn, data.titleKana, data.imageURL, data.season, data.year, data.media)
   }
 
   async find(workID: string) {

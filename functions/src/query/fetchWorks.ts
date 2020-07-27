@@ -1,6 +1,7 @@
 import { GraphQLQuery } from "./query"
 import { Work as WorkModel } from "../model"
 import { Season } from "../enum/season"
+import { WorkMedia } from "../enum/workMedia"
 
 export interface FetchWorksData {
   searchWorks: {
@@ -24,7 +25,8 @@ export const convertNode = (node: Work): WorkModel | null => {
     node.titleKana,
     imageURL,
     season,
-    node.seasonYear
+    node.seasonYear,
+    node.media,
   )
 }
 
@@ -38,6 +40,7 @@ interface Work {
   } | null,
   seasonName: string | null
   seasonYear: number | null
+  media: WorkMedia,
 }
 
 type Variables = {
@@ -79,6 +82,7 @@ export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
         }
         seasonName
         seasonYear
+        media
       }
 
       pageInfo {
