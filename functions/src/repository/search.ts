@@ -22,6 +22,7 @@ export class SearchRepository extends Repository {
     return {
       objectID: work.id, // algolia上でのIDはobjectIDになる
       annictID: work.annictID,
+      popularity: 0, // FIXME: ひとまず0を入れておく
       title: work.title,
       titleEn: work.titleEn,
       titleKana: work.titleKana,
@@ -29,6 +30,7 @@ export class SearchRepository extends Repository {
       season: work.season,
       year: work.year,
       seasonYear: `${work.year}_${work.season}`,
+      media: work.media,
     }
   }
 

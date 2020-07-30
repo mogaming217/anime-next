@@ -13,6 +13,7 @@ export class WorkRepository extends Repository {
       imageURL: work.imageURL,
       season: work.season,
       year: work.year,
+      media: work.media,
       updatedAt: firestore.Timestamp.now() // あまり重要ではないのであえてserverTimestampを使わない
     }
   }

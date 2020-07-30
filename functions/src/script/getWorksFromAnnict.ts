@@ -15,11 +15,12 @@ const main = async () => {
   const service = new SetWorkService()
 
   const list: Params[] = []
+  // list.push({ year: 2020, seasons: ['winter', 'spring', 'summer'] })
   // from: 2000~
-  for (let year = 2016; year < 2020; year++) {
+  for (let year = 2000; year < 2020; year++) {
     list.push({ year, seasons: allSeasons })
   }
-  // list.push({ year: 2020, seasons: ['winter', 'spring', 'summer'] })
+  console.log(allSeasons);
 
   const failedWorkIDs: string[] = []
 
