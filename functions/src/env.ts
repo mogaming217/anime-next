@@ -15,12 +15,13 @@ export interface EnvorinmentVariables {
   }
 }
 
-let config: any
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'test') {
-  // FIXME: とりあえずdev環境をロード
-  config = require('../env/dev.json')
-} else {
-  config = functions.config()
+let config = functions.config()
+if (Object.keys(config).length === 0) {
+  if (!process.env.NODE_ENV || process.env.GCLOUD_PROJECT === 'animenextdev') {
+    config = require('../env/dev.json')
+  } else if (process.env.GCLOUD_PROJECT === 'animenextprod') {
+    config = require('../env/prod.json')
+  }
 }
 
 export const env = config as EnvorinmentVariables
