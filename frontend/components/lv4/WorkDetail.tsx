@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Work } from "model";
+import { Work, Original } from "model";
 import styled from "styled-components";
 import Constants from "styles/StyleConst";
 import { useWorkOriginals } from "hooks/work/useWorkOriginals";
@@ -9,8 +9,8 @@ import { WorkOriginalForm, WorkList } from 'components/lv3'
 import { LabelButton } from "components/lv1/LabelButton";
 import { useRelatedWorks } from "hooks/work/useRelatedWorks";
 
-const WorkOriginal: FC<{ work: Work }> = ({ work }) => {
-  const { loading, originals, addOriginal } = useWorkOriginals(work)
+const WorkOriginal: FC<{ work: Work, defaultOriginals?: Original[] }> = ({ work, defaultOriginals }) => {
+  const { loading, originals, addOriginal } = useWorkOriginals(work, defaultOriginals)
   const [isFormExpanded, setExpanded] = useState(false)
 
   if (loading) return (
@@ -67,6 +67,7 @@ const WorkTitle = styled.div`
 
 type Props = {
   work: Work
+  originals?: Original[]
 }
 
 export const WorkDetail: FC<Props> = (props: Props) => {
@@ -79,7 +80,7 @@ export const WorkDetail: FC<Props> = (props: Props) => {
         <WorkImage src={ work.imageURL } />
       </WorkHeader>
       <WorkTitle>{ work.title }</WorkTitle>
-      <WorkOriginal work={ work }/>
+      <WorkOriginal work={ work } defaultOriginals={ props.originals } />
 
       <SectionContainer withMargin>
         <SectionTitle>関連する作品</SectionTitle>

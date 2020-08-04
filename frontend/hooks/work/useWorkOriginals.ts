@@ -8,12 +8,17 @@ type ReturnType = {
   addOriginal: (original: Original) => void
 }
 
-export const useWorkOriginals = (work: Work): ReturnType => {
-  const [originals, setOriginals] = useState<Original[]>([])
+export const useWorkOriginals = (work: Work, defaultOriginals?: Original[]): ReturnType => {
+  const [originals, setOriginals] = useState<Original[]>(defaultOriginals || [])
   const [loading, setLoading] = useState(true)
   const originalRepo = new OriginalRepository()
 
   useEffect(() => {
+    if (defaultOriginals?.length === originals.length) {
+      setLoading(false)
+      return
+    }
+
     let cancel = false
     const retrive = async () => {
       setLoading(true)
