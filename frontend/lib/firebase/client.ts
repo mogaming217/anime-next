@@ -1,13 +1,14 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/analytics'
 
 (() => {
   if (firebase.apps.length !== 0) {
     return firebase.app()
   }
 
-  firebase.initializeApp({
+  const app = firebase.initializeApp({
     apiKey: process.env.PUBLIC_API_KEY,
     authDomain: process.env.PUBLIC_AUTH_DOMAIN,
     databaseURL: process.env.PUBLIC_DATABASE_URL,
@@ -18,7 +19,7 @@ import 'firebase/auth'
     measurementId: process.env.PUBLIC_MEASUREMENT_ID
   })
 
-  firebase.analytics()
+  app.analytics()
 })()
 
 export const firestore = firebase.firestore()
