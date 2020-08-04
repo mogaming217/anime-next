@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/analytics'
 
-(() => {
+const app = (() => {
   if (firebase.apps.length !== 0) {
     return firebase.app()
   }
@@ -19,8 +19,12 @@ import 'firebase/analytics'
     measurementId: process.env.PUBLIC_MEASUREMENT_ID
   })
 
-  app.analytics()
+  return app
 })()
+
+if (process.browser) {
+  app.analytics()
+}
 
 export const firestore = firebase.firestore()
 export const auth = firebase.auth()

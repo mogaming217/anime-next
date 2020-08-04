@@ -1,5 +1,6 @@
 {
   "projects": {
-    "dev": "animenextdev"
+    "dev": "animenextdev",
+    "prod": "animenextprod"
   }
 }

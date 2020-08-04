@@ -3,13 +3,14 @@ import { SearchRepository, WorkRepository } from "../repository"
 import { findInBatch } from "../helper/firestore"
 import { compactMap } from "../helper/array"
 import { sleep } from "../common/sleep"
-initializeProject('dev')
+const app = initializeProject('prod')
 
 const main = async () => {
-  const searchRepo = new SearchRepository()
+  const db = app.firestore()
+  const searchRepo = new SearchRepository(db)
   await searchRepo.setWorkSettings()
 
-  const workRepo = new WorkRepository()
+  const workRepo = new WorkRepository(db)
   const query = workRepo.worksRef
   let index = 0
   await findInBatch(query, 100, async snapshots => {

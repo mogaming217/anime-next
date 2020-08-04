@@ -7,7 +7,11 @@
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "setEnv:dev": "ts-node src/script/setEnvVars.ts dev",
-    "setEnv:prod": "ts-node src/script/setEnvVars.ts prod"
+    "setEnv:prod": "ts-node src/script/setEnvVars.ts prod",
+    "deploy:dev": "firebase deploy -P dev --only functions",
+    "deploy:prod": "firebase deploy -P prod --only functions",
+    "deploy:rules:dev": "firebase deploy -P dev --only firestore:rules",
+    "deploy:rules:prod": "firebase deploy -P prod --only firestore:rules"
   },
   "engines": {
     "node": "10"

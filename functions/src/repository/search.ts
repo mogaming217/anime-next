@@ -13,6 +13,8 @@ export class SearchRepository extends Repository {
   }
 
   setWorkSettings() {
+    console.log(env.algolia.indexprefix)
+
     return this.workIndex.setSettings({
       searchableAttributes: ['title', 'titleEn', 'titleKana', 'seasonYear']
     })
