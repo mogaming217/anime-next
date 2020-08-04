@@ -22,7 +22,7 @@ const Page: NextPage<Props> = (props: Props) => {
 
       { work && (
         <>
-          <WorkDetailSeo work={ work } />
+          <WorkDetailSeo work={ work } originals={ props.originals } />
           <WorkDetail work={ work } originals={ props.originals } />
         </>
       )}
