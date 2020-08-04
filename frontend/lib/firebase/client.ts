@@ -7,7 +7,7 @@ import 'firebase/auth'
     return firebase.app()
   }
 
-  return firebase.initializeApp({
+  firebase.initializeApp({
     apiKey: process.env.PUBLIC_API_KEY,
     authDomain: process.env.PUBLIC_AUTH_DOMAIN,
     databaseURL: process.env.PUBLIC_DATABASE_URL,
@@ -17,6 +17,8 @@ import 'firebase/auth'
     appId: process.env.PUBLIC_APP_ID,
     measurementId: process.env.PUBLIC_MEASUREMENT_ID
   })
+
+  firebase.analytics()
 })()
 
 export const firestore = firebase.firestore()
