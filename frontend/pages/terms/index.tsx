@@ -2,9 +2,11 @@ import { NextPage } from "next";
 import { App } from "components/App";
 import { Const } from "lib/const";
 import { publicEnv } from "env";
+import { NextSeo } from "next-seo";
 
 const term = `
-最終変更日 2018年10月24日
+最終変更日 2020年8月4日
+
 本利用規約（以下「本規約」といいます。）には、株式会社マカセテ（以下「当社」といいます。）の提供するサービス「${Const.SERVICE_NAME}」のご利用にあたり、登録ユーザーの皆様に遵守していただかなければならない事項及び当社と登録ユーザーの皆様との間の権利義務関係が定められております。当該サービスを登録ユーザーとしてご利用になる方は、本規約に同意する前に、必ず全文お読み下さいますようお願い致します。
 
 第1条 適　用
@@ -154,6 +156,9 @@ const term = `
 const TermsPage: NextPage = () => {
   return (
     <App>
+      <NextSeo
+        title={'利用規約'}
+      />
       <div style={{ whiteSpace: 'pre-wrap' }}>
         {term}
       </div>
