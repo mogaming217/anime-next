@@ -17,6 +17,7 @@ export const initializeProject = (env?: AppEnvironment) => {
   const serviceAccount = require(serviceAccountPath)
   if (!serviceAccount) throw new Error('JSON credential must be placed in serviceAccount dir.')
 
+  process.env.GCLOUD_PROJECT = serviceAccount.project_id
   return admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     // if you specify databaseURL, please fix script
