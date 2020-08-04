@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 
 export const AmazonButton = styled(Button)`
   background-color: '#ed9220';

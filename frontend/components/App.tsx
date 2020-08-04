@@ -2,11 +2,11 @@ import React from 'react'
 import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
 import styled from 'styled-components'
-import Constants from 'styles/Constants'
+import Constants from 'styles/StyleConst'
 import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
-import { Header } from 'components/lv2'
-import { Footer } from './lv2'
+import { Header, Footer } from 'components/lv2'
+import { DefaultSeo } from 'components/seo'
 
 const AppContainer = styled.div`
   position: relative;
@@ -28,6 +28,7 @@ export const App: React.FC = ({ children }) => {
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
       </Head>
+      <DefaultSeo />
 
       <Header />
       <NProgress

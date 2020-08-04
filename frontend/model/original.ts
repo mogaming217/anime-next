@@ -6,6 +6,17 @@ export const OriginalType = {
 
 export type OriginalType = typeof OriginalType[keyof typeof OriginalType]
 
+export function originalTypeLabel(type: OriginalType) {
+  switch (type) {
+    case 'comic':
+      return 'コミック'
+    case 'lightNovel':
+      return 'ライトノベル'
+    case 'novel':
+      return '小説'
+  }
+}
+
 export class OriginalLink {
   constructor(
     readonly amazon: string | undefined

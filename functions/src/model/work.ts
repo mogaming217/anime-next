@@ -1,5 +1,6 @@
 import { Model } from './model'
 import { Season } from '../enum/season'
+import { WorkMedia } from '../enum/workMedia'
 
 export class Work implements Model {
   readonly annictID: string
@@ -12,6 +13,7 @@ export class Work implements Model {
     public imageURL: string | null = null,
     readonly season: Season,
     readonly year: number,
+    readonly media: WorkMedia,
   ) {
     this.annictID = annictId
   }

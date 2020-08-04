@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 
 export const TextInput = styled.input`
   border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;

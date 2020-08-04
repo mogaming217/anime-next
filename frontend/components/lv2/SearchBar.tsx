@@ -1,7 +1,7 @@
 import { FC, useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import Constants from 'styles/Constants'
+import Constants from 'styles/StyleConst'
 import { TextInput } from 'components/lv1'
 import { Search } from 'react-feather'
 

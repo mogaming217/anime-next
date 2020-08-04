@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Work } from 'model'
 import Link from "next/link"
-import Constants from 'styles/Constants'
+import Constants from 'styles/StyleConst'
 import { WorkImage } from './WorkImage'
 
 const WorkCardContainer = styled.div`

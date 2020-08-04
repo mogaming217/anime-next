@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import Link from 'next/link'
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 
 const _Footer = styled.footer`
   padding: 16px 0px;

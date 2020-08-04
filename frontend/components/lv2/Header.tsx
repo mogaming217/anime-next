@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import Constants from "styles/Constants";
+import Constants from "styles/StyleConst";
 import Link from 'next/link'
 
 const _Header = styled.header`
