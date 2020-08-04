@@ -17,9 +17,9 @@ export const initializeProject = (env?: AppEnvironment) => {
   const serviceAccount = require(serviceAccountPath)
   if (!serviceAccount) throw new Error('JSON credential must be placed in serviceAccount dir.')
 
-  admin.initializeApp({
+  return admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     // if you specify databaseURL, please fix script
     databaseURL: `https://${serviceAccount.project_id}.firebaseio.com`
-  })
+  }, envValue)
 }
