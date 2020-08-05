@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 const NotFoundPage: NextPage = () => {
   return (
-    <div>
+    <>
       <div>Not Found</div>
       <Link href='/'><a>TOP</a></Link>
-    </div>
+    </>
   )
 }
 
