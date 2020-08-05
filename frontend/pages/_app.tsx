@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Constants from 'styles/StyleConst'
 import NProgress from 'nextjs-progressbar'
 import { Header, Footer } from 'components/lv2'
+import { DefaultSeo } from 'components/seo'
 
 const AppContainer = styled.div`
   position: relative;
@@ -27,12 +28,16 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
       </Head>
+      <DefaultSeo />
+
       <Header />
+
       <NProgress
         color={ Constants.COLOR.PRIMARY }
         height="1"
         options={{ showSpinner: false }}
       />
+
       <GlobalStyle />
 
       <AppContainer>
