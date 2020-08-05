@@ -1,6 +1,9 @@
 import Document, { DocumentContext } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+// 参考：https://medium.com/swlh/server-side-rendering-styled-components-with-nextjs-1db1353e915e
+// まだClass記法じゃないとダメらしい
+
 export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
