@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { App } from "components/App";
 import { Const } from "lib/const";
 import { publicEnv } from "env";
 import { NextSeo } from "next-seo";
@@ -155,14 +154,14 @@ const term = `
 
 const TermsPage: NextPage = () => {
   return (
-    <App>
+    <>
       <NextSeo
         title={'利用規約'}
       />
       <div style={{ whiteSpace: 'pre-wrap' }}>
         {term}
       </div>
-    </App>
+    </>
   )
 }
 

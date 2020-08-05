@@ -1,4 +1,4 @@
-import React from 'react'
+import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
 import styled from 'styled-components'
@@ -20,7 +20,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => (
   </AuthProvider>
 )
 
-export const App: React.FC = ({ children }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider>
       <Header />
@@ -30,10 +30,14 @@ export const App: React.FC = ({ children }) => {
         options={{ showSpinner: false }}
       />
       <GlobalStyle />
+
       <AppContainer>
-        {children}
+        <Component { ...pageProps } />
       </AppContainer>
+
       <Footer />
     </Provider>
   )
 }
+
+export default App

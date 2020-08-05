@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { NextPageContext, NextPage } from 'next'
-import { App } from 'components/App'
 import { WorkDetail } from 'components/lv4/WorkDetail'
 import { WorkRepository } from 'repository/work'
 import { WorkDetailSeo } from 'components/seo'
@@ -15,7 +14,7 @@ interface Props {
 const Page: NextPage<Props> = (props: Props) => {
   const work = props.work
   return (
-    <App>
+    <>
       { !work && (
         <div>not found</div>
       ) }
@@ -26,7 +25,7 @@ const Page: NextPage<Props> = (props: Props) => {
           <WorkDetail work={ work } originals={ props.originals } />
         </>
       )}
-    </App>
+    </>
   )
 }
 
