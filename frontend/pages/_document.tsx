@@ -36,7 +36,6 @@ export default class CustomDocument extends Document {
     return (
       <Html lang='ja'>
         <Head>
-          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
           {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
           {/* <link rel="manifest" href="/manifest.json" /> */}
         </Head>
