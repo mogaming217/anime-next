@@ -1,7 +1,7 @@
 const FONT = {
   XXXLARGE: 32,
-  XXLARGE: 24,
-  XLARGE: 22,
+  XXLARGE: 28,
+  XLARGE: 24,
   LARGE: 20,
   MEDIUM: 18,
   BASE: 16,
