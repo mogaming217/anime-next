@@ -1,5 +1,6 @@
-import Document, { DocumentContext } from 'next/document'
+import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import { DefaultSeo } from 'components/seo';
 
 // 参考：https://medium.com/swlh/server-side-rendering-styled-components-with-nextjs-1db1353e915e
 // まだClass記法じゃないとダメらしい
@@ -29,5 +30,23 @@ export default class CustomDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html lang='ja'>
+        <Head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+          {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
+          {/* <link rel="manifest" href="/manifest.json" /> */}
+        </Head>
+        <DefaultSeo />
+
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
   }
 }
