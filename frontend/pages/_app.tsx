@@ -1,12 +1,10 @@
-import React from 'react'
+import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles/Global'
 import { AuthProvider } from 'hooks/useAuth'
 import styled from 'styled-components'
 import Constants from 'styles/StyleConst'
-import Head from "next/head"
 import NProgress from 'nextjs-progressbar'
 import { Header, Footer } from 'components/lv2'
-import { DefaultSeo } from 'components/seo'
 
 const AppContainer = styled.div`
   position: relative;
@@ -22,14 +20,9 @@ const Provider = ({ children }: { children: React.ReactNode }) => (
   </AuthProvider>
 )
 
-export const App: React.FC = ({ children }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider>
-      <Head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-      </Head>
-      <DefaultSeo />
-
       <Header />
       <NProgress
         color={ Constants.COLOR.PRIMARY }
@@ -37,10 +30,14 @@ export const App: React.FC = ({ children }) => {
         options={{ showSpinner: false }}
       />
       <GlobalStyle />
+
       <AppContainer>
-        {children}
+        <Component { ...pageProps } />
       </AppContainer>
+
       <Footer />
     </Provider>
   )
 }
+
+export default App

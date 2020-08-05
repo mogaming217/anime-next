@@ -1,5 +1,4 @@
 import { NextPage, NextPageContext } from 'next'
-import { App } from 'components/App'
 import { SearchBar } from 'components/lv2'
 import { WorkList } from 'components/lv3'
 import { SearchRepository } from 'repository/search'
@@ -17,12 +16,12 @@ const SearchBarContainer = styled.div`
 
 const SearchPage: NextPage<Props> = (props: Props) => {
   return (
-    <App>
+    <>
       <SearchBarContainer>
         <SearchBar searchText={ props.searchText || undefined } />
       </SearchBarContainer>
       <WorkList works={ props.works } />
-    </App>
+    </>
   )
 }
 
