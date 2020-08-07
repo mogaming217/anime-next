@@ -12,21 +12,21 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
   const [loading, setLoading] = useState(true)
   const trendRepo = new TrendRepository()
 
-  // useEffect(() => {
-  //   let cancel = false
+  useEffect(() => {
+    let cancel = false
 
-  //   const retrive = async () => {
-  //     setLoading(true)
-  //     const works = await trendRepo.fetchTrendWorks(props.count)
-  //     if (!cancel) {
-  //       setWorks(works)
-  //       setLoading(false)
-  //     }
-  //   }
+    const retrive = async () => {
+      setLoading(true)
+      const works = await trendRepo.fetchTrendWorks(props.count)
+      if (!cancel) {
+        setWorks(works)
+        setLoading(false)
+      }
+    }
 
-  //   retrive()
-  //   return () => { cancel = true }
-  // }, [])
+    retrive()
+    return () => { cancel = true }
+  }, [])
 
   return { loading, works }
 }
