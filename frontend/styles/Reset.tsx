@@ -27,6 +27,7 @@ export const resetCss = css`
   figure,
   blockquote,
   dl,
+  input,
   dd {
     margin: 0;
   }

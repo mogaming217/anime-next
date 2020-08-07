@@ -24,6 +24,7 @@ const InputContentContainer = styled.div`
 
   label.radio {
     display: inline-flex;
+    align-items: center;
     padding-right: 10px;
   }
 `
