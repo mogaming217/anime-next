@@ -41,7 +41,6 @@ const SubmitContainer = styled.div`
 
 type Props = {
   work: Work,
-  onCreate?: (original: Original) => void
 }
 
 type FormInputData = {
@@ -50,7 +49,7 @@ type FormInputData = {
   originalNo?: string,
 }
 
-export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
+export const WorkOriginalForm: FC<Props> = ({ work }) => {
   const authState = useAuth()
   const [ isSubmitting, updateIsSubmitting ] = useState<boolean>(false)
   const { handleSubmit, register, errors, reset } = useForm<FormInputData>()
@@ -65,13 +64,12 @@ export const WorkOriginalForm: FC<Props> = ({ work, onCreate }) => {
     const repo = new OriginalRepository()
     updateIsSubmitting(true)
     try {
-      const original = await repo.create(authState.user.id, work.id, {
+      await repo.create(authState.user.id, work.id, {
         originalType: body.originalType,
         originalNo: body.originalNo,
         animeEpisodeNo: body.animeEpisodeNo
       })
-      reset()
-      if (onCreate) onCreate(original)
+      // reset()
     } catch (error) {
       console.error(error)
     } finally {

@@ -37,4 +37,11 @@ export class OriginalRepository extends FirestoreRepository {
     const result = await this.originalsRef(workID).limit(limit).get()
     return compactMap(result.docs, doc => this.decode(doc))
   }
+
+  subscribeOriginals(workID: string, onUpdate: (originals: Original[]) => void) {
+    return this.originalsRef(workID).onSnapshot(snap => {
+      const originals = compactMap(snap.docs, doc => this.decode(doc))
+      onUpdate(originals)
+    })
+  }
 }

@@ -14,22 +14,24 @@ export const useWorkOriginals = (work: Work, defaultOriginals?: Original[]): Ret
   const originalRepo = new OriginalRepository()
 
   useEffect(() => {
-    if (defaultOriginals?.length === originals.length) {
+    const defaultLength = defaultOriginals?.length || 0
+    if (defaultLength !== 0 && defaultLength === originals.length) {
       setLoading(false)
       return
     }
 
     let cancel = false
-    const retrive = async () => {
-      setLoading(true)
-      const originals = await originalRepo.fetchOriginals(work.id)
+    const unsubscribe = originalRepo.subscribeOriginals(work.id, originals => {
       if (!cancel) {
-        setOriginals(originals)
         setLoading(false)
+        setOriginals(originals)
       }
+    })
+
+    return () => {
+      unsubscribe()
+      cancel = true
     }
-    retrive()
-    return () => { cancel = true }
   }, [work])
 
   const addOriginal = (original: Original) => {

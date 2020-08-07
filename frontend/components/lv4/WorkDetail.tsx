@@ -10,7 +10,7 @@ import { LabelButton } from "components/lv1/LabelButton";
 // import { useRelatedWorks } from "hooks/work/useRelatedWorks";
 
 const WorkOriginal: FC<{ work: Work, defaultOriginals?: Original[] }> = ({ work, defaultOriginals }) => {
-  const { loading, originals, addOriginal } = useWorkOriginals(work, defaultOriginals)
+  const { loading, originals } = useWorkOriginals(work, defaultOriginals)
   const [isFormExpanded, setExpanded] = useState(false)
 
   if (loading) return (
@@ -23,7 +23,7 @@ const WorkOriginal: FC<{ work: Work, defaultOriginals?: Original[] }> = ({ work,
         <WorkOriginalEmpty work={ work } />
       </SectionContainer>
       <SectionContainer withMargin>
-        <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+        <WorkOriginalForm work={ work }/>
       </SectionContainer>
     </>
   )
@@ -42,7 +42,7 @@ const WorkOriginal: FC<{ work: Work, defaultOriginals?: Original[] }> = ({ work,
       </SectionContainer>
       <SectionContainer withMargin>
         {isFormExpanded ? (
-          <WorkOriginalForm work={ work } onCreate={ addOriginal } />
+          <WorkOriginalForm work={ work } />
         ) : (
           <Center>
             <LabelButton label='原作情報を追加する' onClick={ () => setExpanded(true) } />
