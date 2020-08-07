@@ -1,7 +1,36 @@
 import { FC } from "react";
+import styled from "styled-components";
+import Loader from 'react-loader-spinner'
+import StyleConst from "styles/StyleConst";
 
-export const LoadingIndicator: FC = () => {
+const Container = styled.div`
+  text-align: center;
+`
+
+type Size = 'small'
+
+type Props = {
+  size?: Size
+  paddingLess?: boolean
+}
+
+export const LoadingIndicator: FC<Props> = ({ size, paddingLess }) => {
+  const loaderSize: number = (() => {
+    switch (size!) {
+      case 'small': return 32
+    }
+  })()
+
   return (
-    <div>now loading...</div>
+    <Container style={{ padding: paddingLess ? 0 : 32 }}>
+      <Loader
+        type='Audio'
+        color={ StyleConst.COLOR.PRIMARY }
+        width={ loaderSize }
+        height={ loaderSize }
+      />
+    </Container>
   )
 }
+
+LoadingIndicator.defaultProps = { size: 'small', paddingLess: false }
