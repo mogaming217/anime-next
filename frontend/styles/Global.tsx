@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
     color: ${Constants.COLOR.LABEL};
   }
 
+  input[type=radio] {
+    margin-right: 3px;
+  }
+
   input::placeholder {
     color: ${Constants.COLOR.PLACEHOLDER};
   }
