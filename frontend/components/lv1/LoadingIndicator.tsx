@@ -17,14 +17,14 @@ type Props = {
 export const LoadingIndicator: FC<Props> = ({ size, paddingLess }) => {
   const loaderSize: number = (() => {
     switch (size!) {
-      case 'small': return 32
+      case 'small': return 44
     }
   })()
 
   return (
     <Container style={{ padding: paddingLess ? 0 : 32 }}>
       <Loader
-        type='Audio'
+        type='ThreeDots'
         color={ StyleConst.COLOR.PRIMARY }
         width={ loaderSize }
         height={ loaderSize }
