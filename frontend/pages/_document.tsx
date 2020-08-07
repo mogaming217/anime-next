@@ -35,8 +35,7 @@ export default class CustomDocument extends Document {
     return (
       <Html lang='ja'>
         <Head>
-          {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
-          {/* <link rel="manifest" href="/manifest.json" /> */}
+          <link rel="icon" href="/favicon.png" />
         </Head>
 
         <body>
