@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { useForm } from 'react-hook-form'
-import { Work, OriginalType, Original } from "model"
+import { Work, OriginalType } from "model"
 import styled from "styled-components";
 import { OriginalRepository } from "repository";
 import { useAuth } from "hooks/useAuth";
@@ -52,7 +52,7 @@ type FormInputData = {
 export const WorkOriginalForm: FC<Props> = ({ work }) => {
   const authState = useAuth()
   const [ isSubmitting, updateIsSubmitting ] = useState<boolean>(false)
-  const { handleSubmit, register, errors, reset } = useForm<FormInputData>()
+  const { handleSubmit, register, errors } = useForm<FormInputData>()
 
   const onSubmit = handleSubmit(async body => {
     if (!authState.user) { return }
