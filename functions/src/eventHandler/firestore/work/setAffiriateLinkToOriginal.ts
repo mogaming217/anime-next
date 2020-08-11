@@ -28,20 +28,7 @@ export class Service {
     const work = await this.workRepo.find(original.workID)
     if (!work) return
 
-    let typeLabel: string
-    switch (original.originalType) {
-      case 'comic':
-        typeLabel = 'コミック'
-        break
-      case 'lightNovel':
-        typeLabel = 'ライトノベル'
-        break
-      case 'novel':
-        typeLabel = '小説'
-        break
-    }
-
-    const items = await this.amazonRepo.fetchItemInfo(`${work.title} ${typeLabel} ${original.originalNo || ''}`)
+    const items = await this.amazonRepo.fetchItemInfo(`${work.title} ${original.originalNo || ''}`)
 
     // タイトル同じやつ探す
     let itemInfo = items.find(item => item.title.includes(work.title))

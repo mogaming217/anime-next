@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Original } from "model";
+import { Original, originalTypeLabel } from "model";
 import styled from "styled-components";
 import { Image, AmazonButton } from "components/lv1";
 import Constants from "styles/StyleConst";
@@ -62,7 +62,7 @@ export const OriginalCard: FC<Props> = ({ original }) => {
         <div>
           <div className='title'>{original.title}</div>
           { original.animeEpisodeNo && (
-            <div>アニメ{makeAnimeEpisodeNoLabel(original.animeEpisodeNo)}時点</div>
+            <div>アニメ{makeAnimeEpisodeNoLabel(original.animeEpisodeNo)}の続きは{originalTypeLabel(original.originalType)}の{original.originalNo}から👇</div>
           )}
         </div>
           { !!original.link && (
