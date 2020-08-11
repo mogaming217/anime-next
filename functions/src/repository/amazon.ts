@@ -85,7 +85,7 @@ export class AmazonRepository {
           return
         }
 
-        return list
+        resolve(list)
       })
     })
   }
