@@ -41,7 +41,19 @@ export class Service {
         break
     }
 
-    const itemInfo = await this.amazonRepo.fetchItemInfo(`${work.title} ${typeLabel} ${original.originalNo || ''}`)
+    const items = await this.amazonRepo.fetchItemInfo(`${work.title} ${typeLabel} ${original.originalNo || ''}`)
+
+    // タイトル同じやつ探す
+    let itemInfo = items.find(item => item.title.includes(work.title))
+    if (!itemInfo) {
+      // 巻数おなじやつ
+      itemInfo = items.find(item => item.title.includes(original.originalNo ?? ''))
+
+      if (!itemInfo) {
+        itemInfo = items[0]
+      }
+    }
+
     await this.originalRepo.setAffiriateInfo(original, {
       title: itemInfo.title,
       imageURL: itemInfo.imageURL,

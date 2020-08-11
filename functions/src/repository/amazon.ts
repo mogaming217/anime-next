@@ -1,5 +1,6 @@
 const Amazon = require('paapi5-nodejs-sdk')
 import { env } from '../env'
+import { compactMap } from '../helper/array'
 
 type ItemInfo = {
   title: string,
@@ -54,9 +55,9 @@ export class AmazonRepository {
     })
   }
 
-  fetchItemInfo(keyword: string): Promise<ItemInfo> {
+  fetchItemInfo(keyword: string): Promise<ItemInfo[]> {
     const request = this.constructRequest('Books', keyword)
-    return new Promise<ItemInfo>((resolve, reject) => {
+    return new Promise<ItemInfo[]>((resolve, reject) => {
       this.api.searchItems(request,  async (error: any, data: any, r: any) => {
         if (error) {
           reject(error)
@@ -64,19 +65,27 @@ export class AmazonRepository {
         }
 
         const res = Amazon.SearchItemsResponse.constructFromObject(data)
-        const item = res.SearchResult?.Items?.[0]
-        const title = item?.ItemInfo?.Title?.DisplayValue
-        const link = item?.DetailPageURL
+        const items: any[] = res.SearchResult?.Items || []
+        const list = compactMap(items, item => {
+          const title = item?.ItemInfo?.Title?.DisplayValue
+          const link = item?.DetailPageURL
 
-        if (!(item && title && link)) {
+          if (!(item && title && link)) {
+            return
+          }
+
+          const imageURL = item.Images?.Primary?.Large?.URL || null
+          return {
+            imageURL, title, link
+          }
+        })
+
+        if (list.length === 0) {
           reject(new Error('not found'))
           return
         }
 
-        const imageURL = item.Images?.Primary?.Large?.URL || null
-        resolve({
-          imageURL, title, link
-        })
+        return list
       })
     })
   }
