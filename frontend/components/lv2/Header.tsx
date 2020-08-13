@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import Constants from "styles/StyleConst";
+import { Const } from "lib/const";
 import Link from 'next/link'
 
 const _Header = styled.header`
@@ -29,7 +30,7 @@ export const Header: FC = () => {
     <_Header>
       <h1>
         <Link href='/'>
-          <img src="/assets/logo/header_logo.png" alt="アニオリ"/>
+          <img src="/assets/logo/header_logo.png" alt={ Const.SERVICE_NAME }/>
         </Link>
       </h1>
     </_Header>
