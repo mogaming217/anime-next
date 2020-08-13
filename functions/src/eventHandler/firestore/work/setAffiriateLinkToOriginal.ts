@@ -28,7 +28,8 @@ export class Service {
     const work = await this.workRepo.find(original.workID)
     if (!work) return
 
-    const items = await this.amazonRepo.fetchItemInfo(`${work.title} ${original.originalNo || ''}`)
+    const title = work.title.replace('　', ' ').split(' ')[0]
+    const items = await this.amazonRepo.fetchItemInfo(`${title} ${original.originalNo || ''}`)
 
     // タイトル同じやつ探す
     let itemInfo = items.find(item => item.title.includes(work.title))
