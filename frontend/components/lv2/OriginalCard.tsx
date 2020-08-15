@@ -53,6 +53,9 @@ export const OriginalCard: FC<Props> = ({ original }) => {
       原作の詳細な情報を取得中です…
     </Container>
   )
+
+  const animeEpisodeLabel = original.animeEpisodeNo ? makeAnimeEpisodeNoLabel(original.animeEpisodeNo) : ''
+
   return (
     <Container>
       <ImageContainer>
@@ -61,9 +64,7 @@ export const OriginalCard: FC<Props> = ({ original }) => {
       <TextContainer>
         <div>
           <div className='title'>{original.title}</div>
-          { original.animeEpisodeNo && (
-            <div>アニメ{makeAnimeEpisodeNoLabel(original.animeEpisodeNo)}の続きは{originalTypeLabel(original.originalType)}の{original.originalNo}から👇</div>
-          )}
+          <div>アニメ{animeEpisodeLabel}の続きは{originalTypeLabel(original.originalType)}の{original.originalNo}から👇</div>
         </div>
           { !!original.link && (
             <PurchaseButtonContainer>
