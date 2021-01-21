@@ -20,7 +20,7 @@ export class AmazonRepository {
     this.api = new Amazon.DefaultApi()
   }
 
-  private get resoucesForSearchBooks(): string[] {
+  private get resourcesForSearchBooks(): string[] {
     return ['Images.Primary.Large', 'ItemInfo.Title']
   }
 
@@ -32,7 +32,7 @@ export class AmazonRepository {
     request['SearchIndex'] = searchIndex
     request['Keywords'] = keyword
     request['ItemCount'] = 1
-    request['Resources'] = this.resoucesForSearchBooks
+    request['Resources'] = this.resourcesForSearchBooks
     return request
   }
 
