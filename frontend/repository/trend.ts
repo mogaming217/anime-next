@@ -16,6 +16,7 @@ export class TrendRepository {
   async fetchTrendWorks(_count: number): Promise<Work[]> {
     // FIXME: ひとまず仮で workID 指定で返す
     const workIDs: string[] = [
+      '7162', // 呪術廻戦
       '6089', // 鬼滅の刃
       '6081', // かぐや様
       '6462', // 虚構推理
