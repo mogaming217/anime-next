@@ -1,18 +1,18 @@
 import { useState, useEffect, createContext, ReactNode, useContext } from 'react'
 import { auth } from 'lib/firebase/client'
 import firebase from 'firebase/app'
-import { User, Me } from 'model/user'
+import { Me } from 'model/user'
 
 type UseAuthErrorCode = 'unexpected'
 
 type AuthReturnType = {
   loading: boolean
-  user?: User
+  user?: Me
   error?: UseAuthErrorCode
 }
 
-const convertUser = (user: firebase.User): User => {
-  return new Me(user.uid)
+const convertUser = (user: firebase.User, token?: firebase.auth.IdTokenResult): Me => {
+  return new Me(user.uid, token?.claims.role === 'admin')
 }
 
 const _useAuth = (): AuthReturnType => {
@@ -24,7 +24,17 @@ const _useAuth = (): AuthReturnType => {
       async user => {
         if (cancel) return
         if (user) {
-          setAuth({ loading: false, user: convertUser(user) })
+          if (user.isAnonymous) {
+            setAuth({ loading: false, user: convertUser(user) })
+          } else {
+            const tokens = await user.getIdTokenResult()
+            let me = convertUser(user, tokens)
+            if (!me.isAdmin) {
+              const refreshed = await user.getIdTokenResult(true)
+              me = convertUser(user, refreshed)
+            }
+            setAuth({ loading: false, user: convertUser(user, tokens) })
+          }
           return
         }
 

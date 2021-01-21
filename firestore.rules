@@ -7,8 +7,13 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isAdminUser() {
+      return request.auth.token.role == 'admin';
+    }
+
     match /works/{workID} {
       allow get: if true;
+      allow list: if isAdminUser();
 
       match /originals/{originalID} {
         // TODO: work is not locked and authenticated
