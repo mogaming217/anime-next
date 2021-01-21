@@ -14,6 +14,7 @@ const main = async () => {
     await findInBatch(query, 100, async snapshots => {
       snapshots.forEach(s => writer.delete(s.ref))
       await searchRepo.workIndex.deleteObjects(snapshots.map(s => s.id))
+      console.log(year, snapshots.length)
       await sleep(1000)
     })
   }
