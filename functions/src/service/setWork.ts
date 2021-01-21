@@ -1,5 +1,5 @@
 import { Season } from '../enum/season'
-import { AnnictRepository, WorkRepository, AmazonRepository } from '../repository'
+import { AnnictRepository, WorkRepository, AmazonRepository, SearchRepository } from '../repository'
 import { firestore } from 'firebase-admin'
 import { Logger } from '../common/logger'
 import { Work } from '../model'
@@ -21,14 +21,23 @@ export class SetWorkService {
   private annictRepo: AnnictRepository
   private workRepo: WorkRepository
   private amazonRepo: AmazonRepository
+  private searchRepo: SearchRepository
 
   constructor(db: firestore.Firestore = firestore()) {
     this.annictRepo = new AnnictRepository()
     this.workRepo = new WorkRepository(db)
     this.amazonRepo = new AmazonRepository()
+    this.searchRepo = new SearchRepository(db)
   }
 
-  async execute(year: number, season: Season, skipToGetAdditionalImage = true): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
+  async execute(
+    year: number,
+    season: Season,
+    options: { skipToGetAdditionalImage?: boolean; registerToAlgolia?: boolean } = {
+      skipToGetAdditionalImage: true,
+      registerToAlgolia: true,
+    }
+  ): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
     try {
       Logger.info({ type: 'start_set_works', query: { year, season } })
 
@@ -40,8 +49,13 @@ export class SetWorkService {
       const works = annictResult.value
       Logger.debug({ message: 'fetched_works', length: works.length, query: { year, season } })
 
+      // firestoreに保存
       await this.workRepo.save(works)
-      if (skipToGetAdditionalImage) return new Success({ setImageFailedWorkIDs: [] })
+
+      if (options.registerToAlgolia) {
+        await this.searchRepo.registerWorks(works)
+      }
+      if (options.skipToGetAdditionalImage) return new Success({ setImageFailedWorkIDs: [] })
 
       const setImageResult = await this.setImageURLToWorks(works, 2)
       return new Success({ setImageFailedWorkIDs: setImageResult.failedWorkIDs })

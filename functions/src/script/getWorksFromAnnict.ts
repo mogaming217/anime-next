@@ -1,8 +1,8 @@
 import { initializeProject } from './helper'
-initializeProject('dev')
+initializeProject('prod')
 
 import { SetWorkService } from '../service'
-import { Season, allSeasons } from '../enum/season'
+import { Season } from '../enum/season'
 import * as fs from 'fs'
 import { sleep } from '../common/sleep'
 
@@ -15,18 +15,16 @@ const main = async () => {
   const service = new SetWorkService()
 
   const list: Params[] = []
-  // list.push({ year: 2020, seasons: ['winter', 'spring', 'summer'] })
-  // from: 2000~
-  for (let year = 2000; year <= 2020; year++) {
-    list.push({ year, seasons: allSeasons })
-  }
-  console.log(allSeasons)
+  list.push({ year: 2020, seasons: ['autumn'] }, { year: 2021, seasons: ['winter'] })
+  // for (let year = 2000; year <= 2020; year++) {
+  //   list.push({ year, seasons: allSeasons })
+  // }
 
   const failedWorkIDs: string[] = []
 
   for (const params of list) {
     for (const season of params.seasons) {
-      const result = await service.execute(params.year, season)
+      const result = await service.execute(params.year, season, { skipToGetAdditionalImage: false, registerToAlgolia: true })
       if (result.isFailure) {
         console.log(season, params.year, 'failure')
         throw result.error
