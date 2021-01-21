@@ -1,10 +1,10 @@
-import { Work } from "model"
-import { useState, useEffect } from "react"
-import { TrendRepository } from "repository"
+import { Work } from 'model'
+import { useState, useEffect } from 'react'
+import { TrendRepository } from 'repository'
 
 type ReturnType = {
-  loading: boolean,
-  works: Work[],
+  loading: boolean
+  works: Work[]
 }
 
 export const useTrendWorks = (props: { count: number }): ReturnType => {
@@ -15,7 +15,7 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
   useEffect(() => {
     let cancel = false
 
-    const retrive = async () => {
+    const retrieve = async () => {
       setLoading(true)
       const works = await trendRepo.fetchTrendWorks(props.count)
       if (!cancel) {
@@ -24,8 +24,10 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
       }
     }
 
-    retrive()
-    return () => { cancel = true }
+    retrieve()
+    return () => {
+      cancel = true
+    }
   }, [])
 
   return { loading, works }

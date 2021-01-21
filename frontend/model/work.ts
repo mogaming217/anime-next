@@ -1,4 +1,4 @@
-import { Season } from "enum/season"
+import { Season } from 'enum/season'
 
 export class Work {
   readonly id: string
@@ -7,7 +7,7 @@ export class Work {
     readonly title: string,
     readonly imageURL: string | null,
     readonly season: Season,
-    readonly year: number,
+    readonly year: number
   ) {
     this.id = annictID
   }

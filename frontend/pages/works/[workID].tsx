@@ -15,14 +15,12 @@ const Page: NextPage<Props> = (props: Props) => {
   const work = props.work
   return (
     <>
-      { !work && (
-        <div>not found</div>
-      ) }
+      {!work && <div>not found</div>}
 
-      { work && (
+      {work && (
         <>
-          <WorkDetailSeo work={ work } originals={ props.originals } />
-          <WorkDetail work={ work } originals={ props.originals } />
+          <WorkDetailSeo work={work} originals={props.originals} />
+          <WorkDetail work={work} originals={props.originals} />
         </>
       )}
     </>
@@ -33,10 +31,7 @@ Page.getInitialProps = async ({ res, query }: NextPageContext): Promise<Props> =
   const workID = query.workID as string
   const workRepo = new WorkRepository()
   const originalRepo = new OriginalRepository()
-  const [work, originals] = await Promise.all([
-    workRepo.find(workID),
-    originalRepo.fetchOriginals(workID)
-  ])
+  const [work, originals] = await Promise.all([workRepo.find(workID), originalRepo.fetchOriginals(workID)])
   if (!work && res) res.statusCode = 404
   return { work, originals }
 }

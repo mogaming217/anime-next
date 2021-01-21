@@ -1,10 +1,10 @@
-import { Season } from "../enum/season";
-import { AnnictRepository, WorkRepository, AmazonRepository } from "../repository";
-import { firestore } from "firebase-admin";
-import { Logger } from "../common/logger";
-import { Work } from "../model";
-import { sleep } from "../common/sleep";
-import { Result, Failure, Success } from "../common/result";
+import { Season } from '../enum/season'
+import { AnnictRepository, WorkRepository, AmazonRepository } from '../repository'
+import { firestore } from 'firebase-admin'
+import { Logger } from '../common/logger'
+import { Work } from '../model'
+import { sleep } from '../common/sleep'
+import { Result, Failure, Success } from '../common/result'
 
 type SetWorkErrorCode = 'annict_error' | 'unexpected'
 
@@ -13,7 +13,7 @@ type SetWorkResult = {
 }
 
 type SetImageURLResult = {
-  succeededWorkIDs: string[],
+  succeededWorkIDs: string[]
   failedWorkIDs: string[]
 }
 
@@ -28,9 +28,9 @@ export class SetWorkService {
     this.amazonRepo = new AmazonRepository()
   }
 
-  async execute(year: number, season: Season, skipToGetAdditionalImage: boolean = true): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
+  async execute(year: number, season: Season, skipToGetAdditionalImage = true): Promise<Result<SetWorkResult, SetWorkErrorCode>> {
     try {
-      Logger.info({ type: 'start_set_works', query: { year, season }})
+      Logger.info({ type: 'start_set_works', query: { year, season } })
 
       const annictResult = await this.annictRepo.fetchWorks([{ year, season }], 500)
       if (annictResult.isFailure) {
@@ -51,7 +51,7 @@ export class SetWorkService {
     }
   }
 
-  async setImageURLToWorks(works: Work[], sleepingSec: number = 1): Promise<SetImageURLResult> {
+  async setImageURLToWorks(works: Work[], sleepingSec = 1): Promise<SetImageURLResult> {
     const succeededWorkIDs: string[] = []
     const failedWorkIDs: string[] = []
 
@@ -74,7 +74,8 @@ export class SetWorkService {
     }
 
     return {
-      succeededWorkIDs, failedWorkIDs
+      succeededWorkIDs,
+      failedWorkIDs,
     }
   }
 }

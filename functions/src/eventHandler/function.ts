@@ -1,11 +1,13 @@
 import * as ff from 'firebase-functions'
-import { HttpsError, CallableContext } from "firebase-functions/lib/providers/https"
-import { Logger } from "../common/logger"
+import { HttpsError, CallableContext } from 'firebase-functions/lib/providers/https'
+import { Logger } from '../common/logger'
 
-const regionalFunctions = ff.region("asia-northeast1")
+const regionalFunctions = ff.region('asia-northeast1')
 export const defaultFunctions = regionalFunctions
 
-export const errorCatcher = <T, Context>(handler: (data: T, context: Context) => PromiseLike<any> | any): ((data: T, context: Context) => PromiseLike<any> | any) => async (data, context) => {
+export const errorCatcher = <T, Context>(
+  handler: (data: T, context: Context) => PromiseLike<any> | any
+): ((data: T, context: Context) => PromiseLike<any> | any) => async (data, context) => {
   try {
     await handler(data, context)
   } catch (error) {
@@ -23,7 +25,7 @@ export const errorCatcher = <T, Context>(handler: (data: T, context: Context) =>
     } else if (isCallableContext(context)) {
       payload = {
         data, // callableなのでRequestBodyが入ってる
-        authUid: context.auth?.uid || null
+        authUid: context.auth?.uid || null,
       }
     }
 

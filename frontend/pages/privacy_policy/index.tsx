@@ -1,5 +1,5 @@
-import { NextPage } from "next";
-import { Const } from "lib/const";
+import { NextPage } from 'next'
+import { Const } from 'lib/const'
 
 const policy = `
 株式会社マカセテ（以下「当社」といいます。）は、当社の提供するサービス（以下「本サービス」といいます。）における、 ユーザーについての個人情報を含む利用者情報の取扱いについて、 以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定めます。
@@ -155,11 +155,7 @@ E-mail：hello[at]makasete.co.jp
 `
 
 const PrivacyPolicyPage: NextPage = () => {
-  return (
-    <div style={{ whiteSpace: 'pre-wrap' }}>
-      {policy}
-    </div>
-  )
+  return <div style={{ whiteSpace: 'pre-wrap' }}>{policy}</div>
 }
 
 export default PrivacyPolicyPage

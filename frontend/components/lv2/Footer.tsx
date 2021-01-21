@@ -1,12 +1,12 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { FC } from 'react'
+import styled from 'styled-components'
 import Link from 'next/link'
-import Constants from "styles/StyleConst";
-import { Const } from "lib/const";
+import { StyleConst } from 'styles/const'
+import { Const } from 'lib/const'
 
 const _Footer = styled.footer`
   padding: 16px 0px;
-  font-size: ${Constants.FONT.SMALL}px;
+  font-size: ${StyleConst.FONT.SMALL}px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,13 +32,19 @@ export const Footer: FC = () => {
     <_Footer>
       <FlexRowContainer>
         <Content>
-          <Link href='/about'><a>このサービスについて</a></Link>
+          <Link href="/about">
+            <a>このサービスについて</a>
+          </Link>
         </Content>
         <Content>
-          <Link href='/terms'><a>利用規約</a></Link>
+          <Link href="/terms">
+            <a>利用規約</a>
+          </Link>
         </Content>
         <Content>
-          <Link href='/privacy_policy'><a>プライバシーポリシー</a></Link>
+          <Link href="/privacy_policy">
+            <a>プライバシーポリシー</a>
+          </Link>
         </Content>
       </FlexRowContainer>
       <CopyRight>© {Const.SERVICE_NAME}</CopyRight>

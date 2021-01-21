@@ -1,6 +1,3 @@
 export class User {
-  constructor(
-    readonly id: string,
-    readonly isMe: boolean,
-  ){}
+  constructor(readonly id: string, readonly isMe: boolean) {}
 }

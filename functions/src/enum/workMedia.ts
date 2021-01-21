@@ -3,6 +3,6 @@ export const WorkMedia = {
   OVA: 'OVA',
   MOVIE: 'MOVIE',
   WEB: 'WEB',
-  OTHER: 'OTHER'
+  OTHER: 'OTHER',
 } as const
 export type WorkMedia = typeof WorkMedia[keyof typeof WorkMedia]

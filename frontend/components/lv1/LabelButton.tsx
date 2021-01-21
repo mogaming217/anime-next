@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { FC } from "react";
-import Constants from "styles/StyleConst";
+import styled from 'styled-components'
+import { FC } from 'react'
+import { StyleConst } from 'styles/const'
 
 const _Button = styled.button`
-  color: ${Constants.COLOR.PRIMARY};
+  color: ${StyleConst.COLOR.PRIMARY};
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -18,9 +18,9 @@ type Props = {
   onClick?: () => void
 }
 
-export const LabelButton: FC<Props> = (props) => {
+export const LabelButton: FC<Props> = props => {
   return (
-    <_Button disabled={ props.disabled } onClick={ props.onClick }>
+    <_Button disabled={props.disabled} onClick={props.onClick}>
       {props.label}
     </_Button>
   )

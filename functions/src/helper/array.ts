@@ -13,10 +13,10 @@ export async function handleInBatch<T>(array: T[], batchSize: number, handler: (
   const length = array.length
 
   let data: T[] = []
-  for(let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     if (data.length === batchSize) {
       await handler(data)
-      data = new Array()
+      data = []
     }
 
     data.push(array[i])

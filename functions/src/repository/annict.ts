@@ -8,7 +8,7 @@ import { compactMap } from '../helper/array'
 import { Season } from '../enum/season'
 
 export type QueryErrorCode = 'has_error_field' | 'parse_failed' | 'unexpected'
-export type QueryError = { code: QueryErrorCode, payload?: any }
+export type QueryError = { code: QueryErrorCode; payload?: any }
 
 export class AnnictRepository {
   get endpoint(): string {
@@ -18,19 +18,19 @@ export class AnnictRepository {
   // get headers
   get headers(): { [key: string]: string } {
     return {
-      Authorization: `bearer ${env.annict.token}`
+      Authorization: `bearer ${env.annict.token}`,
     }
   }
 
   private async query<T>(query: GraphQLQuery<T>): Promise<Result<T, QueryError>> {
     const body = {
       query: query.body,
-      variables: query.variables || null
+      variables: query.variables || null,
     }
 
     try {
       const postResult = await axios.post(this.endpoint, body, {
-        headers: this.headers
+        headers: this.headers,
       })
       const response: GraphQLResponse<T> = postResult.data
 
@@ -48,7 +48,7 @@ export class AnnictRepository {
     }
   }
 
-  async fetchWorks(quotas: { year: number, season: Season }[], first: number): Promise<Result<Work[], QueryError>> {
+  async fetchWorks(quotas: { year: number; season: Season }[], first: number): Promise<Result<Work[], QueryError>> {
     const fetchWorksQuery = new FetchWorksQuery({ quotas, first })
     const result = await this.query(fetchWorksQuery)
 

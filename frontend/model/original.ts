@@ -18,9 +18,7 @@ export function originalTypeLabel(type: OriginalType) {
 }
 
 export class OriginalLink {
-  constructor(
-    readonly amazon: string | undefined
-  ){}
+  constructor(readonly amazon: string | undefined) {}
 }
 
 export class Original {
@@ -31,6 +29,6 @@ export class Original {
     readonly originalNo: string | undefined,
     readonly link: OriginalLink | undefined,
     readonly title: string | null,
-    readonly imageURL: string | null,
-  ){}
+    readonly imageURL: string | null
+  ) {}
 }

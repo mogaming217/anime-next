@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import Constants from "styles/StyleConst";
+import styled from 'styled-components'
+import { StyleConst } from 'styles/const'
 
 export const SectionTitle = styled.div`
-  font-size: ${Constants.FONT.MEDIUM};
-  font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  font-size: ${StyleConst.FONT.MEDIUM};
+  font-weight: ${StyleConst.FONT_WEIGHT.BOLD};
   margin: 16px 0px;
 `

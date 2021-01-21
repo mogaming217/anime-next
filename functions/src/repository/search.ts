@@ -1,9 +1,9 @@
-import { Repository } from "./base";
-import { Work } from "../model";
+import { Repository } from './base'
+import { Work } from '../model'
 import algolia from 'algoliasearch'
-import { env } from "../env";
-import { handleInBatch } from "../helper/array";
-import { sleep } from "../common/sleep";
+import { env } from '../env'
+import { handleInBatch } from '../helper/array'
+import { sleep } from '../common/sleep'
 
 export class SearchRepository extends Repository {
   private client = algolia(env.algolia.id, env.algolia.key)
@@ -16,7 +16,7 @@ export class SearchRepository extends Repository {
     console.log(env.algolia.indexprefix)
 
     return this.workIndex.setSettings({
-      searchableAttributes: ['title', 'titleEn', 'titleKana', 'seasonYear']
+      searchableAttributes: ['title', 'titleEn', 'titleKana', 'seasonYear'],
     })
   }
 

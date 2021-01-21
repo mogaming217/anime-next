@@ -32,7 +32,7 @@ export class Logger {
   static write(payload: any, severity: logger.LogSeverity) {
     logger.write({
       severity,
-      ...payload
+      ...payload,
     })
   }
 }

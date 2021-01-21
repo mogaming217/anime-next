@@ -1,7 +1,7 @@
-import { GraphQLQuery } from "./query"
-import { Work as WorkModel } from "../model"
-import { Season } from "../enum/season"
-import { WorkMedia } from "../enum/workMedia"
+import { GraphQLQuery } from './query'
+import { Work as WorkModel } from '../model'
+import { Season } from '../enum/season'
+import { WorkMedia } from '../enum/workMedia'
 
 export interface FetchWorksData {
   searchWorks: {
@@ -18,16 +18,7 @@ export const convertNode = (node: Work): WorkModel | null => {
   if (!(node.seasonName && node.seasonYear)) return null
   const season = node.seasonName.toLowerCase() as Season
 
-  return new WorkModel(
-    node.annictId.toString(),
-    node.title,
-    node.titleEn,
-    node.titleKana,
-    imageURL,
-    season,
-    node.seasonYear,
-    node.media,
-  )
+  return new WorkModel(node.annictId.toString(), node.title, node.titleEn, node.titleKana, imageURL, season, node.seasonYear, node.media)
 }
 
 interface Work {
@@ -37,31 +28,25 @@ interface Work {
   titleKana: string | null
   image: {
     recommendedImageUrl: string | null
-  } | null,
+  } | null
   seasonName: string | null
   seasonYear: number | null
-  media: WorkMedia,
+  media: WorkMedia
 }
 
 type Variables = {
-  seasons: string[],
-  first: number,
+  seasons: string[]
+  first: number
   after?: string
 }
 
 export class FetchWorksQuery implements GraphQLQuery<FetchWorksData> {
   readonly variables: Variables
-  constructor(
-    variables: {
-      first: number,
-      quotas: { year: number, season: Season }[],
-      after?: string
-    }
-  ) {
+  constructor(variables: { first: number; quotas: { year: number; season: Season }[]; after?: string }) {
     this.variables = {
       seasons: variables.quotas.map(q => `${q.year}-${q.season}`),
       first: variables.first,
-      after: variables.after
+      after: variables.after,
     }
   }
 

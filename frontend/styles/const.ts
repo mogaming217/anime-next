@@ -30,15 +30,15 @@ const COLOR = {
 } as const
 
 const WIDTH = {
-  CONTENT_MAX: 768
+  CONTENT_MAX: 768,
 } as const
 
 const HEIGHT = {
-  HEADER: 52
+  HEADER: 52,
 } as const
 
 const SHADOW = {
-  DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`
+  DEFAULT: `0px 0px 6px 3px ${COLOR.SHADOW}`,
 } as const
 
 const PADDING = {
@@ -46,10 +46,10 @@ const PADDING = {
 } as const
 
 const CORNER_RADIUS = {
-  DEFAULT: 6
+  DEFAULT: 6,
 } as const
 
-export default {
+export const StyleConst = {
   FONT,
   FONT_WEIGHT,
   COLOR,

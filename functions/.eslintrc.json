@@ -1,0 +1,40 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+        "eslint:recommended",
+       "plugin:@typescript-eslint/eslint-recommended",
+       "plugin:@typescript-eslint/recommended",
+       "plugin:prettier/recommended"
+    ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*"],
+      "excludedFiles": ["src/script/**/*"]
+    }
+  ],
+  "ignorePatterns": ["src/test/**/*", "src/script/**/*"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "no-case-declarations": "off"
+  },
+  "settings": {
+    "jsdoc": {
+      "tagNamePreference": {
+        "returns": "return"
+      }
+    }
+  }
+}
