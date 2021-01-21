@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { FC } from 'react'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 
 const _Button = styled.button`
-  color: ${Constants.COLOR.PRIMARY};
+  color: ${StyleConst.COLOR.PRIMARY};
   background-color: transparent;
   border: none;
   cursor: pointer;

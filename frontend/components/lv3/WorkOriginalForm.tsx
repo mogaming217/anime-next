@@ -4,19 +4,19 @@ import { Work, OriginalType } from 'model'
 import styled from 'styled-components'
 import { OriginalRepository } from 'repository'
 import { useAuth } from 'hooks/useAuth'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { TextInput, Button } from 'components/lv1'
 
 const Form = styled.form`
-  background-color: ${Constants.COLOR.FORM_BACKGROUND};
+  background-color: ${StyleConst.COLOR.FORM_BACKGROUND};
   padding: 20px;
-  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
+  border-radius: ${StyleConst.CORNER_RADIUS.DEFAULT}px;
   border-width: 0px;
 `
 
 const FormTitle = styled.div`
-  font-size: ${Constants.FONT.MEDIUM};
-  font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  font-size: ${StyleConst.FONT.MEDIUM};
+  font-weight: ${StyleConst.FONT_WEIGHT.BOLD};
 `
 
 const InputContentContainer = styled.div`

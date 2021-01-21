@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import { Const } from 'lib/const'
 import { NextSeo } from 'next-seo'
 import styled from 'styled-components'
-import StyleConst from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { FC } from 'react'
 
 const Container = styled.div`

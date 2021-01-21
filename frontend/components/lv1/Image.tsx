@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { FC } from 'react'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 const _Image = styled.img<Props>`
   object-fit: cover;
-  background-color: ${Constants.COLOR.IMAGE_BACKGROUND};
+  background-color: ${StyleConst.COLOR.IMAGE_BACKGROUND};
 `
 
 export const Image: FC<Props> = props => {

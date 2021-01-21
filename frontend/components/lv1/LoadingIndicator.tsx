@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
-import StyleConst from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 
 const Container = styled.div`
   text-align: center;

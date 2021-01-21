@@ -49,7 +49,7 @@ const CORNER_RADIUS = {
   DEFAULT: 6,
 } as const
 
-export default {
+export const StyleConst = {
   FONT,
   FONT_WEIGHT,
   COLOR,

@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { Const } from 'lib/const'
 import Link from 'next/link'
 
 const _Header = styled.header`
-  height: ${Constants.HEIGHT.HEADER}px;
+  height: ${StyleConst.HEIGHT.HEADER}px;
   width: 100%;
   z-index: 1000;
   position: absolute;

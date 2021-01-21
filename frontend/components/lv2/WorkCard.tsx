@@ -2,15 +2,15 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Work } from 'model'
 import Link from 'next/link'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { WorkImage } from './WorkImage'
 
 const WorkCardContainer = styled.div`
-  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
+  border-radius: ${StyleConst.CORNER_RADIUS.DEFAULT}px;
   overflow: hidden;
   width: 100%;
   text-align: center;
-  box-shadow: ${Constants.SHADOW.DEFAULT};
+  box-shadow: ${StyleConst.SHADOW.DEFAULT};
 
   a {
     display: flex;
@@ -20,7 +20,7 @@ const WorkCardContainer = styled.div`
 
   div.title {
     font-weight: bold;
-    font-size: ${Constants.FONT.BASE}px;
+    font-size: ${StyleConst.FONT.BASE}px;
     padding: 12px 6px;
     flex: 1;
     display: flex;

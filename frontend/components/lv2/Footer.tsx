@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { Const } from 'lib/const'
 
 const _Footer = styled.footer`
   padding: 16px 0px;
-  font-size: ${Constants.FONT.SMALL}px;
+  font-size: ${StyleConst.FONT.SMALL}px;
   display: flex;
   flex-direction: column;
   justify-content: center;

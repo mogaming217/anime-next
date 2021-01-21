@@ -1,7 +1,7 @@
 import { FC, useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { TextInput } from 'components/lv1'
 import { Search } from 'react-feather'
 
@@ -19,8 +19,8 @@ const Form = styled.form<SearchInputProps>`
   width: 100%;
   height: ${props => props.height}px;
   padding: 0px ${props => props.height / 4}px;
-  border-radius: ${Constants.CORNER_RADIUS.DEFAULT}px;
-  box-shadow: ${Constants.SHADOW.DEFAULT};
+  border-radius: ${StyleConst.CORNER_RADIUS.DEFAULT}px;
+  box-shadow: ${StyleConst.SHADOW.DEFAULT};
   display: flex;
   justify-content: start;
   align-items: center;

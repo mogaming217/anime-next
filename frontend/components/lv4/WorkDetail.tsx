@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { Work, Original } from 'model'
 import styled from 'styled-components'
-import Constants from 'styles/StyleConst'
+import { StyleConst } from 'styles/const'
 import { useWorkOriginals } from 'hooks/work/useWorkOriginals'
 import { LoadingIndicator, SectionDescription, Center } from 'components/lv1'
 import { WorkOriginalEmpty, SectionContainer, WorkImage, OriginalCard } from 'components/lv2'
@@ -51,13 +51,13 @@ const WorkOriginal: FC<{ work: Work; defaultOriginals?: Original[] }> = ({ work,
 }
 
 const WorkHeader = styled.div`
-  width: calc(100% + ${Constants.PADDING.SIDE * 2}px);
-  margin: 0px -${Constants.PADDING.SIDE}px;
+  width: calc(100% + ${StyleConst.PADDING.SIDE * 2}px);
+  margin: 0px -${StyleConst.PADDING.SIDE}px;
 `
 
 const WorkTitle = styled.div`
-  font-size: ${Constants.FONT.LARGE}px;
-  font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  font-size: ${StyleConst.FONT.LARGE}px;
+  font-weight: ${StyleConst.FONT_WEIGHT.BOLD};
   text-align: center;
   margin: 24px 0px;
 `
