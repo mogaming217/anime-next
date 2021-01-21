@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { Work } from 'model'
-import Link from "next/link"
+import Link from 'next/link'
 import Constants from 'styles/StyleConst'
 import { WorkImage } from './WorkImage'
 
@@ -36,10 +36,10 @@ type Props = {
 export const WorkCard: FC<Props> = ({ work }: Props) => {
   return (
     <WorkCardContainer>
-      <Link href='/works/[workID]' as={ `/works/${work.annictID}` }>
+      <Link href="/works/[workID]" as={`/works/${work.annictID}`}>
         <a>
-          <WorkImage src={ work.imageURL } />
-          <div className='title'>{ work.title }</div>
+          <WorkImage src={work.imageURL} />
+          <div className="title">{work.title}</div>
         </a>
       </Link>
     </WorkCardContainer>

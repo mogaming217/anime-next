@@ -1,10 +1,10 @@
-import { Work } from "model"
-import { useState, useEffect } from "react"
-import { TrendRepository } from "repository"
+import { Work } from 'model'
+import { useState, useEffect } from 'react'
+import { TrendRepository } from 'repository'
 
 type ReturnType = {
-  loading: boolean,
-  works: Work[],
+  loading: boolean
+  works: Work[]
 }
 
 export const useTrendWorks = (props: { count: number }): ReturnType => {
@@ -25,7 +25,9 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
     }
 
     retrive()
-    return () => { cancel = true }
+    return () => {
+      cancel = true
+    }
   }, [])
 
   return { loading, works }

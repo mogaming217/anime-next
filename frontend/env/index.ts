@@ -1,6 +1,6 @@
 interface ServerEnv {
-  host: string,
-  firebase: object,
+  host: string
+  firebase: { [key: string]: any }
 }
 
 // ブラウザから触ると落ちるようにしている
@@ -17,16 +17,16 @@ export const serverEnv: ServerEnv = (() => {
       auth_uri: process.env.AUTH_URI,
       token_uri: process.env.TOKEN_URI,
       auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_URL,
-      client_x509_cert_url: process.env.CLIENT_CERT_URL
-    }
+      client_x509_cert_url: process.env.CLIENT_CERT_URL,
+    },
   } as ServerEnv
 })()
 
 interface PublicEnv {
   host: string
   algolia: {
-    appID: string,
-    searchKey: string,
+    appID: string
+    searchKey: string
     indexPrefix: string
   }
 }
@@ -36,6 +36,6 @@ export const publicEnv: PublicEnv = {
   algolia: {
     appID: process.env.ALGOLIA_APP_ID!,
     searchKey: process.env.ALGOLIA_SEARCH_KEY!,
-    indexPrefix: process.env.ALGOLIA_INDEX_PREFIX!
-  }
+    indexPrefix: process.env.ALGOLIA_INDEX_PREFIX!,
+  },
 }

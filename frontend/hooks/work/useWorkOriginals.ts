@@ -1,10 +1,10 @@
-import { Work, Original } from "model"
-import { useState, useEffect } from "react"
-import { OriginalRepository } from "repository"
+import { Work, Original } from 'model'
+import { useState, useEffect } from 'react'
+import { OriginalRepository } from 'repository'
 
 type ReturnType = {
-  loading: boolean,
-  originals: Original[],
+  loading: boolean
+  originals: Original[]
   addOriginal: (original: Original) => void
 }
 

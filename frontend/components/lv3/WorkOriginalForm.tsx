@@ -1,11 +1,11 @@
-import { FC, useState } from "react"
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Work, OriginalType } from "model"
-import styled from "styled-components";
-import { OriginalRepository } from "repository";
-import { useAuth } from "hooks/useAuth";
-import Constants from "styles/StyleConst";
-import { TextInput, Button } from "components/lv1";
+import { Work, OriginalType } from 'model'
+import styled from 'styled-components'
+import { OriginalRepository } from 'repository'
+import { useAuth } from 'hooks/useAuth'
+import Constants from 'styles/StyleConst'
+import { TextInput, Button } from 'components/lv1'
 
 const Form = styled.form`
   background-color: ${Constants.COLOR.FORM_BACKGROUND};
@@ -40,22 +40,24 @@ const SubmitContainer = styled.div`
 `
 
 type Props = {
-  work: Work,
+  work: Work
 }
 
 type FormInputData = {
-  originalType: OriginalType,
-  animeEpisodeNo?: string,
-  originalNo?: string,
+  originalType: OriginalType
+  animeEpisodeNo?: string
+  originalNo?: string
 }
 
 export const WorkOriginalForm: FC<Props> = ({ work }) => {
   const authState = useAuth()
-  const [ isSubmitting, updateIsSubmitting ] = useState<boolean>(false)
+  const [isSubmitting, updateIsSubmitting] = useState<boolean>(false)
   const { handleSubmit, register, errors } = useForm<FormInputData>()
 
   const onSubmit = handleSubmit(async body => {
-    if (!authState.user) { return }
+    if (!authState.user) {
+      return
+    }
     if (!(OriginalType[body.originalType] && body.originalNo)) {
       // FIXME: show error message
       return
@@ -67,7 +69,7 @@ export const WorkOriginalForm: FC<Props> = ({ work }) => {
       await repo.create(authState.user.id, work.id, {
         originalType: body.originalType,
         originalNo: body.originalNo,
-        animeEpisodeNo: body.animeEpisodeNo
+        animeEpisodeNo: body.animeEpisodeNo,
       })
       // reset()
     } catch (error) {
@@ -78,47 +80,45 @@ export const WorkOriginalForm: FC<Props> = ({ work }) => {
   })
 
   return (
-    <Form onSubmit={ onSubmit }>
+    <Form onSubmit={onSubmit}>
       <FormTitle>原作情報を登録する</FormTitle>
 
       <InputContentContainer>
         <ContentName>原作の種類（必須）</ContentName>
 
         <label className="radio">
-          <input name="originalType" type="radio" value="comic" ref={register({ required: true })} id="comic"/>
+          <input name="originalType" type="radio" value="comic" ref={register({ required: true })} id="comic" />
           コミック
         </label>
 
         <label className="radio">
-          <input name="originalType" type="radio" value="lightNovel" ref={register({ required: true })} id="lightNovel"/>
+          <input name="originalType" type="radio" value="lightNovel" ref={register({ required: true })} id="lightNovel" />
           ライトノベル
         </label>
 
         <label className="radio">
-          <input name="originalType" type="radio" value="novel" ref={register({ required: true })} id="novel"/>
+          <input name="originalType" type="radio" value="novel" ref={register({ required: true })} id="novel" />
           小説
         </label>
       </InputContentContainer>
 
       <InputContentContainer>
-        <ContentName id='originalNo'>アニメの続きは何巻から？（必須）</ContentName>
-        <TextInput id='originalNo' name='originalNo' ref={ register({ required: true }) } type="text" placeholder='例）8巻、小説タイトル' />
+        <ContentName id="originalNo">アニメの続きは何巻から？（必須）</ContentName>
+        <TextInput id="originalNo" name="originalNo" ref={register({ required: true })} type="text" placeholder="例）8巻、小説タイトル" />
       </InputContentContainer>
 
       <InputContentContainer>
-        <ContentName id='animeEpisodeNo'>アニメ何話時点？</ContentName>
-        <TextInput id='animeEpisodeNo' name='animeEpisodeNo' ref={ register } type="text" placeholder='例）最終話' />
+        <ContentName id="animeEpisodeNo">アニメ何話時点？</ContentName>
+        <TextInput id="animeEpisodeNo" name="animeEpisodeNo" ref={register} type="text" placeholder="例）最終話" />
       </InputContentContainer>
 
       <SubmitContainer>
-        <Button type="submit" disabled={ isSubmitting || authState.loading || !authState.user }>
+        <Button type="submit" disabled={isSubmitting || authState.loading || !authState.user}>
           登録する
         </Button>
       </SubmitContainer>
 
-      {Object.keys(errors).length > 0 && (
-        <div>入力エラー</div>
-      )}
+      {Object.keys(errors).length > 0 && <div>入力エラー</div>}
     </Form>
   )
 }

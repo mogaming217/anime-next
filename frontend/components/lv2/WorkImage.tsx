@@ -1,8 +1,8 @@
-import { FC } from "react";
-import styled from "styled-components";
-import { Image } from "components/lv1";
+import { FC } from 'react'
+import styled from 'styled-components'
+import { Image } from 'components/lv1'
 
-const imageRatio = 630 / 1200 * 100
+const imageRatio = (630 / 1200) * 100
 const Container = styled.div`
   width: 100%;
   position: relative;
@@ -33,8 +33,8 @@ type Props = {
 export const WorkImage: FC<Props> = (props: Props) => {
   return (
     <Container>
-      <div className='cardImage'>
-        <Image src={ props.src } alt="アニメ画像"/>
+      <div className="cardImage">
+        <Image src={props.src} alt="アニメ画像" />
       </div>
     </Container>
   )

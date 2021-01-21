@@ -1,7 +1,7 @@
-import { FC } from "react";
-import styled from "styled-components";
-import Constants from "styles/StyleConst";
-import { Const } from "lib/const";
+import { FC } from 'react'
+import styled from 'styled-components'
+import Constants from 'styles/StyleConst'
+import { Const } from 'lib/const'
 import Link from 'next/link'
 
 const _Header = styled.header`
@@ -12,7 +12,7 @@ const _Header = styled.header`
   top: 0;
   left: 0;
   background: white;
-  border-bottom: 1px #F0F0F0 solid;
+  border-bottom: 1px #f0f0f0 solid;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +29,8 @@ export const Header: FC = () => {
   return (
     <_Header>
       <h1>
-        <Link href='/'>
-          <img src="/assets/logo/header_logo.png" alt={ Const.SERVICE_NAME }/>
+        <Link href="/">
+          <img src="/assets/logo/header_logo.png" alt={Const.SERVICE_NAME} />
         </Link>
       </h1>
     </_Header>

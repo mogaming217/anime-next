@@ -6,7 +6,7 @@ import { Work } from 'model'
 import styled from 'styled-components'
 
 type Props = {
-  searchText: string | null,
+  searchText: string | null
   works: Work[]
 }
 
@@ -18,9 +18,9 @@ const SearchPage: NextPage<Props> = (props: Props) => {
   return (
     <>
       <SearchBarContainer>
-        <SearchBar searchText={ props.searchText || undefined } />
+        <SearchBar searchText={props.searchText || undefined} />
       </SearchBarContainer>
-      <WorkList works={ props.works } />
+      <WorkList works={props.works} />
     </>
   )
 }
@@ -35,7 +35,7 @@ SearchPage.getInitialProps = async ({ query }: NextPageContext): Promise<Props> 
   const works = await repo.searchWorks(keyword)
   return {
     searchText: keyword,
-    works
+    works,
   }
 }
 

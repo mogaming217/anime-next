@@ -1,6 +1,6 @@
-import { Work } from "model";
+import { Work } from 'model'
 import firebase from 'firebase/app'
-import { FirestoreRepository } from "./firestore";
+import { FirestoreRepository } from './firestore'
 
 export class WorkRepository extends FirestoreRepository {
   decode(snap: firebase.firestore.DocumentSnapshot): Work | undefined {

@@ -1,13 +1,11 @@
-import { Original, OriginalLink, OriginalType } from "model"
+import { Original, OriginalLink, OriginalType } from 'model'
 import firebase from 'firebase/app'
-import { FirestoreRepository } from "./firestore";
-import { compactMap } from "helper/array";
-import { firestore } from "lib/firebase/client";
+import { FirestoreRepository } from './firestore'
+import { compactMap } from 'helper/array'
+import { firestore } from 'lib/firebase/client'
 
 export class OriginalRepository extends FirestoreRepository {
-  constructor(
-    readonly db: firebase.firestore.Firestore = firestore,
-  ) {
+  constructor(readonly db: firebase.firestore.Firestore = firestore) {
     super(db)
   }
 
@@ -21,19 +19,23 @@ export class OriginalRepository extends FirestoreRepository {
     return new Original(snap.id, data.originalType, data.animeEpisodeNo, data.originalNo, link, data.title, data.imageURL)
   }
 
-  async create(myUserID: string, workID: string, data: { originalType: OriginalType, originalNo: string | undefined, animeEpisodeNo: string | undefined }): Promise<Original> {
+  async create(
+    myUserID: string,
+    workID: string,
+    data: { originalType: OriginalType; originalNo: string | undefined; animeEpisodeNo: string | undefined }
+  ): Promise<Original> {
     const ref = this.originalsRef(workID).doc()
     await ref.set({
       originalType: data.originalType,
       originalNo: data.originalNo || null,
       animeEpisodeNo: data.animeEpisodeNo || null,
       userID: myUserID,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
     return new Original(ref.id, data.originalType, data.animeEpisodeNo, data.originalNo, undefined, null, null)
   }
 
-  async fetchOriginals(workID: string, limit: number = 10): Promise<Original[]> {
+  async fetchOriginals(workID: string, limit = 10): Promise<Original[]> {
     const result = await this.originalsRef(workID).limit(limit).get()
     return compactMap(result.docs, doc => this.decode(doc))
   }

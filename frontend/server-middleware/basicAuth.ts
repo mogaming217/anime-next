@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 
 // username: password
 const credentials: { [key: string]: string } = {
-  'sample_user': 'sample_password'
+  sample_user: 'sample_password',
 }
 
 export default function (req: Request, res: Response, next: NextFunction) {

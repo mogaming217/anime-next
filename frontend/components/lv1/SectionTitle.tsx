@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Constants from "styles/StyleConst";
+import styled from 'styled-components'
+import Constants from 'styles/StyleConst'
 
 export const SectionTitle = styled.div`
   font-size: ${Constants.FONT.MEDIUM};

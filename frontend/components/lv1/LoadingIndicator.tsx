@@ -1,7 +1,7 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { FC } from 'react'
+import styled from 'styled-components'
 import Loader from 'react-loader-spinner'
-import StyleConst from "styles/StyleConst";
+import StyleConst from 'styles/StyleConst'
 
 const Container = styled.div`
   text-align: center;
@@ -17,18 +17,14 @@ type Props = {
 export const LoadingIndicator: FC<Props> = ({ size, paddingLess }) => {
   const loaderSize: number = (() => {
     switch (size!) {
-      case 'small': return 44
+      case 'small':
+        return 44
     }
   })()
 
   return (
     <Container style={{ padding: paddingLess ? 0 : 32 }}>
-      <Loader
-        type='ThreeDots'
-        color={ StyleConst.COLOR.PRIMARY }
-        width={ loaderSize }
-        height={ loaderSize }
-      />
+      <Loader type="ThreeDots" color={StyleConst.COLOR.PRIMARY} width={loaderSize} height={loaderSize} />
     </Container>
   )
 }

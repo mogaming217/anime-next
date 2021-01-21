@@ -1,9 +1,9 @@
-import styled from "styled-components"
-import Constants from "styles/StyleConst"
-import { FC } from "react"
+import styled from 'styled-components'
+import Constants from 'styles/StyleConst'
+import { FC } from 'react'
 
 type Props = {
-  src: string | null | undefined,
+  src: string | null | undefined
   alt?: string
 }
 
@@ -12,16 +12,10 @@ const _Image = styled.img<Props>`
   background-color: ${Constants.COLOR.IMAGE_BACKGROUND};
 `
 
-export const Image: FC<Props> = (props) => {
+export const Image: FC<Props> = props => {
   const onError = (e: any) => {
     console.log('on error', props.src, e)
   }
 
-  return (
-    <_Image
-      src={ props.src || '/assets/noimage.png' }
-      onError={ onError }
-      alt={ props.alt || '画像' }
-    />
-  )
+  return <_Image src={props.src || '/assets/noimage.png'} onError={onError} alt={props.alt || '画像'} />
 }

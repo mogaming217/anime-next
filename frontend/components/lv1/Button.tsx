@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Constants from "styles/StyleConst";
+import styled from 'styled-components'
+import Constants from 'styles/StyleConst'
 
 export const Button = styled.button`
   padding: 12px 24px;
