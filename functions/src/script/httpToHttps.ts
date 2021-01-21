@@ -1,12 +1,12 @@
-import { initializeProject } from "./helper";
+import { initializeProject } from './helper'
 const app = initializeProject('prod')
 
-import { WorkRepository } from "../repository";
-import { compactMap } from "../helper/array";
-import Axios from "axios";
+import { WorkRepository } from '../repository'
+import { compactMap } from '../helper/array'
+import Axios from 'axios'
 import * as path from 'path'
 import * as fs from 'fs'
-import { findInBatch } from "../helper/firestore";
+import { findInBatch } from '../helper/firestore'
 
 const main = async () => {
   const firestore = app.firestore()

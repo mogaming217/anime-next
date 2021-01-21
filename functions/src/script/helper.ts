@@ -7,7 +7,7 @@ export const isValidAppEnv = (value: string): value is AppEnvironment => {
   return ['dev', 'prod'].includes(value)
 }
 
-export const initializeProject = (env?: AppEnvironment) => {
+export const initializeProject = (env?: AppEnvironment, name?: string) => {
   const envValue = process.env.APP_ENV || env
   if (!envValue) throw new Error('No env specified. You must set APP_ENV or pass as args.')
   if (!isValidAppEnv(envValue)) throw new Error('env must be "dev" or "prod".')
@@ -22,9 +22,12 @@ export const initializeProject = (env?: AppEnvironment) => {
   // FIXME: prodで動かすときはこれしないとだめ
   // firebase -P prod functions:config:get > .runtimeconfig.json
 
-  return admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    // if you specify databaseURL, please fix script
-    databaseURL: `https://${serviceAccount.project_id}.firebaseio.com`
-  }, envValue)
+  return admin.initializeApp(
+    {
+      credential: admin.credential.cert(serviceAccount),
+      // if you specify databaseURL, please fix script
+      databaseURL: `https://${serviceAccount.project_id}.firebaseio.com`,
+    },
+    name
+  )
 }

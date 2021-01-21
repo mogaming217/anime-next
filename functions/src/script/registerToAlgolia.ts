@@ -1,9 +1,10 @@
-import { initializeProject } from "./helper"
-import { SearchRepository, WorkRepository } from "../repository"
-import { findInBatch } from "../helper/firestore"
-import { compactMap } from "../helper/array"
-import { sleep } from "../common/sleep"
+import { initializeProject } from './helper'
 const app = initializeProject('prod')
+
+import { SearchRepository, WorkRepository } from '../repository'
+import { findInBatch } from '../helper/firestore'
+import { compactMap } from '../helper/array'
+import { sleep } from '../common/sleep'
 
 const main = async () => {
   const db = app.firestore()

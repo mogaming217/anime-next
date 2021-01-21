@@ -8,8 +8,8 @@ const execCommand = (command: string) => {
   return execSync(command, { stdio: 'inherit' })
 }
 
-  // キーには小文字しか使用できない（Firebaseの仕様）
-  // JSONは2階層で指定しなければならない（Firebaseの仕様）
+// キーには小文字しか使用できない（Firebaseの仕様）
+// JSONは2階層で指定しなければならない（Firebaseの仕様）
 const generateEnvString = (env: AppEnvironment): string[] => {
   const json = require(path.resolve(__dirname, '../../env', `${env}.json`))
   const envValues: string[] = []
@@ -18,12 +18,12 @@ const generateEnvString = (env: AppEnvironment): string[] => {
     const value = json[key]
     if (!value) return
 
-    const type = typeof(value)
+    const type = typeof value
     if (type === 'object') {
       // 2階層目
       Object.keys(value).forEach(key2 => {
         const value2 = value[key2]
-        const type2 = typeof(value2)
+        const type2 = typeof value2
         if (type2 === 'string' || type2 === 'number') {
           envValues.push(`${key}.${key2}=${value2}`)
         } else {
@@ -52,5 +52,3 @@ const main = async () => {
 }
 
 main()
-
-

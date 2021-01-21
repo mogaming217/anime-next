@@ -20,7 +20,7 @@
       "excludedFiles": ["src/script/**/*"]
     }
   ],
-  "ignorePatterns": ["src/test/**/*", "src/script/**/*"],
+  "ignorePatterns": ["src/test/**/*"],
   "rules": {
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",

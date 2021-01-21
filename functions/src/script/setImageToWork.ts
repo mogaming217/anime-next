@@ -1,13 +1,13 @@
-import { initializeProject } from "./helper"
+import { initializeProject } from './helper'
 const app = initializeProject('prod')
 
-import { Season, allSeasons } from "../enum/season"
+import { Season, allSeasons } from '../enum/season'
 import * as fs from 'fs'
-import { sleep } from "../common/sleep"
-import { AmazonRepository } from "../repository"
+import { sleep } from '../common/sleep'
+import { AmazonRepository } from '../repository'
 
 type Params = {
-  year: number,
+  year: number
   seasons: Season[]
 }
 
@@ -22,7 +22,7 @@ const main = async () => {
 
   for (const params of list) {
     const workResult = await app.firestore().collection('works').where('year', '==', params.year).get()
-    for(const doc of workResult.docs) {
+    for (const doc of workResult.docs) {
       const work = doc.data()!
       if (work.imageURL) continue
       try {

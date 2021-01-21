@@ -1,13 +1,13 @@
-import { initializeProject } from "./helper"
+import { initializeProject } from './helper'
 initializeProject('dev')
 
 import { SetWorkService } from '../service'
-import { Season, allSeasons } from "../enum/season"
+import { Season, allSeasons } from '../enum/season'
 import * as fs from 'fs'
-import { sleep } from "../common/sleep"
+import { sleep } from '../common/sleep'
 
 type Params = {
-  year: number,
+  year: number
   seasons: Season[]
 }
 
@@ -20,7 +20,7 @@ const main = async () => {
   for (let year = 2000; year <= 2020; year++) {
     list.push({ year, seasons: allSeasons })
   }
-  console.log(allSeasons);
+  console.log(allSeasons)
 
   const failedWorkIDs: string[] = []
 

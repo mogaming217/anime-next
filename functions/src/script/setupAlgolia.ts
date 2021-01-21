@@ -1,5 +1,5 @@
-import { initializeProject } from "./helper"
-import { SearchRepository } from "../repository"
+import { initializeProject } from './helper'
+import { SearchRepository } from '../repository'
 const app = initializeProject('prod')
 
 const main = async () => {

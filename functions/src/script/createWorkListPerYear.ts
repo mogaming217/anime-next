@@ -1,4 +1,4 @@
-import { initializeProject } from "./helper";
+import { initializeProject } from './helper'
 const app = initializeProject('prod')
 
 import * as fs from 'fs'

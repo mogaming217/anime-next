@@ -16,8 +16,10 @@ export interface EnvorinmentVariables {
 }
 
 let config = functions.config()
+console.log('config', config)
+
 if (Object.keys(config).length === 0) {
-  if (!process.env.NODE_ENV || process.env.GCLOUD_PROJECT === 'animenextdev') {
+  if (process.env.NODE_ENV === 'test' || process.env.GCLOUD_PROJECT === 'animenextdev') {
     config = require('../env/dev.json')
   } else if (process.env.GCLOUD_PROJECT === 'animenextprod') {
     config = require('../env/prod.json')
