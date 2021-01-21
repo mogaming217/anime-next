@@ -14,7 +14,7 @@ export const useRelatedWorks = (work: Work, count = 10): ReturnType => {
   useEffect(() => {
     let cancel = false
 
-    const retrive = async () => {
+    const retrieve = async () => {
       setLoading(true)
       const trendRepo = new TrendRepository()
       const works = await trendRepo.fetchRelatedWorks(work, count)
@@ -23,7 +23,7 @@ export const useRelatedWorks = (work: Work, count = 10): ReturnType => {
         setRelatedWorks(works)
       }
     }
-    retrive()
+    retrieve()
 
     return () => {
       cancel = true

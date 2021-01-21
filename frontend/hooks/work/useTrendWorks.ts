@@ -15,7 +15,7 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
   useEffect(() => {
     let cancel = false
 
-    const retrive = async () => {
+    const retrieve = async () => {
       setLoading(true)
       const works = await trendRepo.fetchTrendWorks(props.count)
       if (!cancel) {
@@ -24,7 +24,7 @@ export const useTrendWorks = (props: { count: number }): ReturnType => {
       }
     }
 
-    retrive()
+    retrieve()
     return () => {
       cancel = true
     }
