@@ -3,9 +3,9 @@ import { env } from '../env'
 import { compactMap } from '../helper/array'
 
 type ItemInfo = {
-  title: string,
-  link: string,
-  imageURL: string | null,
+  title: string
+  link: string
+  imageURL: string | null
 }
 
 export class AmazonRepository {
@@ -21,10 +21,7 @@ export class AmazonRepository {
   }
 
   private get resoucesForSearchBooks(): string[] {
-    return [
-      'Images.Primary.Large',
-      'ItemInfo.Title',
-    ]
+    return ['Images.Primary.Large', 'ItemInfo.Title']
   }
 
   // SearchIndex: https://webservices.amazon.com/paapi5/documentation/locale-reference/japan.html
@@ -42,7 +39,7 @@ export class AmazonRepository {
   fetchImageURL(keyword: string): Promise<string | null> {
     const request = this.constructRequest('AmazonVideo', keyword)
     return new Promise<string | null>((resolve, reject) => {
-      this.api.searchItems(request, async (error: any, data: any, r: any) => {
+      this.api.searchItems(request, async (error: any, data: any) => {
         if (error) {
           reject(error)
           return
@@ -58,7 +55,7 @@ export class AmazonRepository {
   fetchItemInfo(keyword: string): Promise<ItemInfo[]> {
     const request = this.constructRequest('Books', keyword)
     return new Promise<ItemInfo[]>((resolve, reject) => {
-      this.api.searchItems(request,  async (error: any, data: any, r: any) => {
+      this.api.searchItems(request, async (error: any, data: any) => {
         if (error) {
           reject(error)
           return
@@ -76,7 +73,9 @@ export class AmazonRepository {
 
           const imageURL = item.Images?.Primary?.Large?.URL || null
           return {
-            imageURL, title, link
+            imageURL,
+            title,
+            link,
           }
         })
 

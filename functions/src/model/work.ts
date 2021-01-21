@@ -13,7 +13,7 @@ export class Work implements Model {
     public imageURL: string | null = null,
     readonly season: Season,
     readonly year: number,
-    readonly media: WorkMedia,
+    readonly media: WorkMedia
   ) {
     this.annictID = annictId
   }

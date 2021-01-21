@@ -7,13 +7,11 @@ export const OriginalType = {
 export type OriginalType = typeof OriginalType[keyof typeof OriginalType]
 
 export class OriginalLink {
-  constructor(
-    readonly amazon: string | undefined
-  ){}
+  constructor(readonly amazon: string | undefined) {}
 }
 
 export const OriginalLinkSite = {
-  amazon: 'amazon'
+  amazon: 'amazon',
 }
 export type OriginalLinkSite = typeof OriginalLinkSite[keyof typeof OriginalLinkSite]
 
@@ -26,6 +24,6 @@ export class Original {
     readonly originalNo: string | null,
     readonly link: OriginalLink | null,
     readonly title: string | null,
-    readonly imageURL: string | null,
-  ){}
+    readonly imageURL: string | null
+  ) {}
 }

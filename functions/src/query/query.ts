@@ -1,11 +1,11 @@
 export interface GraphQLQuery<T> {
   body: string
-  variables?: object
+  variables?: { [key: string]: any }
   parse: (data: any) => T | null
 }
 
 export interface GraphQLResponse<T> {
-  data: T,
+  data: T
   errors?: GraphQLError[]
 }
 

@@ -1,7 +1,7 @@
-import { firestore } from "firebase-admin";
-import { Repository } from "./base";
-import { Work } from "../model";
-import { handleInBatch } from "../helper/array";
+import { firestore } from 'firebase-admin'
+import { Repository } from './base'
+import { Work } from '../model'
+import { handleInBatch } from '../helper/array'
 
 export class WorkRepository extends Repository {
   workDataForSet(work: Work): firestore.DocumentData {
@@ -14,7 +14,7 @@ export class WorkRepository extends Repository {
       season: work.season,
       year: work.year,
       media: work.media,
-      updatedAt: firestore.Timestamp.now() // あまり重要ではないのであえてserverTimestampを使わない
+      updatedAt: firestore.Timestamp.now(), // あまり重要ではないのであえてserverTimestampを使わない
     }
   }
 
@@ -42,7 +42,7 @@ export class WorkRepository extends Repository {
   async updateImageURL(work: Work) {
     return this.worksRef.doc(work.id).update({
       imageURL: work.imageURL,
-      updatedAt: firestore.Timestamp.now()
+      updatedAt: firestore.Timestamp.now(),
     })
   }
 }
