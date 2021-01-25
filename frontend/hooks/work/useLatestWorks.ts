@@ -10,22 +10,26 @@ type State = {
   works?: Work[]
   hasNext: boolean
   fetchNext: () => void
+  setYear: (year: number) => void
+  deleteWork: (workID: string) => void
 }
 
 export const useLatestWorks = (count = 30): State => {
   const workRepo = new WorkRepository()
   const [loading, setLoading] = useState(true)
   const [hasNext, setHasNext] = useState(false)
+  const [_year, _setYear] = useState<number>()
   const [works, setWorks] = useState<Work[]>()
   const [lastSnap, setLastSnap] = useState<firebase.firestore.QueryDocumentSnapshot>()
   const [startAfterSnap, setStartAfterSnap] = useState<firebase.firestore.QueryDocumentSnapshot>()
 
   useEffect(() => {
     const fetch = async () => {
-      let query = firestore.collection('works').orderBy('year', 'desc').limit(count)
-      if (startAfterSnap) {
-        query = query.startAfter(startAfterSnap)
-      }
+      setLoading(true)
+
+      let query = firestore.collection('works').limit(count)
+      if (_year) query = query.where('year', '==', _year)
+      if (startAfterSnap) query = query.startAfter(startAfterSnap)
 
       const result = await query.get()
       setLastSnap(result.docs[result.size - 1])
@@ -36,7 +40,7 @@ export const useLatestWorks = (count = 30): State => {
       setHasNext(result.size === count)
     }
     void fetch()
-  }, [startAfterSnap])
+  }, [_year, startAfterSnap])
 
   const fetchNext = () => {
     if (!hasNext || loading) {
@@ -45,5 +49,13 @@ export const useLatestWorks = (count = 30): State => {
     setStartAfterSnap(lastSnap)
   }
 
-  return { loading, hasNext, works, fetchNext }
+  const deleteWork = (workID: string) => {
+    setWorks(works?.filter(w => w.id !== workID))
+  }
+
+  const setYear = (year: number) => {
+    _setYear(year)
+  }
+
+  return { loading, hasNext, works, fetchNext, setYear, deleteWork }
 }

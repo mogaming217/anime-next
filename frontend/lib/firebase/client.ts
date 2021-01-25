@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/analytics'
+import 'firebase/functions'
 
 const app = (() => {
   if (firebase.apps.length !== 0) {
@@ -28,3 +29,4 @@ if (process.browser) {
 
 export const firestore = firebase.firestore()
 export const auth = firebase.auth()
+export const functions = firebase.app().functions('asia-northeast1')
