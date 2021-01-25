@@ -1,4 +1,4 @@
-import { initializeProject } from "../helper"
+import { initializeProject } from '../helper'
 initializeProject('dev')
 
 import { AmazonRepository } from '../../repository'

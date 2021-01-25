@@ -7,14 +7,16 @@ import { AmazonRepository, WorkRepository } from '../../../repository'
 
 const path = workPath + `/originals/{originalID}`
 
-export const setAffiriateLinkToOriginal = defaultFunctions.firestore.document(path).onCreate(async snapshot => {
-  const originalRepo = new OriginalRepository()
-  const original = originalRepo.decode(snapshot)
-  if (!original) return
+export const setAffiriateLinkToOriginal = defaultFunctions()
+  .firestore.document(path)
+  .onCreate(async snapshot => {
+    const originalRepo = new OriginalRepository()
+    const original = originalRepo.decode(snapshot)
+    if (!original) return
 
-  const service = new Service()
-  await service.exec(original)
-})
+    const service = new Service()
+    await service.exec(original)
+  })
 
 export class Service {
   constructor(

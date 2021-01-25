@@ -29,6 +29,10 @@ export class WorkRepository extends Repository {
     return this.decode(snap)
   }
 
+  async delete(workID: string) {
+    return this.worksRef.doc(workID).delete()
+  }
+
   async save(works: Work[]) {
     return handleInBatch(works, 500, async list => {
       const batch = this.db.batch()
