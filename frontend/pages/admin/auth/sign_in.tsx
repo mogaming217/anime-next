@@ -14,7 +14,7 @@ const Body: FC = () => {
   const authState = useAuth()
 
   const onGoogleLogin = async () => {
-    await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    await auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
   }
 
   return (

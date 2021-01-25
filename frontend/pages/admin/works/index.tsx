@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react'
 import { NextPage } from 'next'
 import { useLatestWorks } from 'hooks/work/useLatestWorks'
 import { LabelButton, LoadingIndicator } from 'components/lv1'
-import { WorkList } from 'components/lv3'
 import { WithAdmin } from 'middleware/admin'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -46,18 +45,20 @@ const Body: FC = () => {
         ))}
       </div>
       <table>
-        {worksState.works &&
-          worksState.works.map(work => (
-            <tr key={work.id}>
-              <td onClick={() => router.push(`/admin/works/${work.id}`)}>
-                <img src={work.imageURL ?? undefined} style={{ width: 180 }} alt="img" />
-              </td>
-              <td>{work.title}</td>
-              <td>
-                <button onClick={() => onDelete(work)}>削除</button>
-              </td>
-            </tr>
-          ))}
+        <tbody>
+          {worksState.works &&
+            worksState.works.map(work => (
+              <tr key={work.id}>
+                <td onClick={() => router.push(`/admin/works/${work.id}`)}>
+                  <img src={work.imageURL ?? undefined} style={{ width: 240 }} alt="img" />
+                </td>
+                <td>{work.title}</td>
+                <td>
+                  <button onClick={() => onDelete(work)}>削除</button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
       </table>
       {worksState.loading && <LoadingIndicator />}
       {worksState.hasNext && <LabelButton label="続きを取得" onClick={worksState.fetchNext} />}
