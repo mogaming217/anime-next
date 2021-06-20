@@ -15,7 +15,7 @@ const main = async () => {
   const service = new SetWorkService()
 
   const list: Params[] = []
-  list.push({ year: 2020, seasons: ['autumn'] }, { year: 2021, seasons: ['winter'] })
+  list.push({ year: 2021, seasons: ['spring', 'summer'] })
   // for (let year = 2000; year <= 2020; year++) {
   //   list.push({ year, seasons: allSeasons })
   // }
