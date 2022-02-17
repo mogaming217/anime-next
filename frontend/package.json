@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "firebase": "^8.2.3",
     "firebase-admin": "^9.4.2",
-    "next": "^10.0.5",
+    "next": "^12.1.0",
     "next-seo": "^4.17.0",
     "nextjs-progressbar": "0.0.7",
     "react": "^17.0.1",
