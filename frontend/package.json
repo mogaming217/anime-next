@@ -23,7 +23,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "firebase": "^8.2.3",
-    "firebase-admin": "^9.4.2",
+    "firebase-admin": "^11.4.1",
     "next": "^10.0.5",
     "next-seo": "^4.17.0",
     "nextjs-progressbar": "0.0.7",
